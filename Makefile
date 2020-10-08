@@ -24,6 +24,6 @@ clean:
 	rm -f *.h
 	rm -f tp1
 	rm -fdr ./data
-	rm -f liste.sh
+	ls -lash
 
 .PHONY: clean DEFAULT lib test liste 

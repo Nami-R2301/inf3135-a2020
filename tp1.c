@@ -23,6 +23,12 @@ void test_case_exemple(void)
 */
 
 void validerTH_Un(void) {
+
+  CU_ASSERT_TRUE( validerTH_1( 17 ) && validerTH_1( 18 ) && validerTH_1( 19 ) && validerTH_1( 20 ) && validerTH_1( 21 ) && validerTH_1( 22 ) &&
+  validerTH_1( 23 ) && validerTH_1( 24 ) && validerTH_1( 25 ) && validerTH_1( 26 ) && validerTH_1( 27 ) && validerTH_1( 28 ) && validerTH_1( 29 ) &&
+  validerTH_1( 30 ) && validerTH_1( 31 ) && validerTH_1( 32 ) && validerTH_1( 33 ) && validerTH_1( 34 ) && validerTH_1( 35 ) && validerTH_1( 36 ) &&
+  validerTH_1( 37 ) && validerTH_1( 38 ) && validerTH_1( 39 ) && validerTH_1( 40 ) );
+
   CU_ASSERT_FALSE( validerTH_1( 0 ) && validerTH_1( -17 ) && validerTH_1( -40 ) );
 }
 

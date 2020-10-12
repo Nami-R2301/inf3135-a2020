@@ -22,24 +22,9 @@ void test_case_exemple(void)
 }
 */
 
-void validerTH_1_test( void ) {
-	CU_ASSERT_EQUAL( validerTH_1 ( 
-bool validerTH_1(int);
-bool validerTH_2(char);
-bool validerTH_3(short);
-
-bool validerTA_1(int);
-bool validerTA_2(char);
-bool validerTA_3(short);
-
-bool validerPulsation_1(int);
-bool validerPulsation_2(char);
-bool validerPulsation_3(short);
-
-bool validerSignal_1(int);
-bool validerSignal_2(char);
-bool validerSignal_3(short);
-
+void validerTH_Un(void) {
+  CU_ASSERT_FALSE( validerTH_1( 0 ) && validerTH_1( -17 ) && validerTH_1( -40 ) );
+}
 
 int main ( void )
 {
@@ -57,10 +42,7 @@ int main ( void )
    }
 
    /* add the tests to the suite */
-   if ( (NULL == CU_add_test(pSuite, "tp1_1", tp1_un)) ||
-        (NULL == CU_add_test(pSuite, "tp1_2", tp1_deux)) ||
-        (NULL == CU_add_test(pSuite, "tp1_3", tp1_trois))
-      )
+   if ( (NULL == CU_add_test(pSuite, "validerTH_1", validerTH_Un ) ) )
    {
       CU_cleanup_registry();
       return CU_get_error();
@@ -68,7 +50,7 @@ int main ( void )
 
    // Run all tests using the basic interface
    CU_basic_set_mode(CU_BRM_VERBOSE);
-   CU_basic_run_tests();
+   CU_basic_run_tests(); 
    printf("\n");
    CU_basic_show_failures(CU_get_failure_list());
    printf("\n\n");

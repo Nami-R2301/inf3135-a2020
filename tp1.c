@@ -24,10 +24,15 @@ void test_case_exemple(void)
 
 void validerTH_Un(void) {
 
-  CU_ASSERT_TRUE( validerTH_1( 17 ) && validerTH_1( 18 ) && validerTH_1( 19 ) && validerTH_1( 20 ) && validerTH_1( 21 ) && validerTH_1( 22 ) &&
-  validerTH_1( 23 ) && validerTH_1( 24 ) && validerTH_1( 25 ) && validerTH_1( 26 ) && validerTH_1( 27 ) && validerTH_1( 28 ) && validerTH_1( 29 ) &&
-  validerTH_1( 30 ) && validerTH_1( 31 ) && validerTH_1( 32 ) && validerTH_1( 33 ) && validerTH_1( 34 ) && validerTH_1( 35 ) && validerTH_1( 36 ) &&
-  validerTH_1( 37 ) && validerTH_1( 38 ) && validerTH_1( 39 ) && validerTH_1( 40 ) );
+//  CU_ASSERT_TRUE( validerTH_1( 17 ) && validerTH_1( 18 ) && validerTH_1( 19 ) && validerTH_1( 20 ) && validerTH_1( 21 ) && validerTH_1( 22 ) &&
+//  validerTH_1( 23 ) && validerTH_1( 24 ) && validerTH_1( 25 ) && validerTH_1( 26 ) && validerTH_1( 27 ) && validerTH_1( 28 ) && validerTH_1( 29 ) &&
+//  validerTH_1( 30 ) && validerTH_1( 31 ) && validerTH_1( 32 ) && validerTH_1( 33 ) && validerTH_1( 34 ) && validerTH_1( 35 ) && validerTH_1( 36 ) &&
+//  validerTH_1( 37 ) && validerTH_1( 38 ) && validerTH_1( 39 ) && validerTH_1( 40 ) );
+
+  CU_ASSERT_FALSE( validerTH_1( 0 ) && validerTH_1( -17 ) && validerTH_1( -40 ) );
+}
+
+void validerTH_Deux(void) {
 
   CU_ASSERT_FALSE( validerTH_1( 0 ) && validerTH_1( -17 ) && validerTH_1( -40 ) );
 }
@@ -48,7 +53,8 @@ int main ( void )
    }
 
    /* add the tests to the suite */
-   if ( (NULL == CU_add_test(pSuite, "validerTH_1", validerTH_Un ) ) )
+   if ( (NULL == CU_add_test(pSuite, "validerTH_1", validerTH_Un ) ) ||
+	(NULL == CU_add_test(pSuite, "validerTH_2", validerTH_Deux ) ) )
    {
       CU_cleanup_registry();
       return CU_get_error();

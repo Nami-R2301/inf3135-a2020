@@ -10,8 +10,8 @@
 	Valider le Signal : validerSignal_X
 	contenues dans les fichiers :
 
-	objet : tcv.o;
-	entête : tcv.h.
+	objet : tcv.o; => Contient le code des fonctions précédentes.
+	entête : tcv.h. => Contient les prototypes utilisés dans tcv.o et tp1.c pour les tests.
 	Le rôle du programme tp1.c et de son exécutable est de tester et afficher les noms des tests (fonctions) qui échouent et qui passent. Ainsi, il sera possible d'affirmer sans doute qu’elles sont les fonctions utilisables (fiables).
 
 	Il y aura une fonction de test (cUnit) pour chacune des fonctions contenues/listées/à tester dans tcv.h.
@@ -21,7 +21,7 @@
 
 	Le programme exécutable tp1 doit être lancé en ligne de commande avec la syntaxe suivante :
 
-	$ ./tp1
+	$ ./tp1 => *OU avec les make "test" et "liste" pour respecter certaines conditions.*
 
    ## Auteur
 
@@ -44,7 +44,7 @@
 
    ## Statut
 
-	<Initial>
+	Structure fini. (60% complété, reste les tests à implementer)
    
    ## Autoévaluation
    

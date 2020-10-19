@@ -34,11 +34,84 @@
         Le programme exécutable tp1 doit être lancé en ligne de commande avec la syntaxe suivante :
 
         $ ./tp1 => *OU avec les make "test" et "liste" pour respecter certaines conditions.*
-   
+
+	Ex 1:
+		Commande(s) pour compilation et execution du projet: 'make lib'; 'make'; ./tp1 
+		
+		Résultat:
+
+		------------------------------------------------------------------------------------------------------ 
+
+		CUnit - A unit testing framework for C - Version 2.1-3 http://cunit.sourceforge.net/
+
+		Test: validerTH_1... passed
+		Test: validerTH_2... FAILED
+		1. tp1.c:27  - CU_ASSERT_TRUE(validerTH_2( (unsigned) 17 ) && validerTH_2( (unsigned) 40 ))
+
+   		Run Summary:    Type  Total    Ran Passed Failed Inactive
+              	suites      1      1    n/a      0        0
+               	tests       1      1      1      1        0
+             	asserts     2      2      2      2      n/a
+
+		Elapsed time =    0.000 seconds
+		
+		1. tp1.c:27  - CU_ASSERT_TRUE(validerTH_1( (unsigned) 17 ) && validerTH_1( (unsigned) 40 ))
+		------------------------------------------------------------------------------------------------------
+	Ex 2:
+		Commande(s) pour compilation et execution du projet: 'make lib'; make test
+		
+		Résultat:
+
+		------------------------------------------------------------------------------------------------------
+		CUnit - A unit testing framework for C - Version 2.1-3 http://cunit.sourceforge.net/
+
+                Test validerTH_1: passed...
+
+                Run Summary:    Type  Total    Ran Passed Failed Inactive
+                suites      1      1    n/a      0        0
+                tests       1      1      1      1        0
+                asserts     2      2      2      2      n/a
+
+                Elapsed time =    0.000 seconds
+		------------------------------------------------------------------------------------------------------
+
+	Ex 3:
+
+		Commande(s) pour compilation et execution du projet: 'make lib'; make liste
+
+                Résultat:
+
+
+                Test validerTH_1: passed...
+
+---------------------------------------------------------------------------------------------------------------------
 
    ## Contenu du projet
 
-   	<TODO>
+   	Makefile: Automatise la compilation en lui spécifiant la cible et la source ainsi que quelle(s) commande(s)
+		exécuter pour faire la bonne compilation.
+
+	cp.txt: Code permanent de l'auteur.
+
+	tp1.c: Contient le code des tests unitaires des fonctions déclarées dans 'tcv.h' et codé dans 'tcv.o'.
+
+	tcv.o: Fichier objet qui contient le code de toutes les fonctions déclarées dans le fichier 'tcv.h'.
+
+	tcv.h: Fichier d'entête qui sert à déclarer les prototypes des fonctions qui vont être utilisé dans 'tcv.o
+		et testé dans tp1.c.
+
+	data/: Contient la librairie qui sera utilisé dans tp1.c ('tcv.h et 'tcv.o ) en format compressé zip (tp1.zip)
+		qui sera ensuite extrait dans la racine du projet.
+
+	liste.sh: Fichier executable bash qui contiendra la commande pour simplifier l'affichage des test en affichant
+		seulement ceux qui ont réussi. Ce fichier ne prend que le STDOUT comme argument.
+	
+	tp1: Fichier exécutable qui contiendra la totalité des tests unitaires sur le code de 'tcv.o'. Ce fichier
+		prend comme argument les fichiers 'tcv.o et 'tcv.h' lors de la compilation Cunit.
+
+	.gitignore: Contient les fichier objets et binaires pour ne pas les prendrent en considération lors des dépôts.  
+
+	README.md: Fichier texte qui décrit le projet en détails.
 
    ## Références
 
@@ -47,11 +120,31 @@
 
 	Cunit Source Forge -> http://cunit.sourceforge.net/index.html
 
+	Convertion entre ASCII, décimal et binaire -> https://www.branah.com/ascii-converter
+
+	Information sur les valeurs décimales -> 
+	https://softwareengineering.stackexchange.com/questions/167147/why-dont-computers-store-decimal-numbers-as-a-second-whole-number
+
    ## Statut
 
-	Structure fini. (60% complété, reste les tests à implementer)
+	Tout fini, mais il manque potentiellement un test qui ne succède pas (3/4) (95%).
+
+   ## Réponse
    
+	1. Les valeurs décimales sont nocives, car l'ordinateur doit réserver de la place supplémentaire pour pouvoir valider les valeurs
+	décimales. L'ordinateur n'aurra pas de problème à évaluer un nombre décimal, mais cela coûte de la mémoire supplémentaire ainsi 
+	que du temps pour évalué les valeurs décimales pour pouvoir les convertirs en code machine (binaire). Conclusion, si le programmeur
+	peut se le permettre, il serait fortement recommandé d'utiliser des nombres entiers à la place.
+
+	2. Pour évité d'avoir des erreurs de type de conversions entre des types. De toute façon, avec gcc le compilateur nos affiche une 
+	alerte lorsqu'on à des débordements de types et pusique nous devont nous assurez de ne pas recevoir des 'warnings' lors de la 
+	compilation, il est impératif de ne pas dépasser les limites des types de données!
+
+ 
    ## Autoévaluation
    
-   	<TODO>
+   	Je croix que je mérite au moins 8 points, car j'ai vraiment mis beaucoup de temps sur ce travail et
+	j'ai vraiment réfléchi et essayé de le perfectionné.
 
+----------------------------------------------------------------------------------------------------------------------------------------------------
+Crée et édité par Nami Reghbati à 11:53PM EST 18/10/2020

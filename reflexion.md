@@ -1,6 +1,5 @@
 # Réflexion lors de l'accomplissement du tp2
 
----------------------------------------------
 ## Fonctionnement du fichier tp2.c :
 
 - *Coder dans un fichier tp2.c la fonction main du tp2.*
@@ -8,7 +7,6 @@
 - *Entrées de tp2.c : Stdin.* 
 
 - *Sortie de tp2.c : Stdout.*
-----------------------------------------------
 
 ## Contrainte(s) :
 
@@ -16,7 +14,6 @@
 
 - Branche nommé tp2 (contient le projet).
 
------------------------------------------------
 ### Compréhension après deuxième lecture :
 
 - Les formats des données en entrées seront respecté (*Les transactions sont très formelles. Il s'agit d'un système dit critique, aucune nuance possible.
@@ -41,7 +38,5 @@
 - Seulement une transaction de sortie pour 21, 22 et 23 vers la fin du programme (après avoir traité toutes les données.
 
 - On va probablement utiliser *math.h* pour calculer la distance, car je ne croix pas qu'on peut implementer des exposants d'une manière courte en C.
-
-------------------------------------------------
 
 ### Créer par Nami Reghbati 05/11/2020 : 13:00

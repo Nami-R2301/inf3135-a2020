@@ -1,4 +1,3 @@
-<<<<<<< HEAD
  # Travail pratique 2
 
    ## Description

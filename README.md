@@ -1,3 +1,4 @@
+<<<<<<< HEAD
  # Travail pratique 2
 
    ## Description
@@ -125,6 +126,5 @@
 
    	-Je croix que je mérite au moins 8 points, car j'ai vraiment mis beaucoup de temps sur ce travail et
 	 j'ai vraiment réfléchi et essayé de le perfectionné.
-
 ----------------------------------------------------------------------------------------------------------------------------------------------------
-Crée et édité par Nami Reghbati à 11:53PM EST 18/10/2020
+Crée et édité par Nami Reghbati à 18:47 EST 14/11/2020

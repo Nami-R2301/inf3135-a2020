@@ -34,7 +34,7 @@ test-tp1b:
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp1.zip -d .
 	gcc $(CC) $(CUNIT) -o $(PROG1) $(PROG1).c tcv.o -lcunit
-	./tp1 | bash ./liste.sh
+	./tp1 | bash liste.sh
 
 
 test-tp2:

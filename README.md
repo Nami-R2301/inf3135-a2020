@@ -1,19 +1,21 @@
  # Travail pratique 2
 
    ## Description
-
-	Pour le TP#2, nous implémentons des tests unitaires qui testent la fonctionalité du programme 'TCV'.
-	Le code est déjà inclu dans le dépôt dont le projet se trouve, plus précisément les fichiers 'TCV.h'
- 	et 'TCV.o'. Pour ce travail, on utilise la librairie 'Cunit' en mode basique pour effectuer nos tests.
-	Le dépôt github qu'on utilise pour déposer ce TP doit être prêt à rendre le **18 Octobre 2020 :: 23:59 EST**.       
+ 
+   - Pour le TP#2, nous implémentons des tests unitaires qui testent la fonctionalité du programme 'TCV'.
+     Le code est déjà inclu dans le dépôt dont le projet se trouve, plus précisément les fichiers 'TCV.h'
+     et 'TCV.o'. Pour ce travail, on utilise la librairie 'Cunit' en mode basique pour effectuer nos tests.
+     Le dépôt github qu'on utilise pour déposer ce TP doit être prêt à rendre le **18 Octobre 2020 :: 23:59 EST**.       
+ 
    ## Auteur
 
-	Réalisé par Nami Reghbati; REGN03079808.
+   - Réalisé par Nami Reghbati; REGN03079808.
 
    ## Fonctionnement
 
-	*Le programme tp1.c doit tester à l'aide de la librairie cUnit toutes variantes des fonctions suivantes :*
+   - *Le programme tp1.c doit tester à l'aide de la librairie cUnit toutes variantes des fonctions suivantes :*
 
+```
         Valider la température humaine : validerTH_X
         Valider la température ambiante : validerTA_X
         Valider la pulsation : validerPulsation_X
@@ -84,46 +86,47 @@
 
                 Test validerTH_1: passed...
 
----------------------------------------------------------------------------------------------------------------------
+```
 
    ## Contenu du projet
 
-   	Makefile: Automatise la compilation en lui spécifiant la cible et la source ainsi que quelle(s) commande(s)
+   - Makefile: Automatise la compilation en lui spécifiant la cible et la source ainsi que quelle(s) commande(s)
 		exécuter pour faire la bonne compilation.
 
-	cp.txt: Code permanent de l'auteur.
+   - cp.txt: Code permanent de l'auteur.
 
-	tp1.c: Contient le code des tests unitaires des fonctions déclarées dans 'tcv.h' et codé dans 'tcv.o'.
+   - tp1.c: Contient le code des tests unitaires des fonctions déclarées dans 'tcv.h' et codé dans 'tcv.o'.
 
-	tcv.o: Fichier objet qui contient le code de toutes les fonctions déclarées dans le fichier 'tcv.h'.
+   - tcv.o: Fichier objet qui contient le code de toutes les fonctions déclarées dans le fichier 'tcv.h'.
 
-	tcv.h: Fichier d'entête qui sert à déclarer les prototypes des fonctions qui vont être utilisé dans 'tcv.o
-		et testé dans tp1.c.
+   - tcv.h: Fichier d'entête qui sert à déclarer les prototypes des fonctions qui vont être utilisé dans 'tcv.o
+	et testé dans tp1.c.
 
-	data/: Contient la librairie qui sera utilisé dans tp1.c ('tcv.h et 'tcv.o ) en format compressé zip (tp1.zip)
-		qui sera ensuite extrait dans la racine du projet.
+   - data/: Contient la librairie qui sera utilisé dans tp1.c ('tcv.h et 'tcv.o ) en format compressé zip (tp1.zip)
+	qui sera ensuite extrait dans la racine du projet.
 
-	liste.sh: Fichier executable bash qui contiendra la commande pour simplifier l'affichage des test en affichant
-		seulement ceux qui ont réussi. Ce fichier ne prend que le STDOUT comme argument.
+   - liste.sh: Fichier executable bash qui contiendra la commande pour simplifier l'affichage des test en affichant
+	seulement ceux qui ont réussi. Ce fichier ne prend que le STDOUT comme argument.
 	
-	tp1: Fichier exécutable qui contiendra la totalité des tests unitaires sur le code de 'tcv.o'. Ce fichier
-		prend comme argument les fichiers 'tcv.o et 'tcv.h' lors de la compilation Cunit.
+   - tp1: Fichier exécutable qui contiendra la totalité des tests unitaires sur le code de 'tcv.o'. Ce fichier
+	prend comme argument les fichiers 'tcv.o et 'tcv.h' lors de la compilation Cunit.
 
-	.gitignore: Contient les fichier objets et binaires pour ne pas les prendrent en considération lors des dépôts.  
+   - .gitignore: Contient les fichier objets et binaires pour ne pas les prendrent en considération lors des dépôts.  
 
-	README.md: Fichier texte qui décrit le projet en détails.
+   - README.md: Fichier texte qui décrit le projet en détails.
 
    ## Références
 
-	Guy Francoeur -> https://github.com/guyfrancoeur/INF3135_A2020/blob/master/tp/tp2-%C3%A9nonc%C3%A9.md ;
-	cplusplus reference -> https://www.cplusplus.com/reference/ ;
+   - Guy Francoeur -> https://github.com/guyfrancoeur/INF3135_A2020/blob/master/tp/tp2-%C3%A9nonc%C3%A9.md ;
+     cplusplus reference -> https://www.cplusplus.com/reference/ ;
 
 
    ## Statut et auto-évaluation
 
-	-fini Makefile et liste.sh (30%).
+   - fini Makefile et liste.sh (30%).
 
-   	-Je croix que je mérite au moins 8 points, car j'ai vraiment mis beaucoup de temps sur ce travail et
-	 j'ai vraiment réfléchi et essayé de le perfectionné.
-----------------------------------------------------------------------------------------------------------------------------------------------------
-Crée et édité par Nami Reghbati à 18:47 EST 14/11/2020
+   - Je croix que je mérite au moins 8 points, car j'ai vraiment mis beaucoup de temps sur ce travail et
+     j'ai vraiment réfléchi et essayé de le perfectionné.
+
+
+### Crée et édité par Nami Reghbati à 18:47 EST 14/11/2020

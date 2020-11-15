@@ -117,8 +117,9 @@
 
    ## Références
 
-   - Guy Francoeur -> https://github.com/guyfrancoeur/INF3135_A2020/blob/master/tp/tp2-%C3%A9nonc%C3%A9.md ;
-     cplusplus reference -> https://www.cplusplus.com/reference/ ;
+   - Guy Francoeur -> https://github.com/guyfrancoeur/INF3135_A2020/blob/master/tp/tp2-%C3%A9nonc%C3%A9.md
+       
+   - cplusplus reference -> https://www.cplusplus.com/reference/
 
 
    ## Statut et auto-évaluation

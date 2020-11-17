@@ -2,7 +2,7 @@
 
 #include "stdbool.h"
 
-typedef struct identification_s {
+extern typedef struct identification_s {
 
   size_t timestamp;
   const unsigned int event = 00;
@@ -11,7 +11,7 @@ typedef struct identification_s {
 
 } identification_t;
 
-typedef struct tempHumaine_s {
+extern typedef struct tempHumaine_s {
 
   size_t timestamp;
   const unsigned int event = 01;
@@ -19,7 +19,7 @@ typedef struct tempHumaine_s {
 
 } tempH_t;
 
-typedef struct tempAmbiante_s {
+extern typedef struct tempAmbiante_s {
 
   size_t timestamp;
   const unsigned int event = 02;
@@ -27,7 +27,7 @@ typedef struct tempAmbiante_s {
 
 } tempA_t;
 
-typedef struct ppm_s {
+extern typedef struct ppm_s {
 
   size_t timestamp;
   const unsigned int event = 03;
@@ -35,7 +35,7 @@ typedef struct ppm_s {
 
 } ppm_t;
 
-typedef struct signalRSSI_s {
+extern typedef struct signalRSSI_s {
 
   size_t timestamp;
   const unsigned int event = 04;
@@ -44,7 +44,7 @@ typedef struct signalRSSI_s {
 
 } signal_t;
 
-typedef struct echangeDonnees_s {
+extern typedef struct echangeDonnees_s {
 
   size_t timestamp;
   const unsigned int event = 05;

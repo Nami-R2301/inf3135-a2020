@@ -46,6 +46,6 @@ test-tp2:
 
 clean:
 	chmod +rwx .
-	rm -f *.o; rm -f *.h; rm -f ./tp1; rm -fdr ./data; rm -f ./tp2
+	rm -f *.o; rm -f tcv.h; rm -f ./tp1; rm -fdr ./data; rm -f ./tp2
 
 .PHONY: default tp1 lib test-tp1a test-tp1b test-tp2 clean 

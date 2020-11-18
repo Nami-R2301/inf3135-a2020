@@ -1,70 +1,91 @@
-#define ERREUR 0.0
-
+#include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
 #include "stdbool.h"
 
-extern typedef struct identification_s {
+struct identification_s {
 
   size_t timestamp;
-  const unsigned int event = 00;
-  size_t id = 9999;
-  unsigned char puissanceEmetteur = 2;
+  char event[2];
+  size_t id;
+  unsigned char puissanceEmetteur;
 
-} identification_t;
+};
 
-extern typedef struct tempHumaine_s {
+struct tempHumaine_s {
 
   size_t timestamp;
-  const unsigned int event = 01;
+  char event[2];
   float degrees;
+  size_t compteur;
+  size_t cumul;
 
-} tempH_t;
+};
 
-extern typedef struct tempAmbiante_s {
+struct tempAmbiante_s {
 
   size_t timestamp;
-  const unsigned int event = 02;
+  char event[2];
   float degrees;
+  size_t compteur;
+  size_t cumul;
 
-} tempA_t;
+};
 
-extern typedef struct ppm_s {
+struct ppm_s {
 
   size_t timestamp;
-  const unsigned int event = 03;
+  char event[2];
   float ppm;
+  size_t compteur;
+  size_t cumul;
 
 } ppm_t;
 
-extern typedef struct signalRSSI_s {
+struct signalRSSI_s {
 
   size_t timestamp;
-  const unsigned int event = 04;
-  signed short power;
+  char event[2];
+  signed short powerSignal;
   size_t id;
 
 } signal_t;
 
-extern typedef struct echangeDonnees_s {
+struct echangeDonnees_s {
 
   size_t timestamp;
-  const unsigned int event = 05;
+  char event[2];
   size_t id;
- 
-bool sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
+
+} echange_t;
+
+//**************************ENTREES******************************************
+
+bool evenementId(size_t timestamp, char event[], size_t id, unsigned char powerEmetteur);
+
+bool evenementTempH(size_t timestamp, char event[], float degrees);
+
+bool evenementTempA(size_t timestamp, char event[], float degrees);
+
+bool evenementPpm(size_t timestamp, char event[], float ppm);
+
+bool evenementSignal(size_t timestamp, char event[], signed short powerSignal);
+
+bool evenementEchange(size_t timestamp, char event[], size_t id);
 
 
-bool sortieQuatorze(size_t timestamp, const char* evenement, float|ERREUR degree);
+//**************************SORTIES******************************************
 
+void sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
 
-bool sortieQunize(size_t timestamp, const char* evenement, float|ERREUR degree);
+void sortieQuatorze(size_t timestamp, size_t id, float distance);
 
+void sortieQunize(size_t timestamp, size_t id);
 
-bool sortieVingtUn(size_t timestamp, const char* evenement, float|ERREUR ppm);
+void sortieVingtUn(float avgTh, float avgTa, size_t avgPpm);
 
+void sortieVingtDeux(size_t compteurTh, size_t compteurTa, size_t compteurPpm);
 
-bool sortieVingtDeux(size_t timestamp, const char* evenement, signed short puissanceSignal, size_t id);
-
-
-bool sortieVingtTrois(size_t timestamp, const char*evenement, size_t id, size_t[size_t] idPN);
+bool sortieVingtTrois(size_t cumulTh, size_t cumulTa, size_t cumulPpm);
 
 

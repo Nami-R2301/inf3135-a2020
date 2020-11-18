@@ -3,7 +3,7 @@
 #include <math.h>
 #include "malib.h"
 
-bool sortieDix(size_t timestamp, const char* evenement, size_t id, unsigned char puissanceEmetteur) {
+bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissanceEmetteur) {
 
   if (id == 0) {
     id = 9999;
@@ -13,9 +13,6 @@ bool sortieDix(size_t timestamp, const char* evenement, size_t id, unsigned char
     puissanceEmetteur = '2';
   }
 
-  int transaction = 10;
-
-  printf("%d %lu %lu %c", transaction, timestamp, id, puissanceEmetteur);
   return true;
 }
 
@@ -35,6 +32,13 @@ bool sortieDix(size_t timestamp, const char* evenement, size_t id, unsigned char
 
 
 //************************************SORTIES*******************************************************
+
+void sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
+
+  int transaction = 10;
+  printf("%d %zu %zu %hhu", transaction, timestamp, id, puissanceEmetteur);
+
+}
 
 //void sortieQuatorze(const transaction, size_t timestamp, size_t id, float distanceMetres);
 

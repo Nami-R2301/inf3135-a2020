@@ -1,14 +1,18 @@
-#include <stdio.h>
-#include <string.h>
 #include "tcv.h"
-#include "mabib.h"
+#include "malib.h"
 
 int main(void) {
 
-  char ligne[30];
+  struct identification_s id = {0, "00", 9999, '2'};
 
-  printf("\n\n\nHello World\n\n\n");
-  scanf("%s", ligne);
-  printf("%s\n\n", ligne);
+  printf("\nVersion #: 0.1.10005\n");
+  scanf("%zu %s %zu %hhu", &id.timestamp, id.event, &id.id, &id.puissanceEmetteur);
+
+  if (evenementId(id.timestamp, id.event, id.id, id.puissanceEmetteur)) {
+    sortieDix(id.timestamp, id.id, id.puissanceEmetteur);
+  } else {
+      return -1;
+    }
+
   return 0;
 }

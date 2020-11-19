@@ -93,4 +93,5 @@ void sortieVingtDeux(unsigned int transaction, size_t compteurTh, size_t compteu
 
 void sortieVingtTrois(unsigned int transaction, size_t cumulTh, size_t cumulTa, size_t cumulPpm);
 
+
 #endif

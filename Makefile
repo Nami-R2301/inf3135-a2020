@@ -41,7 +41,8 @@ test-tp2:
 	chmod +rwx .
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp1.zip -d .
-	gcc $(CC) -o tp2 tp2.c malib.c $(MATH)
+	gcc -c malib.c $(CC) $(MATH)
+	gcc $(CC) -o tp2 tp2.c malib.o $(MATH)
 	./tp2
 
 clean:

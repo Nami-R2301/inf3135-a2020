@@ -1,7 +1,6 @@
-#include "tcv.h"
+#ifndef MALIB_H
 #include "malib.h"
-#include <stdlib.h>
-#include <ctype.h>
+#endif
 
 int main(void) {
 

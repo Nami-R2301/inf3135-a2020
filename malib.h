@@ -1,15 +1,13 @@
 #ifndef MALIB_H_
 #define MALIB_H_
 
-#include <string.h>
 #include <stdio.h>
-#include <stdlib.h>
 #include "stdbool.h"
 
 struct identification_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   size_t id;
   unsigned char puissanceEmetteur;
 
@@ -18,7 +16,7 @@ struct identification_s {
 struct tempHumaine_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   float degrees;
   size_t compteur;
   size_t cumul;
@@ -28,7 +26,7 @@ struct tempHumaine_s {
 struct tempAmbiante_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   float degrees;
   size_t compteur;
   size_t cumul;
@@ -38,7 +36,7 @@ struct tempAmbiante_s {
 struct ppm_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   float ppm;
   size_t compteur;
   size_t cumul;
@@ -48,7 +46,7 @@ struct ppm_s {
 struct signalRSSI_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   signed short powerSignal;
   size_t id;
 
@@ -57,14 +55,14 @@ struct signalRSSI_s {
 struct echangeDonnees_s {
 
   size_t timestamp;
-  char event[2];
+  unsigned int event;
   size_t id;
 
 } echange_t;
 
 //**************************ENTREES******************************************
 
-bool evenementId(size_t timestamp, char event[], size_t id, unsigned char powerEmetteur);
+bool evenementId(size_t timestamp, unsigned int event, size_t id, unsigned char powerEmetteur);
 
 bool evenementTempH(size_t timestamp, char event[], float degrees);
 

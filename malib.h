@@ -1,6 +1,11 @@
-#ifndef MALIB_H_
-#define MALIB_H_
+#ifndef MALIB_H
+#define MALIB_H
 
+#include "tcv.h"
+#include <stdlib.h>
+#include <ctype.h>
+#include <math.h>
+#include <string.h>
 #include <stdio.h>
 #include "stdbool.h"
 

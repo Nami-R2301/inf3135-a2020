@@ -32,5 +32,6 @@ int main(void) {
 
   } while(!valideTempH && !valideTempA && !validePpm && !feof(stdin));
 */
+
   return 0;
 }

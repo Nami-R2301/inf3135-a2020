@@ -1,3 +1,6 @@
+#ifndef MALIB_H_
+#define MALIB_H_
+
 #include <string.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -89,3 +92,4 @@ void sortieVingtDeux(size_t compteurTh, size_t compteurTa, size_t compteurPpm);
 bool sortieVingtTrois(size_t cumulTh, size_t cumulTa, size_t cumulPpm);
 
 
+#endif

@@ -8,11 +8,6 @@ int main(void) {
   printf("\nVersion #: 0.1.10005\n");
   scanf("%zu %s %zu %hhu", &id.timestamp, id.event, &id.id, &id.puissanceEmetteur);
 
-  if (evenementId(id.timestamp, id.event, id.id, id.puissanceEmetteur)) {
-    sortieDix(id.timestamp, id.id, id.puissanceEmetteur);
-  } else {
-      return -1;
-    }
-
+  evenementId(id.timestamp, id.event, id.id, id.puissanceEmetteur);
   return 0;
 }

@@ -5,13 +5,19 @@
 
 bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissanceEmetteur) {
 
-  if (id == 0) {
+  if (id < 1) {
     id = 9999;
   }
 
-  if (puissanceEmetteur > '4' || puissanceEmetteur < '2') {
+  if (strcmp("00", event) != 0 || sizeof(*event) != 3) {
+    event = "00";
+  }
+
+  if (puissanceEmetteur > '4' || puissanceEmetteur < '2' || sizeof(puissanceEmetteur) != 1) {
     puissanceEmetteur = '2';
   }
+
+  sortieDix(timestamp, id, puissanceEmetteur);
 
   return true;
 }
@@ -36,7 +42,7 @@ bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissa
 void sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
 
   int transaction = 10;
-  printf("%d %zu %zu %hhu", transaction, timestamp, id, puissanceEmetteur);
+  printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
 
 }
 

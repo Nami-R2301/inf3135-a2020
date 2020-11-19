@@ -1,7 +1,6 @@
-#include <stdio.h>
-#include <string.h>
-#include <math.h>
+#ifndef MALIB_H
 #include "malib.h"
+#endif
 
 bool evenementId(size_t timestamp, unsigned int event, size_t id, unsigned char puissanceEmetteur) {
 

@@ -1,27 +1,30 @@
-#ifndef MALIB_H
 #include "malib.h"
-#endif
 
-bool evenementId(size_t timestamp, unsigned int event, size_t id, unsigned char puissanceEmetteur) {
+bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissanceEmetteur) {
 
-  if (id < 1) {
+  if (id == 0) {
     id = 9999;
   }
 
-  if (event != 00) {
-    event = 00;
+  if (strcmp(event, "00") != 0) {
+    event = "00";
   }
 
-  if (puissanceEmetteur > '4' || puissanceEmetteur < '2' || sizeof(puissanceEmetteur) != 1) {
-    puissanceEmetteur = '2';
+  if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
+    puissanceEmetteur = 2;
   }
 
-  sortieDix(timestamp, id, puissanceEmetteur);
+  sortieDix(10, timestamp, id, puissanceEmetteur);
 
   return true;
 }
 
-//bool tempHumaine(size_t timestamp, const evenement, float|ERREUR degree);
+//bool evenementTempH(size_t timestamp, char event[], float degrees) {
+
+//  if (strcmp(event, "01") != 0) {
+//    return false;
+//  } else {
+//      valider
 
 
 //bool tempAmbiante(size_t timestamp, const evenement, float|ERREUR degree);
@@ -38,24 +41,39 @@ bool evenementId(size_t timestamp, unsigned int event, size_t id, unsigned char 
 
 //************************************SORTIES*******************************************************
 
-void sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
+void sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
 
-  int transaction = 10;
-  printf("%d %zu %zu %c\n", transaction, timestamp, id, puissanceEmetteur);
+  printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
 
 }
 
-//void sortieQuatorze(const transaction, size_t timestamp, size_t id, float distanceMetres);
+void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distanceMetres) {
 
+  printf("%u %zu %zu %f\n", transaction, timestamp, id, distanceMetres);
 
-//void sortieQuinze(const transaction, size_t timestamp, size_t id, size_t[size_t] idPN);
+}
 
+//void sortieQuinze(unsigned int transaction, size_t timestamp, size_t id, size_t[size_t] idPN) {
 
-//int sortieVingtEtUn(const transaction, float avgTH, float avgTA, size_t avgPuls);
+//  unsigned int transaction = 15;
+//  printf("%u %zu %zu %zu\n", transaction, timestamp, id, idPN);
 
+//}
 
-//int sortieVingtDeux(const transaction, size_t compteurTH, size_t compteurTA, size_t compteurPuls);
+void sortieVingtEtUn(unsigned int transaction, float avgTh, float avgTa, size_t avgPpm) {
 
+  printf("%u %f %f %zu\n", transaction, avgTh, avgTa, avgPpm);
 
-//int sortieVingtTrois(const transaction, size_t cumulTH, size_t cumulTA, size_t cumulPuls);
+}
 
+void sortieVingtDeux(unsigned int transaction, size_t compteurTh, size_t compteurTa, size_t compteurPpm) {
+
+  printf("%u %zu %zu %zu\n", transaction, compteurTh, compteurTa, compteurPpm);
+
+}
+
+void sortieVingtTrois(unsigned int transaction, size_t cumulTh, size_t cumulTa, size_t cumulPpm) {
+
+  printf("%u %zu %zu %zu\n", transaction, cumulTh, cumulTa, cumulPpm);
+
+}

@@ -7,12 +7,11 @@
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-#include "stdbool.h"
 
 struct identification_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   size_t id;
   unsigned char puissanceEmetteur;
 
@@ -21,7 +20,7 @@ struct identification_s {
 struct tempHumaine_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   float degrees;
   size_t compteur;
   size_t cumul;
@@ -31,7 +30,7 @@ struct tempHumaine_s {
 struct tempAmbiante_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   float degrees;
   size_t compteur;
   size_t cumul;
@@ -41,7 +40,7 @@ struct tempAmbiante_s {
 struct ppm_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   float ppm;
   size_t compteur;
   size_t cumul;
@@ -51,7 +50,7 @@ struct ppm_s {
 struct signalRSSI_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   signed short powerSignal;
   size_t id;
 
@@ -60,14 +59,14 @@ struct signalRSSI_s {
 struct echangeDonnees_s {
 
   size_t timestamp;
-  unsigned int event;
+  char event[3];
   size_t id;
 
 } echange_t;
 
 //**************************ENTREES******************************************
 
-bool evenementId(size_t timestamp, unsigned int event, size_t id, unsigned char powerEmetteur);
+bool evenementId(size_t timestamp, char  event[], size_t id, unsigned char powerEmetteur);
 
 bool evenementTempH(size_t timestamp, char event[], float degrees);
 
@@ -82,17 +81,16 @@ bool evenementEchange(size_t timestamp, char event[], size_t id);
 
 //**************************SORTIES******************************************
 
-void sortieDix(size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
+void sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
 
-void sortieQuatorze(size_t timestamp, size_t id, float distance);
+void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distance);
 
-void sortieQunize(size_t timestamp, size_t id);
+void sortieQunize(unsigned int transaction, size_t timestamp, size_t id);
 
-void sortieVingtUn(float avgTh, float avgTa, size_t avgPpm);
+void sortieVingtUn(unsigned int transaction, float avgTh, float avgTa, size_t avgPpm);
 
-void sortieVingtDeux(size_t compteurTh, size_t compteurTa, size_t compteurPpm);
+void sortieVingtDeux(unsigned int transaction, size_t compteurTh, size_t compteurTa, size_t compteurPpm);
 
-bool sortieVingtTrois(size_t cumulTh, size_t cumulTa, size_t cumulPpm);
-
+void sortieVingtTrois(unsigned int transaction, size_t cumulTh, size_t cumulTa, size_t cumulPpm);
 
 #endif

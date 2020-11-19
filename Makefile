@@ -7,9 +7,10 @@ CUNIT = -I/usr/include/CUnit -L/usr/lib/x86_64-linux-gnu
 
 default: $(PROG2).c
 	chmod +rwx .
-	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
+	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp2.zip || wget -q -P ./data https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp1.zip -d .
-	gcc $(CC) -o tp2 tp2.c malib.c $(MATH)
+	gcc -c $(CC) malib.c $(MATH)
+	gcc $(CC) -o tp2 tp2.c malib.o tcv.o $(MATH)
 
 tp1:
 	chmod +rwx .
@@ -42,7 +43,7 @@ test-tp2:
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp1.zip -d .
 	gcc -c malib.c $(CC) $(MATH)
-	gcc $(CC) -o tp2 tp2.c malib.o $(MATH)
+	gcc $(CC) -o tp2 tp2.c malib.o tcv.o $(MATH)
 	./tp2
 
 clean:

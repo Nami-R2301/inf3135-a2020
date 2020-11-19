@@ -77,3 +77,4 @@ void sortieVingtTrois(unsigned int transaction, size_t cumulTh, size_t cumulTa, 
   printf("%u %zu %zu %zu\n", transaction, cumulTh, cumulTa, cumulPpm);
 
 }
+

@@ -9,7 +9,7 @@ default: $(PROG2).c
 	chmod +rwx .
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp1.zip -d .
-	gcc $(CC) tp2.c -o tp2 $(MATH)
+	gcc $(CC) -o tp2 tp2.c malib.c $(MATH)
 
 tp1:
 	chmod +rwx .
@@ -46,6 +46,6 @@ test-tp2:
 
 clean:
 	chmod +rwx .
-	rm -f *.o; rm -f tcv.h; rm -f ./tp1; rm -fdr ./data
+	rm -f *.o; rm -f tcv.h; rm -f ./tp1; rm -fdr ./data; rm -f ./tp2
 
 .PHONY: default tp1 lib test-tp1a test-tp1b test-tp2 clean 

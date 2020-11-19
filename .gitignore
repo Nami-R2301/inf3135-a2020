@@ -8,3 +8,7 @@ tp2*
 #Text files for testing
 *.txt
 *.dat
+
+#libs
+*.a
+*.so

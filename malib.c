@@ -1,32 +1,14 @@
 #include "malib.h"
 
-bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissanceEmetteur) {
+bool evenementTempH(size_t timestamp, char event[], float degrees) {
 
-  if (strcmp(event, "00") == 0) {
-
-    if(id == 0) {
-      id = 9999;
-    }
-
-    if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
-      puissanceEmetteur = 2;
-    }
-
-    sortieDix(10, timestamp, id, puissanceEmetteur);
+  if (strcmp(event, "01") == 0) {
 
   } else {
       return false;
     }
   return true;
 }
-
-//bool evenementTempH(size_t timestamp, char event[], float degrees) {
-
-//  if (strcmp(event, "01") != 0) {
-//    return false;
-//  } else {
-//      valider
-
 
 //bool tempAmbiante(size_t timestamp, const evenement, float|ERREUR degree);
 
@@ -42,10 +24,22 @@ bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissa
 
 //************************************SORTIES*******************************************************
 
-void sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
+bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
 
-  printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
+  if (strcmp(event, "00") == 0) {
 
+    if(id == 0) {
+      id = 9999;
+    }
+
+    if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
+      puissanceEmetteur = 2;
+    }
+    printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
+  } else {
+      return false;
+    }
+  return true
 }
 
 void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distanceMetres) {

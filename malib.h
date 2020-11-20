@@ -1,5 +1,6 @@
 #ifndef MALIB_H
 #define MALIB_H
+#define ERREUR -22.22
 
 #include "tcv.h"
 #include <stdlib.h>
@@ -66,8 +67,6 @@ struct echangeDonnees_s {
 
 //**************************ENTREES******************************************
 
-bool evenementId(size_t timestamp, char  event[], size_t id, unsigned char powerEmetteur);
-
 bool evenementTempH(size_t timestamp, char event[], float degrees);
 
 bool evenementTempA(size_t timestamp, char event[], float degrees);
@@ -81,7 +80,7 @@ bool evenementEchange(size_t timestamp, char event[], size_t id);
 
 //**************************SORTIES******************************************
 
-void sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
+bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
 
 void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distance);
 

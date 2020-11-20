@@ -35,8 +35,22 @@
 
 - On réaffiche les *timestamp* en entrée dans les transactions de sorties.
 
-- Seulement une transaction de sortie pour 21, 22 et 23 vers la fin du programme (après avoir traité toutes les données.
+- Seulement une transaction de sortie pour 21, 22 et 23 vers la fin du programme (après avoir traité toutes les données).
 
 - On va probablement utiliser *math.h* pour calculer la distance, car je ne croix pas qu'on peut implementer des exposants d'une manière courte en C.
 
+### Compréhension après troisième lecture :
+
+- Inclusions multiples veut dire quand qu'on implémente la même entête plusieurs fois.
+
+- On peut avoir plusieurs transactions qui se suivent du même événement, tant que les transactions en entrées sont ordonnées.
+
+- Dépendemment de la version, nous devons faire des if/else qui catégorisent les versions ainsi que les fonctions valides utilisé pour chacunes.
+
+- Scanf lit les entrées des utilisateurs ainsi que le stdin passé en pipe (|) à tp2.
+
+- Le programme ne s'arrête pas tant que les cinqs transactions d'entrées ne sont pas validé.
+
+- ERREUR par type, donc un pour short, int, char et float.
+ 
 ### Créer par Nami Reghbati 05/11/2020 : 13:00

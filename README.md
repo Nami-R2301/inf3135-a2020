@@ -114,6 +114,10 @@
    - .gitignore: Contient les fichier objets et binaires pour ne pas les prendrent en considération lors des dépôts.  
 
    - README.md: Fichier texte qui décrit le projet en détails.
+   
+   ## Réflexion et démarche
+   
+   - https://github.com/Nami-R2301/inf3135-a2020/tp2/reflexion.md
 
    ## Références
 

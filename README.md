@@ -117,7 +117,7 @@
    
    ## Réflexion et démarche
    
-   - https://github.com/Nami-R2301/inf3135-a2020/tp2/reflexion.md
+   - https://github.com/Nami-R2301/inf3135-a2020/blob/tp2/reflexion.md
 
    ## Références
 

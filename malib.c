@@ -2,20 +2,21 @@
 
 bool evenementId(size_t timestamp, char event[], size_t id, unsigned char puissanceEmetteur) {
 
-  if (id == 0) {
-    id = 9999;
-  }
+  if (strcmp(event, "00") == 0) {
 
-  if (strcmp(event, "00") != 0) {
-    event = "00";
-  }
+    if(id == 0) {
+      id = 9999;
+    }
 
-  if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
-    puissanceEmetteur = 2;
-  }
+    if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
+      puissanceEmetteur = 2;
+    }
 
-  sortieDix(10, timestamp, id, puissanceEmetteur);
+    sortieDix(10, timestamp, id, puissanceEmetteur);
 
+  } else {
+      return false;
+    }
   return true;
 }
 

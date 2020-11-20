@@ -2,8 +2,8 @@
 *.o
 
 # Executables
-tp1*
-tp2*
+tp1
+tp2
 
 #Text files for testing
 *.txt

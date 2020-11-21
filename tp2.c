@@ -14,7 +14,7 @@ int main(void) {
 
     char input[100];
     struct identification_s mainId = {0, "00", 9999, 2};
-    struct temp_s courant = {0, "00", "ID", "POWER"};
+    struct temp_s courant;
     struct tempHumaine_s tempH = {0, "01", 0.0, 0, 0};
 //    struct tempAmbiante_s tempA = {tempH.timestamp, "02", 20.0};
 
@@ -31,10 +31,11 @@ int main(void) {
 
     if(valideId && ligne == 3 && strcmp(courant.event, tempH.event) == 0) {
 
-      if(atof(courant.argTrois) != ERREUR) {
+      if(strcmp(courant.argTrois, ERREUR) != 0) {
 
         tempH.timestamp = courant.timestamp;
-        tempH.degrees = (float) atof(courant.argTrois);
+        tempH.degrees = (float) round(atof(courant.argTrois));
+        printf("%lf\n\n", tempH.degrees);
         valideTempH = evenementTempH(tempH.timestamp, tempH.event, tempH.degrees);
 
         if(!valideTempH) {

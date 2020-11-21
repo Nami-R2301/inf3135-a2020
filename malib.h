@@ -1,24 +1,13 @@
 #ifndef MALIB_H
 #define MALIB_H
+#define ERREUR 0.0
 
 #include "tcv.h"
 #include <stdlib.h>
-#include <limits.h>
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
-
-struct temp_s {
-
-  size_t argUn;
-  char argDeux[3];
-  char argTrois[20];
-  char argQuatre[20];
-
-};
-
-
 
 struct identification_s {
 
@@ -26,6 +15,15 @@ struct identification_s {
   char event[3];
   size_t id;
   unsigned char puissanceEmetteur;
+
+};
+
+struct temp_s {
+
+  size_t timestamp;
+  char event[3];
+  char argTrois[20];
+  char argQuatre[20];
 
 };
 

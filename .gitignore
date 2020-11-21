@@ -5,9 +5,10 @@
 tp1
 tp2
 
-#Text files for testing
+#Test files for testing
 *.txt
 *.dat
+test.c
 
 #libs
 *.a

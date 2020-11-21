@@ -1,6 +1,8 @@
 #include "malib.h"
 
-//bool tempAmbiante(size_t timestamp, const evenement, float|ERREUR degree);
+bool evenementTempH(size_t timestamp, char event[], float degrees) {
+  return true;
+}
 
 
 //bool pulsationMin(size_t timestamp, const evenement, float|ERREUR ppm);

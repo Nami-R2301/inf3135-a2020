@@ -4,7 +4,7 @@ int main(void) {
 
   int ligne = 0;
   bool valideId = false;
-//  bool valideTempH = false;
+  bool valideTempH = false;
 //  bool valideTempA = false;
 //  bool validePpm = false;
   version_t v = {0, 1, 1000};
@@ -12,23 +12,38 @@ int main(void) {
   printf("Version #: %hhu.%hhu.%u\n", v.major, v.minor, v.build);
   do {
 
-    struct temp_s prev = {0, "00", "", ""};
-    struct temp_s courant = {0, "No", "ID", "Power"};
-//    struct tempHumaine_s tempH = {id.timestamp, "01", 0.0};
+    char input[100];
+    struct identification_s mainId = {0, "00", 9999, 2};
+    struct temp_s courant = {0, "00", "ID", "POWER"};
+    struct tempHumaine_s tempH = {0, "01", 0.0, 0, 0};
 //    struct tempAmbiante_s tempA = {tempH.timestamp, "02", 20.0};
 
-    ligne = scanf("%zu %s %s %s", &courant.argUn, courant.argDeux, courant.argTrois, courant.argQuatre);
+    fgets(input, 100, stdin);
+    ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre);
 
-    if(!valideId && ligne >= 2 && strcmp(courant.argDeux, "00") == 0 && prev.argUn >= courant.argUn) {
+    if(!valideId && ligne == 4 && strcmp(courant.event, mainId.event) == 0) {
 
-      valideId = sortieDix(10, courant.argUn, strtoul(courant.argTrois, NULL, 0), (unsigned) atoi(courant.argQuatre));
+      mainId.timestamp = courant.timestamp;
+      mainId.id = (size_t) strtoul(courant.argTrois, NULL, 0);
+      mainId.puissanceEmetteur = (unsigned) atoi(courant.argQuatre);
+      valideId = sortieDix(10, mainId.timestamp, mainId.id, mainId.puissanceEmetteur);
     }
 
-//    if(prev.argUn >= ) {
+    if(valideId && ligne == 3 && strcmp(courant.event, tempH.event) == 0) {
 
-//      ligne = scanf("%zu %s %.1f", &tempH.timestamp, tempH.event, &tempH.degrees);
-//      valideTempH = evenementTempH(tempH.timestamp, tempH.event, tempH.degrees);
-//    }
+      if(atof(courant.argTrois) != ERREUR) {
+
+        tempH.timestamp = courant.timestamp;
+        tempH.degrees = (float) atof(courant.argTrois);
+        valideTempH = evenementTempH(tempH.timestamp, tempH.event, tempH.degrees);
+
+        if(!valideTempH) {
+          tempH.compteur++;
+        }
+      } else {
+          tempH.cumul++;
+      }
+    }
 
 //    if(valideId && valideTempH && !valideTempA) {
 
@@ -38,8 +53,10 @@ int main(void) {
 
 //    if(
 
-    prev = courant;
+  } while(!valideTempH);
 
-  } while(!valideId && ligne != 0);
+//sortieVingtUn();
+//sortieVingtDeux();
+//sortieVingtTrois();
   return 0;
 }

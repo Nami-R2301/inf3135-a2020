@@ -1,15 +1,5 @@
 #include "malib.h"
 
-bool evenementTempH(size_t timestamp, char event[], float degrees) {
-
-  if (strcmp(event, "01") == 0) {
-
-  } else {
-      return false;
-    }
-  return true;
-}
-
 //bool tempAmbiante(size_t timestamp, const evenement, float|ERREUR degree);
 
 
@@ -26,20 +16,15 @@ bool evenementTempH(size_t timestamp, char event[], float degrees) {
 
 bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
 
-  if (strcmp(event, "00") == 0) {
+  if(id == 0) {
+    id = 9999;
+  }
 
-    if(id == 0) {
-      id = 9999;
-    }
-
-    if (puissanceEmetteur > 4 || puissanceEmetteur < 2 || sizeof(puissanceEmetteur) != 1) {
-      puissanceEmetteur = 2;
-    }
-    printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
-  } else {
-      return false;
-    }
-  return true
+  if ( puissanceEmetteur > 4 || puissanceEmetteur < 2) {
+    puissanceEmetteur = 2;
+  }
+  printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
+  return true;
 }
 
 void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distanceMetres) {

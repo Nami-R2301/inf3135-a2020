@@ -1,8 +1,9 @@
 #ifndef MALIB_H
 #define MALIB_H
-#define ERREUR 0.0
+#define ERREUR "ERREUR"
 
 #include "tcv.h"
+#include <limits.h>
 #include <stdlib.h>
 #include <ctype.h>
 #include <math.h>
@@ -22,8 +23,8 @@ struct temp_s {
 
   size_t timestamp;
   char event[3];
-  char argTrois[20];
-  char argQuatre[20];
+  char argTrois[50];
+  char argQuatre[];
 
 };
 

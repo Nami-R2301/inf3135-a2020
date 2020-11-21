@@ -1,13 +1,24 @@
 #ifndef MALIB_H
 #define MALIB_H
-#define ERREUR -22.22
 
 #include "tcv.h"
 #include <stdlib.h>
+#include <limits.h>
 #include <ctype.h>
 #include <math.h>
 #include <string.h>
 #include <stdio.h>
+
+struct temp_s {
+
+  size_t argUn;
+  char argDeux[3];
+  char argTrois[20];
+  char argQuatre[20];
+
+};
+
+
 
 struct identification_s {
 

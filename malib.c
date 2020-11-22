@@ -1,27 +1,30 @@
 #include "malib.h"
 
-bool tempHumaine(size_t timestamp, char event[], float degrees) {
+bool tempHumaine(size_t timestamp, float degrees, unsigned char build) {
 
   return true;
 }
 
-bool tempAmbiante(size_t timestamp, char event[], float degrees) {
+bool tempAmbiante(size_t timestamp, float degrees, unsigned char build) {
 
   return true;
 }
 
-bool pulsationMin(size_t timestamp, char event[], float ppm) {
+bool pulsationMin(size_t timestamp, float ppm, unsigned char build) {
 
   return true;
 }
 
-bool signalRssi(size_t timestamp, char event[], signed short power, size_t id) {
+bool signalRssi(size_t timestamp, signed short power, size_t id, unsigned char build) {
 
   return true;
 }
 
 
-//bool echangeDonnees(size_t timestamp, const evenement, size_t id, size_t[size_t] idPN);
+bool echangeData(size_t timestamp, size_t id, size_t Idpn) {
+
+  return true;
+}
 
 
 //************************************SORTIES*******************************************************

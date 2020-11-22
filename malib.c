@@ -1,14 +1,24 @@
 #include "malib.h"
 
-bool evenementTempH(size_t timestamp, char event[], float degrees) {
+bool tempHumaine(size_t timestamp, char event[], float degrees) {
+
   return true;
 }
 
+bool tempAmbiante(size_t timestamp, char event[], float degrees) {
 
-//bool pulsationMin(size_t timestamp, const evenement, float|ERREUR ppm);
+  return true;
+}
 
+bool pulsationMin(size_t timestamp, char event[], float ppm) {
 
-//bool signalRSSI(size_t timestamp, const evenement, signed short puissanceSignal, size_t id);
+  return true;
+}
+
+bool signalRssi(size_t timestamp, char event[], signed short power, size_t id) {
+
+  return true;
+}
 
 
 //bool echangeDonnees(size_t timestamp, const evenement, size_t id, size_t[size_t] idPN);

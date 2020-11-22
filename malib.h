@@ -10,35 +10,25 @@
 #include <string.h>
 #include <stdio.h>
 
-struct identification_s {
+typedef struct identification_s {
 
   size_t timestamp;
   char event[3];
   size_t id;
   unsigned char puissanceEmetteur;
 
-};
+} user_t;
 
-struct temp_s {
+typedef struct temp_s {
 
   size_t timestamp;
   char event[3];
   char argTrois[50];
-  char argQuatre[];
+  char *argQuatre[];
 
-};
+} temp_t;
 
-struct tempHumaine_s {
-
-  size_t timestamp;
-  char event[3];
-  float degrees;
-  size_t compteur;
-  size_t cumul;
-
-};
-
-struct tempAmbiante_s {
+typedef struct tempHumaine_s {
 
   size_t timestamp;
   char event[3];
@@ -46,28 +36,38 @@ struct tempAmbiante_s {
   size_t compteur;
   size_t cumul;
 
-};
+} tempH_t;
 
-struct ppm_s {
+typedef struct tempAmbiante_s {
 
   size_t timestamp;
   char event[3];
-  float ppm;
+  float degrees;
+  size_t compteur;
+  size_t cumul;
+
+} tempA_t;
+
+typedef struct ppm_s {
+
+  size_t timestamp;
+  char event[3];
+  unsigned int ppm;
   size_t compteur;
   size_t cumul;
 
 } ppm_t;
 
-struct signalRSSI_s {
+typedef struct signalRSSI_s {
 
   size_t timestamp;
   char event[3];
-  signed short powerSignal;
+  signed short power;
   size_t id;
 
 } signal_t;
 
-struct echangeDonnees_s {
+typedef struct echangeDonnees_s {
 
   size_t timestamp;
   char event[3];
@@ -77,15 +77,15 @@ struct echangeDonnees_s {
 
 //**************************ENTREES******************************************
 
-bool evenementTempH(size_t timestamp, char event[], float degrees);
+bool tempHumaine(size_t timestamp, char event[], float degrees);
 
-bool evenementTempA(size_t timestamp, char event[], float degrees);
+bool tempAmbiante(size_t timestamp, char event[], float degrees);
 
-bool evenementPpm(size_t timestamp, char event[], float ppm);
+bool pulsationMin(size_t timestamp, char event[], float ppm);
 
-bool evenementSignal(size_t timestamp, char event[], signed short powerSignal);
+bool signalRssi(size_t timestamp, char event[], signed short power, size_t id);
 
-bool evenementEchange(size_t timestamp, char event[], size_t id);
+bool echangeData(size_t timestamp, char event[], size_t id);
 
 
 //**************************SORTIES******************************************
@@ -94,7 +94,7 @@ bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned c
 
 void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distance);
 
-void sortieQunize(unsigned int transaction, size_t timestamp, size_t id);
+void sortieQuinze(unsigned int transaction, size_t timestamp, size_t id);
 
 void sortieVingtUn(unsigned int transaction, float avgTh, float avgTa, size_t avgPpm);
 

@@ -52,7 +52,7 @@ typedef struct ppm_s {
 
   size_t timestamp;
   char event[3];
-  unsigned int ppm;
+  float ppm;
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
@@ -74,36 +74,35 @@ typedef struct echangeDonnees_s {
   size_t timestamp;
   char event[3];
   size_t id;
-  size_t idpn[size_t];
+  size_t idpn[];
 
 } echange_t;
 
 //**************************ENTREES******************************************
 
-bool tempHumaine(size_t timestamp, float degrees, unsigned char build);
+bool tempHumaine(size_t, float);
 
-bool tempAmbiante(size_t timestamp, float degrees unsigned char build);
+bool tempAmbiante(size_t, float);
 
-bool pulsationMin(size_t timestamp, float ppm unsigned char build);
+bool pulsationMin(size_t, float);
 
-bool signalRssi(size_t timestamp, signed short power, size_t id, unsigned char build);
+bool signalRssi(size_t, signed short, size_t);
 
-bool echangeData(size_t timestamp, size_t id, size_t idpn);
+bool echangeData(size_t, size_t, size_t);
 
 
 //**************************SORTIES******************************************
 
-bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur); 
+bool sortieDix(unsigned int, size_t, size_t, unsigned char); 
 
-void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, float distance);
+void sortieQuatorze(unsigned int, size_t, size_t, signal_t);
 
-void sortieQuinze(unsigned int transaction, size_t timestamp, size_t id);
+void sortieQuinze(unsigned int, size_t, size_t, echange_t);
 
-void sortieVingtUn(unsigned int transaction, float avgTh, float avgTa, size_t avgPpm);
+void sortieVingtUn(unsigned int, tempH_t, tempA_t, ppm_t);
 
-void sortieVingtDeux(unsigned int transaction, size_t compteurTh, size_t compteurTa, size_t compteurPpm);
+void sortieVingtDeux(unsigned int, size_t, size_t, size_t);
 
-void sortieVingtTrois(unsigned int transaction, size_t cumulTh, size_t cumulTa, size_t cumulPpm);
-
+void sortieVingtTrois(unsigned int, size_t, size_t, size_t);
 
 #endif

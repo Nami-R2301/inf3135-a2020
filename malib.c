@@ -59,20 +59,20 @@ bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned c
   return true;
 }
 
-void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, signal_t signal) {
+void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, signal_t signal, user_t mainId) {
 
-//  printf("%u %zu %zu %f\n", transaction, timestamp, id, distanceMetres);
+  float distanceMetres = pow(10, ((-69 - (float) signal.power) / (10 * mainId.puissanceEmetteur)));
+
+  printf("%u %zu %zu %.1f\n", transaction, timestamp, id, distanceMetres);
 
 }
 
 //void sortieQuinze(unsigned int transaction, size_t timestamp, size_t id, size_t[size_t] idPN) {
 
 //  unsigned int transaction = 15;
-//  printf("%u %zu %zu %zu\n", transaction, timestamp, id, idPN);
+//  printf("%u %zu %zu %zu\n", transaction, timestamp, id, *idPN);
 
 //}
-
-//void sortieQuinze();
 
 void sortieVingtUn(unsigned int transaction, tempH_t tempH, tempA_t tempA, ppm_t ppm) {
 

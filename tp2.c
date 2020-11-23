@@ -10,9 +10,9 @@ int main() {
   bool valideSignal = false;
   bool valideData = false;
   user_t mainId = {0, "00", 9999, 2};
-  tempH_t tempH = {0, "01", 0.0, 0, 0, 0};
-  tempA_t tempA = {0, "02", 0.0, 0, 0, 0};
-  ppm_t ppm = {0, "03", 0.0, 0, 0};
+  tempH_t tempH = {0, "01", 0.0, 0, 0, 0, 0};
+  tempA_t tempA = {0, "02", 0.0, 0, 0, 0, 0};
+  ppm_t ppm = {0, "03", 0.0, 0, 0, 0, 0};
   signal_t signal = {0, "04", 0, 0, 0};
   echange_t echange = {0, "05", 0};
   temp_t courant;
@@ -28,12 +28,19 @@ int main() {
 
       ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, *courant.argQuatre); //pour qu'on puissent recevoir moins d'entrees (numLigne).
 
-      if(!valideId && ligne >= 2 && strcmp(courant.event, mainId.event) == 0) {
+      if(!valideId && ligne == 4 && strcmp(courant.event, mainId.event) == 0) {
 
         mainId.timestamp = courant.timestamp;
         mainId.id = (size_t) strtoul(courant.argTrois, NULL, 0);
         mainId.puissanceEmetteur = (unsigned) atoi(*courant.argQuatre);
         valideId = sortieDix(10, mainId.timestamp, mainId.id, mainId.puissanceEmetteur);
+
+        if(mainId.puissanceEmetteur == 0) {
+          mainId.puissanceEmetteur = 2;
+        }
+        if(mainId.id == 0) {
+          mainId.id = 9999;
+        }
       }
 
       if(valideId && !valideTempA && !validePpm && !valideSignal && ligne == 3 && courant.timestamp > mainId.timestamp && strcmp(courant.event, tempH.event) == 0) {
@@ -108,7 +115,7 @@ int main() {
         signal.power = (signed short) atoi(courant.argTrois);
         signal.id = (size_t) strtoul(*courant.argQuatre, NULL, 0);
         valideSignal = signalRssi(signal.timestamp, signal.power, signal.id, v.build);
-
+        sortieQuatorze(14, signal.timestamp, signal.id, signal, mainId);
         if(valideSignal) {
           signal.compteurIdpn++;
         }

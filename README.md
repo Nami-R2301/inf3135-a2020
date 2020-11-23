@@ -46,6 +46,18 @@
    - tp1: Fichier exécutable qui contiendra la totalité des tests unitaires sur le code de 'tcv.o'. Ce fichier prend comme argument les fichiers 
      'tcv.o et 'tcv.h' lors de la compilation Cunit.
 
+   - tp2: Executable du tp2.
+ 
+   - malib.c: Implémentation des fonctions dans malib.h.
+
+   - malib.h: Prototypes utilisé pour le tp2 dans le main de tp2.c.
+
+   - tp2.c: Programme principale qui traitera les transactions donné en STDIN.
+
+   - tp2.yml: Nouveau type de fichier qui sert à executer des commandes sur une machine virtuel sur github pour alleger le travail du/des programmeurs.
+
+   - reflexion.md: Réflexion durant la progression de mon tp2 avec mes raisonnement et justifications de mes problèmes.
+
  ## Réflexion et démarche
    
    - https://github.com/Nami-R2301/inf3135-a2020/blob/tp2/reflexion.md 
@@ -57,8 +69,8 @@
 
    ## Statut et auto-évaluation
 
-   - fini Makefile et liste.sh (30%). 
-  - Je croix que je mérite au moins 8 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
+   - fini Makefile et liste.sh (90%). 
+  - Je croix que je mérite au moins 16 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
 
 ### Crée et édité par Nami Reghbati à 18:47 EST 14/11/2020 
 

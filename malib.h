@@ -98,7 +98,7 @@ bool echangeData(size_t, size_t, size_t);
 
 bool sortieDix(unsigned int, size_t, size_t, unsigned char); 
 
-void sortieQuatorze(unsigned int, size_t, size_t, signal_t);
+void sortieQuatorze(unsigned int, size_t, size_t, signal_t, user_t);
 
 void sortieQuinze(unsigned int, size_t, size_t, echange_t);
 

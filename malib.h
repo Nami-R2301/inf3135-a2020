@@ -34,6 +34,7 @@ typedef struct tempHumaine_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurError;
 
 } tempH_t;
 
@@ -45,6 +46,7 @@ typedef struct tempAmbiante_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurError;
 
 } tempA_t;
 
@@ -56,6 +58,7 @@ typedef struct ppm_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurError;
 
 } ppm_t;
 
@@ -80,13 +83,13 @@ typedef struct echangeDonnees_s {
 
 //**************************ENTREES******************************************
 
-bool tempHumaine(size_t, float);
+bool tempHumaine(size_t, float, unsigned char);
 
-bool tempAmbiante(size_t, float);
+bool tempAmbiante(size_t, float, unsigned char);
 
-bool pulsationMin(size_t, float);
+bool pulsationMin(size_t, float, unsigned char);
 
-bool signalRssi(size_t, signed short, size_t);
+bool signalRssi(size_t, signed short, size_t, unsigned char);
 
 bool echangeData(size_t, size_t, size_t);
 

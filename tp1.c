@@ -24,11 +24,7 @@ void test_case_exemple(void)
 
 void validerTH_Un(void) {
 
-  CU_ASSERT_TRUE( validerTH_1( (unsigned) 17 ) && validerTH_1( (unsigned) 40 ) );
-  CU_ASSERT_TRUE( validerTH_1( 0x11 ) && validerTH_1( 0x28 ) );
-  CU_ASSERT_FALSE( validerTH_1( 0 ) );
-  CU_ASSERT_FALSE( validerTH_1( (unsigned) -17 ) );
-  CU_ASSERT_FALSE( validerTH_1( (unsigned) -40 ) );
+  CU_ASSERT_TRUE( validerTH_1( (unsigned) 170 ) && validerTH_1( (unsigned) 400 ) );
 }
 
 void validerTH_Deux(void) {

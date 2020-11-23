@@ -1,6 +1,6 @@
 #include "malib.h"
 
-int main(int argc, char **argv) {
+int main() {
 
   int ligne = 0;
   bool valideId = false;
@@ -10,7 +10,7 @@ int main(int argc, char **argv) {
   bool valideSignal = false;
   bool valideData = false;
   user_t mainId = {0, "00", 9999, 2};
-  tempH_t tempH = {0, "01", 35.0, 0, 0, 0};
+  tempH_t tempH = {0, "01", 0.0, 0, 0, 0};
   tempA_t tempA = {0, "02", 0.0, 0, 0, 0};
   ppm_t ppm = {0, "03", 0.0, 0, 0};
   signal_t signal = {0, "04", 0, 0, 0};
@@ -24,85 +24,97 @@ int main(int argc, char **argv) {
   getVersion(&v);
   printf("Version #: %hhu.%hhu.%u\n", v.major, v.minor, v.build);
 
-  if(fgetc(stdin) != EOF && fgetc(stdin) != '\n') {
+    while(!feof(stdin) && ligne != -1 && !valideData && fgets(input, 100, stdin) != NULL) {
 
-    do {
-
-      fgets(input, 100, stdin);
       ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, *courant.argQuatre); //pour qu'on puissent recevoir moins d'entrees (numLigne).
 
-      if(!valideId && ligne == 4 && strcmp(courant.event, mainId.event) == 0) {
+      if(!valideId && ligne >= 2 && strcmp(courant.event, mainId.event) == 0) {
 
-      mainId.timestamp = courant.timestamp;
-      mainId.id = (size_t) strtoul(courant.argTrois, NULL, 0);
-      mainId.puissanceEmetteur = (unsigned) atoi(*courant.argQuatre);
-      valideId = sortieDix(10, mainId.timestamp, mainId.id, mainId.puissanceEmetteur);
-    }
+        mainId.timestamp = courant.timestamp;
+        mainId.id = (size_t) strtoul(courant.argTrois, NULL, 0);
+        mainId.puissanceEmetteur = (unsigned) atoi(*courant.argQuatre);
+        valideId = sortieDix(10, mainId.timestamp, mainId.id, mainId.puissanceEmetteur);
+      }
 
-      if(valideId && !valideTempH && !valideTempA && !validePpm && !valideSignal && ligne == 3 && courant.timestamp >= mainId.timestamp && strcmp(courant.event, tempH.event) == 0) {
+      if(valideId && !valideTempA && !validePpm && !valideSignal && ligne == 3 && courant.timestamp > mainId.timestamp && strcmp(courant.event, tempH.event) == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
           tempH.timestamp = courant.timestamp;
-          tempH.degrees = (float) atof(courant.argTrois);
-          valideTempH = tempHumaine(tempH.timestamp, tempH.degrees);
+          tempH.degrees += (float) atof(courant.argTrois);
+          valideTempH = tempHumaine(tempH.timestamp, tempH.degrees, v.build);
 
-          if(!valideTempH) {
-            tempH.compteurInvalide++;
-          }
+          if(valideTempH) {
+            tempH.compteur++;
+          } else {
+              tempH.compteurInvalide++;
+            }
         } else {
             tempH.cumul++;
+
+            if (tempH.cumul % 3 == 0) {
+              tempH.compteurError++;
+            }
           }
-        tempH.compteur++;
       }
 
-      if(valideTempH && !valideTempA && !validePpm && !valideSignal && ligne == 3 && courant.timestamp >= tempH.timestamp && strcmp(courant.event, tempA.event) == 0) {
+      if(valideTempH && !validePpm && !valideSignal && ligne == 3 && courant.timestamp > tempH.timestamp && strcmp(courant.event, tempA.event) == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
           tempA.timestamp = courant.timestamp;
-          tempA.degrees = (float) atof(courant.argTrois);
-          valideTempA = tempAmbiante(tempA.timestamp, tempA.degrees);
+          tempA.degrees += (float) atof(courant.argTrois);
+          valideTempA = tempAmbiante(tempA.timestamp, tempA.degrees, v.build);
 
-          if(!valideTempA) {
-            tempA.compteurInvalide++;
-          }
+          if(valideTempA) {
+            tempA.compteur++;
+          } else {
+              tempA.compteurInvalide++;
+            }
         } else {
             tempA.cumul++;
+
+            if (tempA.cumul % 3 == 0) {
+              tempA.compteurError++;
+            }
           }
-        tempA.compteur++;
       }
 
-      if(valideTempA && !validePpm && !valideSignal && ligne == 3 && courant.timestamp >= tempA.timestamp && strcmp(courant.event, ppm.event) == 0) {
+      if(valideTempA && !valideSignal && ligne == 3 && courant.timestamp > tempA.timestamp && strcmp(courant.event, ppm.event) == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
           ppm.timestamp = courant.timestamp;
-          ppm.ppm = atof(courant.argTrois);
-          validePpm = pulsationMin(ppm.timestamp, ppm.ppm);
+          ppm.ppm += atof(courant.argTrois);
+          validePpm = pulsationMin(ppm.timestamp, ppm.ppm, v.build);
 
-          if(!valideTempH) {
-            ppm.compteurInvalide++;
-          }
+          if(valideTempH) {
+            ppm.compteur++;
+          } else {
+              ppm.compteurInvalide++;
+            }
         } else {
             ppm.cumul++;
+
+            if (ppm.cumul % 3 == 0) {
+              ppm.compteurError++;
+            }
           }
-        ppm.compteur++;
       }
 
-      if(validePpm && !valideSignal && ligne == 4 && courant.timestamp >= ppm.timestamp && strcmp(courant.event, signal.event) == 0) {
+      if(validePpm && !valideData && ligne == 4 && courant.timestamp > ppm.timestamp && strcmp(courant.event, signal.event) == 0) {
 
         signal.timestamp = courant.timestamp;
         signal.power = (signed short) atoi(courant.argTrois);
         signal.id = (size_t) strtoul(*courant.argQuatre, NULL, 0);
-        valideSignal = signalRssi(signal.timestamp, signal.power, signal.id);
+        valideSignal = signalRssi(signal.timestamp, signal.power, signal.id, v.build);
 
         if(valideSignal) {
           signal.compteurIdpn++;
         }
       }
 
-      if(valideSignal && ligne == 4 && courant.timestamp >= signal.timestamp && strcmp(courant.event, echange.event) == 0) {
+      if(valideSignal && ligne == 4 && courant.timestamp > signal.timestamp && strcmp(courant.event, echange.event) == 0) {
 
         echange.timestamp = courant.timestamp;
         echange.id = (size_t) strtoul(courant.argTrois, NULL, 0);
@@ -110,13 +122,9 @@ int main(int argc, char **argv) {
         valideData = echangeData(echange.timestamp, echange.id, *echange.idpn);
       }
 
-    } while(ligne != -1 && !valideData);
-
-    sortieVingtUn(21, tempH, tempA, ppm);
-    sortieVingtDeux(22, tempH.compteurInvalide, tempA.compteurInvalide, ppm.compteurInvalide);
-    sortieVingtTrois(23, tempH.cumul, tempA.cumul, ppm.cumul);
-    return 0;
-  } else {
-     return -1;
     }
+      sortieVingtUn(21, tempH, tempA, ppm);
+      sortieVingtDeux(22, tempH.compteurInvalide, tempA.compteurInvalide, ppm.compteurInvalide);
+      sortieVingtTrois(23, tempH.compteurError, tempA.compteurError, ppm.compteurError);
+      return 0;
 }

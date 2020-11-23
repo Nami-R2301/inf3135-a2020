@@ -1,30 +1,41 @@
 #include "malib.h"
 
-void version(void);
+bool tempHumaine(size_t timestamp, float degrees, unsigned char build) {
 
-void version(void) {
-  version_t v = {0, 1, 1000};
-  getVersion(&v);
+  if(build <= 1003 || build <= 1008) {
+    return validerTH_1((unsigned int)(degrees * 10));
+  }
+  return false;
 }
 
-bool tempHumaine(size_t timestamp, float degrees) {
+bool tempAmbiante(size_t timestamp, float degrees, unsigned char build) {
 
-  return true;
+  if(build <= 1003) {
+    return validerTA_3((signed short) (degrees * 10));
+  } else if(build <= 1008) {
+      return validerTA_1((signed int) (degrees * 10));
+    }
+  return false;
 }
 
-bool tempAmbiante(size_t timestamp, float degrees) {
+bool pulsationMin(size_t timestamp, float ppm, unsigned char build) {
 
-  return true;
+  if(build <= 1003) {
+    return validerPulsation_3((unsigned short) ppm);
+  } else if(build <= 1008) {
+      return validerPulsation_1((unsigned int) (ppm * 10));
+    }
+  return false;
 }
 
-bool pulsationMin(size_t timestamp, float ppm) {
+bool signalRssi(size_t timestamp, signed short power, size_t id, unsigned char build) {
 
-  return true;
-}
-
-bool signalRssi(size_t timestamp, signed short power, size_t id) {
-
-  return true;
+  if(build <= 1003) {
+    return validerSignal_2((signed) power);
+  } else if (build <= 1008) {
+      return validerSignal_3(power);
+    }
+  return false;
 }
 
 bool echangeData(size_t timestamp, size_t id, size_t Idpn) {
@@ -61,18 +72,25 @@ void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, signa
 
 //}
 
+//void sortieQuinze();
+
 void sortieVingtUn(unsigned int transaction, tempH_t tempH, tempA_t tempA, ppm_t ppm) {
 
-  if(tempH.compteur != 0 && tempA.compteur != 0 && ppm.compteur != 0) {
-
+  if(tempH.compteur != 0) {
     tempH.degrees = tempH.degrees / tempH.compteur;
-    tempA.degrees = tempA.degrees / tempA.compteur;
-    ppm.ppm = ppm.ppm / ppm.compteur;
-  } else if(tempH.compteur == 0) {
+
+  } else if(tempA.compteur != 0) {
       tempH.degrees = 0.0;
-    } else if(tempA.compteur == 0) {
+      tempA.degrees = tempA.degrees / tempA.compteur;
+
+   } else if(ppm.compteur != 0) {
         tempA.degrees = 0.0;
+        tempH.degrees = 0.0;
+        ppm.ppm = ppm.ppm / ppm.compteur;
+
       } else {
+          tempA.degrees = 0.0;
+          tempH.degrees = 0.0;
           ppm.ppm = 0.0;
         }
   printf("%u %.1f %.1f %zu\n", transaction, tempH.degrees, tempA.degrees, (size_t) ppm.ppm);

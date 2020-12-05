@@ -3,7 +3,7 @@
 int main() {
 
   int ligne = 0;
-  user_t mainId = (user_t*) malloc(sizeof(user_t));
+  user_t *mainId = (user_t*) malloc(sizeof(user_t));
   tempH_t *tempH = (tempH_t*) malloc(sizeof(tempH_t));
   tempA_t *tempA = (tempA_t*) malloc(sizeof(tempA_t));
   ppm_t *ppm = (ppm_t*) malloc(sizeof(ppm_t));
@@ -20,12 +20,9 @@ int main() {
 
       ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre); //pour qu'on puissent recevoir moins d'entrees (numLigne).
 
-      if(ligne == 4 && strcmp(courant.event, mainId->event) == 0) {
+      if(ligne == 4 && courant.timestamp > mainId->timestamp && strcmp(courant.event, "00") == 0) {
 
-        mainId->timestamp = courant.timestamp;
-        mainId->id = (size_t) strtoul(courant.argTrois, NULL, 0);
-        mainId->puissanceEmetteur = (unsigned) atoi(courant.argQuatre);
-        sortieDix(10, mainId->timestamp, mainId->id, mainId->puissanceEmetteur);
+        sortieDix(10, mainId, courant);
 
         if(mainId->puissanceEmetteur == 0) {
           mainId->puissanceEmetteur = 2;
@@ -35,7 +32,7 @@ int main() {
         }
       }
 
-      if(ligne == 3 && courant.timestamp > mainId->timestamp && strcmp(courant.event, tempH->event) == 0) {
+      if(ligne == 3 && courant.timestamp > mainId->timestamp && strcmp(courant.event, "01") == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
@@ -56,7 +53,7 @@ int main() {
           }
       }
 
-      if(ligne == 3 && courant.timestamp > tempH->timestamp && strcmp(courant.event, tempA->event) == 0) {
+      if(ligne == 3 && courant.timestamp > tempH->timestamp && strcmp(courant.event, "02") == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
@@ -77,7 +74,7 @@ int main() {
           }
       }
 
-      if(ligne == 3 && courant.timestamp > tempA->timestamp && strcmp(courant.event, ppm->event) == 0) {
+      if(ligne == 3 && courant.timestamp > tempA->timestamp && strcmp(courant.event, "03") == 0) {
 
         if(strcmp(courant.argTrois, ERREUR) != 0) {
 
@@ -98,7 +95,7 @@ int main() {
           }
       }
 
-      if(ligne == 4 && courant.timestamp > ppm->timestamp && strcmp(courant.event, signal->event) == 0) {
+      if(ligne == 4 && courant.timestamp > ppm->timestamp && strcmp(courant.event, "04") == 0) {
 
         signal->timestamp = courant.timestamp;
         signal->power = (signed short) atoi(courant.argTrois);
@@ -111,7 +108,7 @@ int main() {
         signal->compteurId++;
       }
 
-      if(ligne == 4 && courant.timestamp > signal->timestamp && strcmp(courant.event, echange->event) == 0) {
+      if(ligne == 4 && courant.timestamp > signal->timestamp && strcmp(courant.event, "05") == 0) {
 
         echange->timestamp = courant.timestamp;
         echange->id = (size_t) strtoul(courant.argTrois, NULL, 0);

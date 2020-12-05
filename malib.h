@@ -96,7 +96,7 @@ bool echangeData(size_t, size_t, size_t);
 
 //**************************SORTIES******************************************
 
-bool sortieDix(unsigned int, size_t, size_t, unsigned char); 
+bool sortieDix(unsigned int, user_t*, temp_t); 
 
 void sortieQuatorze(unsigned int, size_t, size_t, signed short, user_t);
 

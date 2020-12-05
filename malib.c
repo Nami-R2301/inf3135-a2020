@@ -46,16 +46,19 @@ bool echangeData(size_t timestamp, size_t id, size_t Idpn) {
 
 //************************************SORTIES*******************************************************
 
-bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned char puissanceEmetteur) {
+bool sortieDix(unsigned int transaction, user_t* mainId, temp_t courant) {
 
-  if(id == 0) {
-    id = 9999;
+  mainId->timestamp = courant.timestamp;
+  mainId->id = (size_t) strtoul(courant.argTrois, NULL, 0);
+  mainId->puissanceEmetteur = (unsigned) atoi(courant.argQuatre);
+  if(mainId->id == 0) {
+    mainId->id = 9999;
   }
 
-  if ( puissanceEmetteur > 4 || puissanceEmetteur < 2) {
-    puissanceEmetteur = 2;
+  if ( mainId->puissanceEmetteur > 4 || mainId->puissanceEmetteur < 2) {
+    mainId->puissanceEmetteur = 2;
   }
-  printf("%d %zu %zu %hhu\n", transaction, timestamp, id, puissanceEmetteur);
+  printf("%d %zu %zu %hhu\n", transaction, mainId->timestamp, mainId->id, mainId->puissanceEmetteur);
   return true;
 }
 

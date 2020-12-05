@@ -8,7 +8,6 @@ tp2
 #Test files for testing
 *.txt
 *.dat
-test.c
 
 #libs
 *.a

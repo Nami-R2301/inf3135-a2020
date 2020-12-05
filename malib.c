@@ -59,11 +59,11 @@ bool sortieDix(unsigned int transaction, size_t timestamp, size_t id, unsigned c
   return true;
 }
 
-void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, signal_t signal, user_t mainId) {
+void sortieQuatorze(unsigned int transaction, size_t timestamp, size_t id, signed short power, user_t mainId) {
 
-  float distanceMetres = pow(10, ((-69 - (float) signal.power) / (10 * mainId.puissanceEmetteur)));
+  float distanceMetres = pow(10, (-69 - (float) power) / (10 * mainId.puissanceEmetteur));
 
-  printf("%u %zu %zu %.1f\n", transaction, timestamp, id, distanceMetres);
+  printf("%u %zu %zu %0.1f\n", transaction, timestamp, id, distanceMetres);
 
 }
 

@@ -22,7 +22,7 @@ typedef struct temp_s {
   size_t timestamp;
   char event[3];
   char argTrois[50];
-  char *argQuatre[];
+  char argQuatre[];
 
 } temp_t;
 
@@ -67,8 +67,8 @@ typedef struct signalRSSI_s {
   size_t timestamp;
   char event[3];
   signed short power;
-  size_t id;
-  size_t compteurIdpn;
+  size_t compteurId;
+  size_t id[];
 
 } signal_t;
 
@@ -77,7 +77,7 @@ typedef struct echangeDonnees_s {
   size_t timestamp;
   char event[3];
   size_t id;
-  size_t idpn[];
+  size_t idPn;
 
 } echange_t;
 
@@ -98,7 +98,7 @@ bool echangeData(size_t, size_t, size_t);
 
 bool sortieDix(unsigned int, size_t, size_t, unsigned char); 
 
-void sortieQuatorze(unsigned int, size_t, size_t, signal_t, user_t);
+void sortieQuatorze(unsigned int, size_t, size_t, signed short, user_t);
 
 void sortieQuinze(unsigned int, size_t, size_t, echange_t);
 

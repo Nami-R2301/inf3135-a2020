@@ -1,62 +1,73 @@
- # Travail pratique 2
+ # Travail pratique 3
 
-   ## Description
-   - Vous devez dans un fichier nommé tp2.c coder la fonction main() du projet tous contre le virus. Ce système gère des données en entrée (stdin) et en sortie (stdout).
-     Le déploiement de certains produits informatique, comme le nôtre, peut devenir complexe lorsque les clients (pastilles) sont répandus partout dans le monde.
-     Le déploiement de programmes dit "parfait"est important considérant le sujet et le nombre de modules visés. Une erreur va surement faire les manchettes et sauvez moins
-     de vie. La date de livraison est importante et doit être respectée.Cette fois vous utiliserez les fonctions valides disponibles dans tcv.h et tcv.o pour réaliser le travail.
-
-   - Le rôle du programme tp2.c et de son exécutable est de traiter toutes les lignes de données. Dans certains cas vous avez à produire des données sur le canal (stdout)
-     de sortie standard. Ceci simule le dialogue (les données échangées). Le résultat en sortie est celui qui sera évalué. 
+ ## Description
  
-   ## Auteur
+  - Vous devez dans ce travail apporter des modifications au code existant. Vous ajouterez une fonction de gestion des arguments (options) de la ligne de commande.  Vous 
+    devez créer un programme juste et robuste.  Des fichiers ## Auteur (modules) seront utilisés pour garder un code propre et lisible.  L'utilisation de toutes les 
+    notions vue cette année est souhaitable. Finalement, le langage dans les mains d'un programmeur tel que vous peut produire, doit - Réalisé par Nami Reghbati; 
+    REGN03079808. produire, un exécutable performant.  Votre exécutable sera soumis à un stress incroyable.
 
-   - Réalisé par Nami Reghbati; REGN03079808.
+ ## Fonctionnement
 
-   ## Fonctionnement
+   - Ce que vous devez faire : - Le programme exécutable peut être lancé en ligne de commande avec différentes syntaxes :
+   - Compter, maintenir et afficher le nombre transactions selon les options demandées au lancement du logiciel.
    
-   - Le programme exécutable peut être lancé en ligne de commande avec différentes syntaxes :
+   ```bash
 
-   ```bash $ ./tp2 ## Contenu du projet
-
-   $ cat file.dat | ./tp2
+   # sans option
  
-   $ ./script.sh | ./tp2 
+   $ ./tp3 
+   $ cat file.dat | ./tp3
+   $ head -n 100 file.txt | tail -n 25 | ./tp3
 
-   $ head -n 100 file.txt | ./tp2 ...
+   # avec option(s) de la ligne de commande (-d détaillé, -s sommaire, -t tranquille -i invalide)
+    $ ./tp3 -s -d -i
+    $ ./tp3 -s
+    $ ./tp3 -t
 
-  ``` 
-   Le rôle de votre programme est de lire des transactions.  Les transactions sont décrites dans la section **Transaction en entrée / Transaction en sortie**.  Les transactions 
-   sont très formelles.  Il s'agit d'un système dit critique, aucune nuance possible.  Ceci ne veut pas dire que les transactions ou le système - Makefile: Automatise la compilation en 
-   lui spécifiant la cible et la source ainsi que quelle(s) commande(s) exécuter pour faire la bonne compilation. est exempt d'erreurs.  Vous ne devez, en aucun temps (jamais), laisser 
-   le hasard gérer la situation.
+    ...
 
-   - tp1.c: Contient le code des tests unitaires des fonctions déclarées dans 'tcv.h' et codé dans 'tcv.o'.
+   ``` 
+   - Le rôle de votre programme est de lire des transactions (déjà fait durant le tp2). Le tp3 ajoute une fonctionnalité 
+     qui compte de nombre de lignes lues et selon le cas affichera les informations recueillies. Les options suivantes doivent être gérées :
+
+   Voici les cas et les traitements en fonction des options :   
+
+   - option -i information invalide
+     + Lorsqu'un code de transaction n'est reconnu;
+     + Lorsque le timestamp est inférieur au temps précédent;
+
+   - option -d information détaillée
+     + Le nombre de transactions pour chacun des types de transactions;
+
+   - option -s information sommaire
+     + Le nombre total de transactions valides;
+     + Le nombre total de transactions reçues;
+
+   - option -t mode tranquille
+     + Le mode tranquille n'affiche pas transaction en sortie;
+
+ ## Contenu du projet
 
    - tcv.o: Fichier objet qui contient le code de toutes les fonctions déclarées dans le fichier 'tcv.h'.
 
    - tcv.h: Fichier d'entête qui sert à déclarer les prototypes des fonctions qui vont être utilisé dans 'tcv.o' et testé dans tp1.c. 
 
+   - data/: Contient la librairie qui sera utilisé dans tp3.c ('tcv.h et 'tcv.o' ) en format compressé zip (tp1.zip || tp2.zip || tp3.zip) qui sera ensuite extrait dans la racine du projet.
 
-  - data/: Contient la librairie qui sera utilisé dans tp1.c ('tcv.h et 'tcv.o ) en format compressé zip (tp1.zip) qui sera ensuite extrait dans la racine du projet.
-
-   - liste.sh: Fichier executable bash qui contiendra la commande pour simplifier l'affichage des test en affichant seulement ceux qui ont réussi. Ce fichier ne prend que le STDOUT comme 
-     argument. 
-
-   - tp1: Fichier exécutable qui contiendra la totalité des tests unitaires sur le code de 'tcv.o'. Ce fichier prend comme argument les fichiers 
-     'tcv.o et 'tcv.h' lors de la compilation Cunit.
-
-   - tp2: Executable du tp2.
+   - tp3: Executable du tp3.
  
    - malib.c: Implémentation des fonctions dans malib.h.
 
    - malib.h: Prototypes utilisé pour le tp2 dans le main de tp2.c.
 
-   - tp2.c: Programme principale qui traitera les transactions donné en STDIN.
+   - tp3.c: Programme principale qui traitera les transactions donné en STDIN.
 
-   - tp2.yml: Nouveau type de fichier qui sert à executer des commandes sur une machine virtuel sur github pour alleger le travail du/des programmeurs.
+   - tp3.yml: Nouveau type de fichier qui sert à executer des commandes sur une machine virtuel sur github pour alleger le travail du/des programmeurs.
 
-   - reflexion.md: Réflexion durant la progression de mon tp2 avec mes raisonnement et justifications de mes problèmes.
+   - outil3.h: Prototypes et déclaration de la fonction 'cmd' et 'distance' utilisé pour le tp3.
+
+   - outil3.c: Implémentation des fonctions déclarées dans outil3.h.
 
  ## Réflexion et démarche
    
@@ -67,10 +78,10 @@
    - Guy Francoeur -> https://github.com/guyfrancoeur/INF3135_A2020/blob/master/tp/tp2-%C3%A9nonc%C3%A9.md 
    - cplusplus reference -> https://www.cplusplus.com/reference/ 
 
-   ## Statut et auto-évaluation
+ ## Statut et auto-évaluation
 
-   - fini Makefile et liste.sh (90%). 
-  - Je croix que je mérite au moins 16 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
+   - Fini README.md (20%). 
+   - Je croix que je mérite au moins 16 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
 
-### Crée et édité par Nami Reghbati à 18:47 EST 14/11/2020 
+### Crée et édité par Nami Reghbati à 12:35 EST 05/12/2020 
 

@@ -11,25 +11,18 @@ int main() {
   echange_t *echange = (echange_t*) malloc(sizeof(echange_t));
   version_t v;
   getVersion(&v);
-  temp_t courant = {0, "00", ""};
-  char input[100];
+  temp_t courant;
+  char *input =  malloc(sizeof(courant));
 
   printf("Version #: %hhu.%hhu.%u\n", v.major, v.minor, v.build);
 
-    while(!feof(stdin) && ligne != -1 && fgets(input, 100, stdin) != NULL) {
+    while(ligne != -1 && fgets(input, sizeof(temp_t), stdin) != NULL) {
 
       ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre); //pour qu'on puissent recevoir moins d'entrees (numLigne).
 
       if(ligne == 4 && courant.timestamp > mainId->timestamp && strcmp(courant.event, "00") == 0) {
 
         sortieDix(10, mainId, courant);
-
-        if(mainId->puissanceEmetteur == 0) {
-          mainId->puissanceEmetteur = 2;
-        }
-        if(mainId->id == 0) {
-          mainId->id = 9999;
-        }
       }
 
       if(ligne == 3 && courant.timestamp > mainId->timestamp && strcmp(courant.event, "01") == 0) {

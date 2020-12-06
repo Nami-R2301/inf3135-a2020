@@ -21,8 +21,8 @@ typedef struct temp_s {
 
   size_t timestamp;
   char event[3];
-  char argTrois[50];
-  char argQuatre[];
+  char *argTrois;
+  char *argQuatre;
 
 } temp_t;
 
@@ -83,29 +83,34 @@ typedef struct echangeDonnees_s {
 
 //**************************ENTREES******************************************
 
-bool tempHumaine(size_t, float, unsigned char);
+temp_t initCourant();
 
-bool tempAmbiante(size_t, float, unsigned char);
+unsigned int initVersion();
 
-bool pulsationMin(size_t, float, unsigned char);
+bool tempHumaine(tempH_t*, temp_t, unsigned char);
+
+bool tempAmbiante(tempA_t*, temp_t, unsigned char);
+
+bool pulsationMin(ppm_t*, temp_t, unsigned char);
 
 bool signalRssi(size_t, signed short, size_t, unsigned char);
 
 bool echangeData(size_t, size_t, size_t);
 
-
 //**************************SORTIES******************************************
 
-bool sortieDix(unsigned int, user_t*, temp_t); 
+void sortieDix(user_t*, temp_t);
 
-void sortieQuatorze(unsigned int, size_t, size_t, signed short, user_t);
+void sortieQuatorze(signal_t*, temp_t, user_t*, unsigned char);
 
-void sortieQuinze(unsigned int, size_t, size_t, echange_t);
+void sortieQuinze(echange_t*, temp_t, user_t*, size_t, unsigned char);
 
-void sortieVingtUn(unsigned int, tempH_t, tempA_t, ppm_t);
+void sortieVingtUn(tempH_t, tempA_t, ppm_t);
 
-void sortieVingtDeux(unsigned int, size_t, size_t, size_t);
+void sortieVingtDeux(size_t, size_t, size_t);
 
-void sortieVingtTrois(unsigned int, size_t, size_t, size_t);
+void sortieVingtTrois(size_t, size_t, size_t);
+
+void vider(user_t*, tempH_t*, tempA_t*, ppm_t*, signal_t*, echange_t*);
 
 #endif

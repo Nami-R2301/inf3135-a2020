@@ -81,7 +81,20 @@ typedef struct echangeDonnees_s {
 
 } echange_t;
 
+typedef struct transactions_s {
+
+    user_t *mainId;
+    tempH_t *tempH;
+    tempA_t *tempA;
+    ppm_t *ppm;
+    signal_t *signal;
+    echange_t *echange;
+
+} transactions_t;
+
 //**************************ENTREES******************************************
+
+transactions_t* initStructs();
 
 temp_t initCourant();
 
@@ -101,16 +114,12 @@ bool echangeData(size_t, size_t, size_t);
 
 void sortieDix(user_t*, temp_t);
 
-void sortieQuatorze(signal_t*, temp_t, user_t*, unsigned char);
+void sortieQuatorze(transactions_t*, temp_t, unsigned char);
 
-void sortieQuinze(echange_t*, temp_t, user_t*, size_t, unsigned char);
+void sortieQuinze(transactions_t*, temp_t, unsigned char);
 
-void sortieVingtUn(tempH_t, tempA_t, ppm_t);
+void sortiesFin(transactions_t*);
 
-void sortieVingtDeux(size_t, size_t, size_t);
-
-void sortieVingtTrois(size_t, size_t, size_t);
-
-void vider(user_t*, tempH_t*, tempA_t*, ppm_t*, signal_t*, echange_t*);
+void viderTransactions(transactions_t*);
 
 #endif

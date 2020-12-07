@@ -117,9 +117,9 @@ void sortieQuatorze(transactions_t *transactions, temp_t courant, unsigned char 
   transactions->signal->timestamp = courant.timestamp;
   transactions->signal->id[0] = (size_t) strtoul(courant.argQuatre, NULL, 0);
   if(build <= 1003) {
-    valide = validerSignal_2((signed short) strtol(courant.argTrois, NULL, 0));
+    valide = validerSignal_2((signed char) strtol(courant.argTrois, NULL, 0));
   } else if (build <= 1008) {
-      valide = validerSignal_3((signed short) strtol(courant.argTrois, NULL, 0));
+      valide = validerSignal_3((int) strtol(courant.argTrois, NULL, 0));
   }
   if(valide) {
     transactions->signal->compteurId++;

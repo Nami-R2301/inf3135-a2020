@@ -34,7 +34,6 @@ typedef struct tempHumaine_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurError;
 
 } tempH_t;
 
@@ -46,7 +45,6 @@ typedef struct tempAmbiante_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurError;
 
 } tempA_t;
 
@@ -58,7 +56,6 @@ typedef struct ppm_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurError;
 
 } ppm_t;
 
@@ -92,7 +89,7 @@ typedef struct transactions_s {
 
 } transactions_t;
 
-//**************************ENTREES******************************************
+//**************************INITIALISATION-STRUCTS**************************************
 
 transactions_t* initStructs();
 
@@ -100,17 +97,15 @@ temp_t initCourant();
 
 unsigned int initVersion();
 
-bool tempHumaine(tempH_t*, temp_t, unsigned char);
+//**************************VALIDATION-ENTREES******************************************
 
-bool tempAmbiante(tempA_t*, temp_t, unsigned char);
+void tempHumaine(tempH_t*, temp_t, unsigned char);
 
-bool pulsationMin(ppm_t*, temp_t, unsigned char);
+void tempAmbiante(tempA_t*, temp_t, unsigned char);
 
-bool signalRssi(size_t, signed short, size_t, unsigned char);
+void pulsationMin(ppm_t*, temp_t, unsigned char);
 
-bool echangeData(size_t, size_t, size_t);
-
-//**************************SORTIES******************************************
+//**************************SORTIES*****************************************************
 
 void sortieDix(user_t*, temp_t);
 

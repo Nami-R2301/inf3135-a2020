@@ -9,14 +9,20 @@ transactions_t* initStructs() {
   transactions->ppm = (ppm_t*) malloc(sizeof(ppm_t));
   transactions->signal = (signal_t*) malloc(sizeof(signal_t));
   transactions->echange = (echange_t*) malloc(sizeof(echange_t));
+  *transactions->mainId = (user_t){0, "", 0, 0};
+  *transactions->tempH = (tempH_t) {0, "", 0, 0, 0, 0};
+  *transactions->tempA = (tempA_t) {0, "", 0, 0, 0, 0};
+  *transactions->ppm = (ppm_t) {0, "", 0, 0, 0, 0};
+  *transactions->signal = (signal_t) {0, "", 0, 0};
+  *transactions->echange = (echange_t) {0, "", 0, 0};
   return transactions;
 }
 
 temp_t initCourant() {
 
-  temp_t courant;
-  courant.argTrois = malloc(sizeof(char));
-  courant.argQuatre = malloc(sizeof(char));
+  temp_t courant = {0, ""};
+  courant.argTrois = malloc(sizeof(size_t));
+  courant.argQuatre = malloc(sizeof(size_t));
   return courant;
 }
 
@@ -28,57 +34,66 @@ unsigned int initVersion() {
   return v.build;
 }
 
-bool tempHumaine(tempH_t* tempH, temp_t courant, unsigned char build) {
+void tempHumaine(tempH_t* tempH, temp_t courant, unsigned char build) {
 
-  tempH->degrees = (float) strtod(courant.argTrois, NULL);
+  if(strcmp(courant.argTrois, ERREUR) != 0) {
+    tempH->timestamp = courant.timestamp;
 
-  if(build <= 1003 || build <= 1008) {
-    return validerTH_1((unsigned int)(tempH->degrees * 10));
+    if(build <= 1003 || build <= 1008) {
+      if(validerTH_1((unsigned int) ((float) strtod(courant.argTrois, NULL) * 10))) {
+        tempH->compteur++;
+        tempH->degrees += (float) strtod(courant.argTrois, NULL);
+      } else {
+          tempH->compteurInvalide++;
+      }
+    }
+  } else {
+      tempH->cumul++;
   }
-  return false;
 }
 
-bool tempAmbiante(tempA_t* tempA, temp_t courant, unsigned char build) {
+void tempAmbiante(tempA_t* tempA, temp_t courant, unsigned char build) {
 
-  tempA->degrees = (float) strtod(courant.argTrois, NULL);
+  if(strcmp(courant.argTrois, ERREUR) != 0) {
+    bool valide = false;
+    tempA->timestamp = courant.timestamp;
 
-  if(build <= 1003) {
-    return validerTA_3((signed short) (tempA->degrees * 10));
-  } else if(build <= 1008) {
-      return validerTA_1((signed int) (tempA->degrees * 10));
+    if(build <= 1003) {
+      valide = validerTA_3((signed short) ((float) strtod(courant.argTrois, NULL) * 10));
+    } else if(build <= 1008) {
+        valide = validerTA_1((signed int) ((float) strtod(courant.argTrois, NULL) * 10));
     }
-  return false;
-}
-
-bool pulsationMin(ppm_t* ppm, temp_t courant, unsigned char build) {
-
-  ppm->ppm = (signed short) strtol(courant.argTrois, NULL, 0);
-
-  if(build <= 1003) {
-    return validerPulsation_3((unsigned short) ppm->ppm);
-  } else if(build <= 1008) {
-      return validerPulsation_1((unsigned int) (ppm->ppm * 10));
+    if(valide) {
+      tempA->compteur++;
+      tempA->degrees += (float) strtod(courant.argTrois, NULL);
+    } else {
+        tempA->compteurInvalide++;
     }
-  return false;
+  } else {
+      tempA->cumul++;
+  }
 }
 
-bool signalRssi(size_t timestamp, signed short power, size_t id, unsigned char build) {
+void pulsationMin(ppm_t* ppm, temp_t courant, unsigned char build) {
 
-  if(build <= 1003) {
-    return validerSignal_2((signed) power);
-  } else if (build <= 1008) {
-      return validerSignal_3(power);
+  if(strcmp(courant.argTrois, ERREUR) != 0) {
+    bool valide = false;
+
+    if(build <= 1003) {
+      valide = validerPulsation_3((unsigned short) ((signed short) strtol(courant.argTrois, NULL, 0)));
+    } else if(build <= 1008) {
+        valide = validerPulsation_1((unsigned int) ((signed short) strtol(courant.argTrois, NULL, 0)));
     }
-  return false;
+    if(valide) {
+      ppm->ppm = (signed short) strtol(courant.argTrois, NULL, 0);
+      ppm->compteur++;
+    } else {
+        ppm->compteurInvalide++;
+    }
+  } else {
+      ppm->cumul++;
+  }
 }
-
-bool echangeData(size_t timestamp, size_t id, size_t Idpn) {
-
-  return true;
-}
-
-
-//************************************SORTIES*******************************************************
 
 void sortieDix(user_t* mainId, temp_t courant) {
 
@@ -89,8 +104,7 @@ void sortieDix(user_t* mainId, temp_t courant) {
   if(mainId->id == 0) {
     mainId->id = 9999;
   }
-
-  if ( mainId->puissanceEmetteur > 4 || mainId->puissanceEmetteur < 2) {
+  if(mainId->puissanceEmetteur > 4 || mainId->puissanceEmetteur < 2) {
     mainId->puissanceEmetteur = 2;
   }
   printf("%d %zu %zu %hhu\n", 10, mainId->timestamp, mainId->id, mainId->puissanceEmetteur);
@@ -98,47 +112,48 @@ void sortieDix(user_t* mainId, temp_t courant) {
 
 void sortieQuatorze(transactions_t *transactions, temp_t courant, unsigned char build) {
 
+//  bool valide = false;
   transactions->signal->timestamp = courant.timestamp;
   transactions->signal->power = (short) *courant.argTrois;
   transactions->signal->id[0] = (unsigned char) *courant.argQuatre;
-  signalRssi(transactions->signal->timestamp, transactions->signal->power, transactions->signal->id[0], build);
-  float distanceMetres = (float) pow(10, (-69 - (float) transactions->signal->power) / (float) (10 * transactions->mainId->puissanceEmetteur));
-  printf("%u %zu %zu %0.1f\n", 14, transactions->signal->timestamp, transactions->signal->id[0], distanceMetres);
+//  if(build <= 1003) {
+//    valide = validerSignal_2((signed) power);
+//  } else if (build <= 1008) {
+//      valide = validerSignal_3(power);
+//  }
+//  if(valide) {
+//    float distanceMetres = (float) pow(10, (-69 - (float) transactions->signal->power) / (float) (10 * transactions->mainId->puissanceEmetteur));
+//  }
+//  printf("%u %zu %zu %0.1f\n", 14, transactions->signal->timestamp, transactions->signal->id[0], distanceMetres);
   transactions->signal->compteurId++;
 }
 
-//void sortieQuinze(transactions_t *transactions, temp_t courant, unsigned char build) {
+void sortieQuinze(transactions_t *transactions, temp_t courant, unsigned char build) {
 
-//  echange->timestamp = courant.timestamp;
-//  echange->id = (size_t) strtoul(courant.argTrois, NULL, 0);
-//  echange->idPn = (size_t) strtoul(courant.argQuatre, NULL, 0);
-//  echangeData(echange->timestamp, echange->id, echange->idPn);
-//  printf("%u %zu %zu %zu\n", 15, echange->timestamp, mainId->id, echange->idPn);
-
-//}
+  transactions->echange->timestamp = courant.timestamp;
+  transactions->echange->id = transactions->mainId->id;
+  transactions->echange->idPn = transactions->signal->id[0];
+  printf("%u %zu %zu %zu\n", 15, transactions->echange->timestamp, transactions->mainId->id, transactions->echange->idPn);
+}
 
 void sortiesFin(transactions_t *transactions) {
 
-  if(transactions->tempH->compteur != 0) {
-    transactions->tempH->degrees = transactions->tempH->degrees / transactions->tempH->compteur;
+  float resultatH = (float) transactions->tempH->compteur;
+  float resultatA = (float) transactions->tempA->compteur;
+  float resultatPpm = (float) transactions->ppm->compteur;
 
-  } else if(transactions->tempA->compteur != 0) {
-      transactions->tempH->degrees = 0.0f;
-      transactions->tempA->degrees = transactions->tempA->degrees / transactions->tempA->compteur;
-
-    } else if(transactions->ppm->compteur != 0) {
-        transactions->tempA->degrees = 0.0f;
-        transactions->tempH->degrees = 0.0f;
-        transactions->ppm->ppm = transactions->ppm->ppm / transactions->ppm->compteur;
-
-      } else {
-          transactions->tempA->degrees = 0.0f;
-          transactions->tempH->degrees = 0.0f;
-          transactions->ppm->ppm = 0.0f;
-        }
-  printf("%u %.1f %.1f %zu\n", 21, transactions->tempH->degrees, transactions->tempA->degrees, (size_t) transactions->ppm->ppm);
-  printf("%u %zu %zu %zu\n", 22, transactions->tempH->compteur, transactions->tempA->compteur, transactions->ppm->compteur);
-  printf("%u %zu %zu %zu\n", 23, transactions->tempH->cumul, transactions->tempA->cumul, transactions->ppm->cumul);
+  if(resultatH != 0.0f) {
+      resultatH = transactions->tempH->degrees / transactions->tempH->compteur;
+  }
+  if(resultatA != 0.0f) {
+      resultatA = transactions->tempA->degrees / transactions->tempA->compteur;
+  }
+  if(resultatPpm != 0.0f) {
+      resultatPpm = transactions->ppm->ppm = transactions->ppm->ppm / transactions->ppm->compteur;
+  }
+  printf("%u %.1f %.1f %zu\n", 21, resultatH, resultatA, (size_t) resultatPpm);
+  printf("%u %zu %zu %zu\n", 22, transactions->tempH->compteurInvalide, transactions->tempA->compteurInvalide, transactions->ppm->compteurInvalide);
+  printf("%u %zu %zu %zu\n", 23, transactions->tempH->cumul / 3, transactions->tempA->cumul / 3, transactions->ppm->cumul / 3);
 }
 
 void viderTransactions(transactions_t *transactions) {

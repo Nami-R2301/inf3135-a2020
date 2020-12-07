@@ -9,12 +9,12 @@ transactions_t* initStructs() {
   transactions->ppm = (ppm_t*) malloc(sizeof(ppm_t));
   transactions->signal = (signal_t*) malloc(sizeof(signal_t));
   transactions->echange = (echange_t*) malloc(sizeof(echange_t));
-  *transactions->mainId = (user_t){0, "", 0, 0};
-  *transactions->tempH = (tempH_t) {0, "", 0, 0, 0, 0};
-  *transactions->tempA = (tempA_t) {0, "", 0, 0, 0, 0};
-  *transactions->ppm = (ppm_t) {0, "", 0, 0, 0, 0};
-  *transactions->signal = (signal_t) {0, "", 0, 0};
-  *transactions->echange = (echange_t) {0, "", 0, 0};
+  *transactions->mainId = (user_t){0, 0, 0};
+  *transactions->tempH = (tempH_t) {0, 0.0f, 0, 0, 0};
+  *transactions->tempA = (tempA_t) {0, 0.0f, 0, 0, 0};
+  *transactions->ppm = (ppm_t) {0, 0.0f, 0, 0, 0};
+  *transactions->signal = (signal_t) {0, 0, 0};
+  *transactions->echange = (echange_t) {0, 0, 0};
   return transactions;
 }
 
@@ -40,7 +40,7 @@ void tempHumaine(tempH_t* tempH, temp_t courant, unsigned char build) {
     tempH->timestamp = courant.timestamp;
 
     if(build <= 1003 || build <= 1008) {
-      if(validerTH_1((unsigned int) ((float) strtod(courant.argTrois, NULL) * 10))) {
+      if(validerTH_1((unsigned int) strtol(courant.argTrois, NULL, 0) * 10)) {
         tempH->compteur++;
         tempH->degrees += (float) strtod(courant.argTrois, NULL);
       } else {
@@ -59,9 +59,9 @@ void tempAmbiante(tempA_t* tempA, temp_t courant, unsigned char build) {
     tempA->timestamp = courant.timestamp;
 
     if(build <= 1003) {
-      valide = validerTA_3((signed short) ((float) strtod(courant.argTrois, NULL) * 10));
+      valide = validerTA_3((signed short) strtol(courant.argTrois, NULL, 0) * 10);
     } else if(build <= 1008) {
-        valide = validerTA_1((signed int) ((float) strtod(courant.argTrois, NULL) * 10));
+        valide = validerTA_1((signed int) strtol(courant.argTrois, NULL, 0) * 10);
     }
     if(valide) {
       tempA->compteur++;
@@ -80,9 +80,9 @@ void pulsationMin(ppm_t* ppm, temp_t courant, unsigned char build) {
     bool valide = false;
 
     if(build <= 1003) {
-      valide = validerPulsation_3((unsigned short) ((signed short) strtol(courant.argTrois, NULL, 0)));
+      valide = validerPulsation_3((unsigned short) strtol(courant.argTrois, NULL, 0));
     } else if(build <= 1008) {
-        valide = validerPulsation_1((unsigned int) ((signed short) strtol(courant.argTrois, NULL, 0)));
+        valide = validerPulsation_1((unsigned int) strtol(courant.argTrois, NULL, 0));
     }
     if(valide) {
       ppm->ppm = (signed short) strtol(courant.argTrois, NULL, 0);
@@ -112,20 +112,21 @@ void sortieDix(user_t* mainId, temp_t courant) {
 
 void sortieQuatorze(transactions_t *transactions, temp_t courant, unsigned char build) {
 
-//  bool valide = false;
+  float distanceMetres = 0.0f;
+  bool valide = false;
   transactions->signal->timestamp = courant.timestamp;
-  transactions->signal->power = (short) *courant.argTrois;
-  transactions->signal->id[0] = (unsigned char) *courant.argQuatre;
-//  if(build <= 1003) {
-//    valide = validerSignal_2((signed) power);
-//  } else if (build <= 1008) {
-//      valide = validerSignal_3(power);
-//  }
-//  if(valide) {
-//    float distanceMetres = (float) pow(10, (-69 - (float) transactions->signal->power) / (float) (10 * transactions->mainId->puissanceEmetteur));
-//  }
-//  printf("%u %zu %zu %0.1f\n", 14, transactions->signal->timestamp, transactions->signal->id[0], distanceMetres);
-  transactions->signal->compteurId++;
+  transactions->signal->id[0] = (size_t) strtoul(courant.argQuatre, NULL, 0);
+  if(build <= 1003) {
+    valide = validerSignal_2((signed short) strtol(courant.argTrois, NULL, 0));
+  } else if (build <= 1008) {
+      valide = validerSignal_3((signed short) strtol(courant.argTrois, NULL, 0));
+  }
+  if(valide) {
+    transactions->signal->compteurId++;
+    transactions->signal->power = (short) strtol(courant.argTrois, NULL, 0);
+    distanceMetres = (float) pow(10, (-69 - (float) transactions->signal->power) / (float) (10 * transactions->mainId->puissanceEmetteur));
+  }
+  printf("%u %zu %zu %0.1f\n", 14, transactions->signal->timestamp, transactions->signal->id[0], distanceMetres);
 }
 
 void sortieQuinze(transactions_t *transactions, temp_t courant, unsigned char build) {

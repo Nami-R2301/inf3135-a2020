@@ -11,7 +11,6 @@
 typedef struct identification_s {
 
   size_t timestamp;
-  char event[3];
   size_t id;
   unsigned char puissanceEmetteur;
 
@@ -29,7 +28,6 @@ typedef struct temp_s {
 typedef struct tempHumaine_s {
 
   size_t timestamp;
-  char event[3];
   float degrees;
   size_t compteurInvalide;
   size_t compteur;
@@ -40,7 +38,6 @@ typedef struct tempHumaine_s {
 typedef struct tempAmbiante_s {
 
   size_t timestamp;
-  char event[3];
   float degrees;
   size_t compteurInvalide;
   size_t compteur;
@@ -51,7 +48,6 @@ typedef struct tempAmbiante_s {
 typedef struct ppm_s {
 
   size_t timestamp;
-  char event[3];
   float ppm;
   size_t compteurInvalide;
   size_t compteur;
@@ -62,17 +58,15 @@ typedef struct ppm_s {
 typedef struct signalRSSI_s {
 
   size_t timestamp;
-  char event[3];
   signed short power;
   size_t compteurId;
-  size_t id[];
+  size_t id[sizeof(size_t)];
 
 } signal_t;
 
 typedef struct echangeDonnees_s {
 
   size_t timestamp;
-  char event[3];
   size_t id;
   size_t idPn;
 

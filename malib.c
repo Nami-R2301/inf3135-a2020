@@ -159,11 +159,12 @@ void sortiesFin(transactions_t *transactions) {
 
 void viderTransactions(transactions_t *transactions) {
 
-  free(transactions->mainId);
-  free(transactions->tempH);
-  free(transactions->tempA);
-  free(transactions->ppm);
-  free(transactions->signal);
   free(transactions->echange);
+  free(transactions->signal->id);
+  free(transactions->signal);
+  free(transactions->ppm);
+  free(transactions->tempA);
+  free(transactions->tempH);
+  free(transactions->mainId);
   free(transactions);
 }

@@ -30,6 +30,8 @@ int main() {
     }
   }
   sortiesFin(transactions);
+  free(courant.argQuatre);
+  free(courant.argTrois);
   free(input);
   viderTransactions(transactions);
   return 0;

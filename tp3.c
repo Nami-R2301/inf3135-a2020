@@ -9,7 +9,7 @@ int main() {
   char *input =  malloc(sizeof(courant));
   int prevTime = -1;
 
-  while(fgets(input, sizeof(temp_t), stdin) != NULL) {
+  while(ligne != -1 && fgets(input, sizeof(temp_t), stdin) != NULL) {
 
     ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre);
     if(ligne != -1 && prevTime < (signed int) courant.timestamp) {

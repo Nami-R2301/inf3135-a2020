@@ -4,37 +4,33 @@ int main() {
 
   int ligne = 0;
   transactions_t *transactions = initStructs();
-  temp_t courant = initCourant();
   unsigned int build = initVersion();
+  temp_t courant = initCourant();
   char *input =  malloc(sizeof(courant));
+  int prevTime = -1;
 
-  while(ligne != -1 && fgets(input, sizeof(temp_t), stdin) != NULL) {
+  while(fgets(input, sizeof(temp_t), stdin) != NULL) {
 
     ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre);
-
-    if(ligne == 4 && courant.timestamp >= transactions->mainId->timestamp && strcmp(courant.event, "00") == 0) {
-      sortieDix(transactions->mainId, courant);
-    }
-    if(ligne == 3 && courant.timestamp >= transactions->mainId->timestamp&& strcmp(courant.event, "01") == 0) {
-      tempHumaine(transactions->tempH, courant, build);
-    }
-    if(ligne == 3 && courant.timestamp >= transactions->tempH->timestamp&& strcmp(courant.event, "02") == 0) {
-      tempAmbiante(transactions->tempA, courant, build);
-   }
-    if(ligne == 3 && courant.timestamp >= transactions->tempA->timestamp&& strcmp(courant.event, "03") == 0) {
-      pulsationMin(transactions->ppm, courant, build);
-    }
-    if(ligne == 4 && courant.timestamp >= transactions->ppm->timestamp&& strcmp(courant.event, "04") == 0) {
-      sortieQuatorze(transactions, courant, build);
-    }
-    if(ligne == 4 && courant.timestamp >= transactions->signal->timestamp&& strcmp(courant.event, "05") == 0) {
-      sortieQuinze(transactions, courant, build);
+    if(ligne != -1 && prevTime < (signed int) courant.timestamp) {
+      prevTime = courant.timestamp;
+      if(strcmp(courant.event, EVENT0) == 0) {
+        sortieDix(transactions->mainId, courant);
+      } else if(ligne == 3 && strcmp(courant.event, EVENT1) == 0) {
+          tempHumaine(transactions->tempH, courant, build);
+      } else if(ligne == 3 && strcmp(courant.event, EVENT2) == 0) {
+          tempAmbiante(transactions->tempA, courant, build);
+      } else if(ligne == 3 && strcmp(courant.event, EVENT3) == 0) {
+          pulsationMin(transactions->ppm, courant, build);
+      } else if(ligne == 4 && strcmp(courant.event, EVENT4) == 0) {
+          sortieQuatorze(transactions, courant, build);
+      } else if(ligne == 4 && strcmp(courant.event, EVENT5) == 0) {
+          sortieQuinze(transactions, courant);
+      }
     }
   }
   sortiesFin(transactions);
   free(input);
-  free(courant.argTrois);
-  free(courant.argQuatre);
   viderTransactions(transactions);
   return 0;
 }

@@ -1,6 +1,12 @@
 #ifndef MALIB_H
 #define MALIB_H
 #define ERREUR "ERREUR"
+#define EVENT0 "00"
+#define EVENT1 "01"
+#define EVENT2 "02"
+#define EVENT3 "03"
+#define EVENT4 "04"
+#define EVENT5 "05"
 
 #include "tcv.h"
 #include <stdlib.h>
@@ -93,19 +99,19 @@ unsigned int initVersion();
 
 //**************************VALIDATION-ENTREES******************************************
 
-void tempHumaine(tempH_t*, temp_t, unsigned char);
+void tempHumaine(tempH_t*, temp_t, unsigned int);
 
-void tempAmbiante(tempA_t*, temp_t, unsigned char);
+void tempAmbiante(tempA_t*, temp_t, unsigned int);
 
-void pulsationMin(ppm_t*, temp_t, unsigned char);
+void pulsationMin(ppm_t*, temp_t, unsigned int);
 
 //**************************SORTIES*****************************************************
 
 void sortieDix(user_t*, temp_t);
 
-void sortieQuatorze(transactions_t*, temp_t, unsigned char);
+void sortieQuatorze(transactions_t*, temp_t, unsigned int);
 
-void sortieQuinze(transactions_t*, temp_t, unsigned char);
+void sortieQuinze(transactions_t*, temp_t);
 
 void sortiesFin(transactions_t*);
 

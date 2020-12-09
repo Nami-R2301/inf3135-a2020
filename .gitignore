@@ -1,15 +1,14 @@
-# Object files
-*.o
 
+*.a
+*.dat
 # Executables
+*.guy
+#libs
+*.o
+# Object files
+*.so
+test.c
+#Test files for testing
 tp1
 tp2
-
-#Test files for testing
 *.txt
-*.dat
-test.c
-
-#libs
-*.a
-*.so

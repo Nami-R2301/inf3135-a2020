@@ -7,8 +7,6 @@
 *.o
 # Object files
 *.so
-test.c
 #Test files for testing
 tp1
 tp2
-*.txt

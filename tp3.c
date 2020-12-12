@@ -1,38 +1,39 @@
 #include "malib.h"
+#include "outil3.h"
 
-int main() {
+int main(int argc, char *argv[]) {
 
   int ligne = 0;
-  transactions_t *transactions = initStructs();
-  unsigned int build = initVersion();
-  temp_t courant = initCourant();
-  char *input =  malloc(sizeof(courant));
+  transactions_t *trs = initStructs();
+//  int (*ptcmd)(int, char**) = &cmd;
+  temp_t* courant = initCourant();
+  char *input =  malloc(sizeof(temp_t));
+  float dist = 0.0f;
   int prevTime = -1;
+  printf("Version #: %hhu.%hhu.%u\n", courant->v->major, courant->v->minor, courant->v->build);
 
   while(ligne != -1 && fgets(input, sizeof(temp_t), stdin) != NULL) {
 
-    ligne = sscanf(input, "%zu %s %s %s", &courant.timestamp, courant.event, courant.argTrois, courant.argQuatre);
-    if(ligne != -1 && prevTime < (signed int) courant.timestamp) {
-      prevTime = courant.timestamp;
-      if(strcmp(courant.event, EVENT0) == 0) {
-        sortieDix(transactions->mainId, courant);
-      } else if(ligne == 3 && strcmp(courant.event, EVENT1) == 0) {
-          tempHumaine(transactions->tempH, courant, build);
-      } else if(ligne == 3 && strcmp(courant.event, EVENT2) == 0) {
-          tempAmbiante(transactions->tempA, courant, build);
-      } else if(ligne == 3 && strcmp(courant.event, EVENT3) == 0) {
-          pulsationMin(transactions->ppm, courant, build);
-      } else if(ligne == 4 && strcmp(courant.event, EVENT4) == 0) {
-          sortieQuatorze(transactions, courant, build);
-      } else if(ligne == 4 && strcmp(courant.event, EVENT5) == 0) {
-          sortieQuinze(transactions, courant);
-      }
+    ligne = sscanf(input, "%zu %s %s %s", &courant->timestamp, courant->event, courant->argTrois, courant->argQuatre);
+
+    if(ligne != -1 && prevTime < (int) courant->timestamp) {
+      prevTime = courant->timestamp;
+      if(ligne == 4 && strcmp(courant->event, EVENT0) == 0) sortieDix(trs, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT1) == 0) tempHumaine(trs->tempH, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT2) == 0) tempAmbiante(trs->tempA, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT3) == 0) pulsationMin(trs->ppm, courant);
+      else if(ligne == 4  && strcmp(courant->event, EVENT4) == 0) {
+        sortieQuatorze(trs, courant);
+        float (*distance)(int, int) = distanceMetres;
+        dist = (*distance)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
+        printf(" %0.1f\n", dist);
+
+      } else if(ligne >= 3 && strcmp(courant->event, EVENT5) == 0) sortieQuinze(trs, courant);
+        else prevTime = -1;
     }
   }
-  sortiesFin(transactions);
-  free(courant.argQuatre);
-  free(courant.argTrois);
+  sortiesFin(trs);
   free(input);
-  viderTransactions(transactions);
+  vider(trs, courant);
   return 0;
 }

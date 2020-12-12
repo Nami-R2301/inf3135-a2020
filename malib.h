@@ -1,5 +1,9 @@
-#ifndef MALIB_H
-#define MALIB_H
+//
+// Created by Nami on 2020-12-05.
+//
+
+#ifndef _MALIB_H
+#define _MALIB_H
 #define ERREUR "ERREUR"
 #define EVENT0 "00"
 #define EVENT1 "01"
@@ -16,7 +20,6 @@
 
 typedef struct identification_s {
 
-  size_t timestamp;
   size_t id;
   unsigned char puissanceEmetteur;
 
@@ -28,12 +31,12 @@ typedef struct temp_s {
   char event[3];
   char *argTrois;
   char *argQuatre;
+  version_t *v;
 
 } temp_t;
 
 typedef struct tempHumaine_s {
 
-  size_t timestamp;
   float degrees;
   size_t compteurInvalide;
   size_t compteur;
@@ -43,7 +46,6 @@ typedef struct tempHumaine_s {
 
 typedef struct tempAmbiante_s {
 
-  size_t timestamp;
   float degrees;
   size_t compteurInvalide;
   size_t compteur;
@@ -53,7 +55,6 @@ typedef struct tempAmbiante_s {
 
 typedef struct ppm_s {
 
-  size_t timestamp;
   float ppm;
   size_t compteurInvalide;
   size_t compteur;
@@ -63,7 +64,6 @@ typedef struct ppm_s {
 
 typedef struct signalRSSI_s {
 
-  size_t timestamp;
   signed short power;
   size_t compteurId;
   size_t id[sizeof(size_t)];
@@ -72,20 +72,18 @@ typedef struct signalRSSI_s {
 
 typedef struct echangeDonnees_s {
 
-  size_t timestamp;
-  size_t id;
   size_t idPn;
 
 } echange_t;
 
 typedef struct transactions_s {
 
-    user_t *mainId;
-    tempH_t *tempH;
-    tempA_t *tempA;
-    ppm_t *ppm;
-    signal_t *signal;
-    echange_t *echange;
+  user_t *mainId;
+  tempH_t *tempH;
+  tempA_t *tempA;
+  ppm_t *ppm;
+  signal_t *signal;
+  echange_t *echange;
 
 } transactions_t;
 
@@ -93,28 +91,27 @@ typedef struct transactions_s {
 
 transactions_t* initStructs();
 
-temp_t initCourant();
-
-unsigned int initVersion();
+temp_t* initCourant();
 
 //**************************VALIDATION-ENTREES******************************************
 
-void tempHumaine(tempH_t*, temp_t, unsigned int);
+void tempHumaine(tempH_t*, temp_t*);
 
-void tempAmbiante(tempA_t*, temp_t, unsigned int);
+void tempAmbiante(tempA_t*, temp_t*);
 
-void pulsationMin(ppm_t*, temp_t, unsigned int);
+void pulsationMin(ppm_t*, temp_t*);
 
 //**************************SORTIES*****************************************************
 
-void sortieDix(user_t*, temp_t);
+void sortieDix(transactions_t*, temp_t*);
 
-void sortieQuatorze(transactions_t*, temp_t, unsigned int);
+void sortieQuatorze(transactions_t*, temp_t*);
 
-void sortieQuinze(transactions_t*, temp_t);
+void sortieQuinze(transactions_t*, temp_t*);
 
 void sortiesFin(transactions_t*);
 
-void viderTransactions(transactions_t*);
+void vider(transactions_t*, temp_t*);
 
-#endif
+#endif //_MALIB_H
+

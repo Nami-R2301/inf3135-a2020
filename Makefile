@@ -9,7 +9,8 @@ default: $(PROG).c
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp3.zip || wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp2.zip || wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp3.zip -d . || unzip -qqo ./data/tp2.zip -d . || unzip -qqo ./data/tp1.zip -d .
 	gcc -c $(CC) malib.c $(MATH)
-	gcc $(CC) -o $(PROG) $(PROG).c malib.o tcv.o $(MATH)
+	gcc -c $(CC) outil3.c $(MATH)
+	gcc $(CC) -o $(PROG) $(PROG).c malib.o outil3.o tcv.o $(MATH)
 
 lib:
 	chmod +rwx .
@@ -21,7 +22,8 @@ tp3:
 	wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp3.zip || wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp2.zip || wget -q -P ./data/ https://github.com/guyfrancoeur/INF3135_A2020/raw/master/tp/tp1.zip
 	unzip -qqo ./data/tp3.zip -d . || unzip -qqo ./data/tp2.zip -d . || unzip -qqo ./data/tp1.zip -d .
 	gcc -c malib.c $(CC) $(MATH)
-	gcc $(CC) -o $(PROG) $(PROG).c malib.o tcv.o $(MATH)
+	gcc -c $(CC) outil3.c $(MATH)
+	gcc $(CC) -o $(PROG) $(PROG).c malib.o outil3.o tcv.o $(MATH)
 
 clean:
 	chmod +rwx .

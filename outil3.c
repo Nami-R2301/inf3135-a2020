@@ -7,5 +7,6 @@ int cmd(int argc, char **argcv) {
 
 float distanceMetres(int _signal, int _power) {
 
- return (float) pow(10, (-69 - (float) _signal) / (float) (10 * _power));
+  if(_signal <= -35 && _signal >= -85) return (float) pow(10, (-69 - (float) _signal) / (float) (10 * _power));
+  else return -1.0f;
 }

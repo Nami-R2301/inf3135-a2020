@@ -13,7 +13,7 @@ transactions_t* initStructs() {
   *trs->tempH = (tempH_t) {0, 0, 0, 0};
   *trs->tempA = (tempA_t) {0, 0, 0, 0};
   *trs->ppm = (ppm_t) {0, 0, 0, 0};
-  trs->signal->compteurId = 0;
+  *trs->signal = (signal_t) {0,0};
   *trs->echange = (echange_t) {0};
   return trs;
 }
@@ -24,9 +24,6 @@ temp_t* initCourant() {
   courant->argTrois = (char*) malloc(sizeof(size_t));
   courant->argQuatre = (char*) malloc(sizeof(size_t));
   courant->v = (version_t*) malloc(sizeof(version_t));
-  *courant->argTrois = '0';
-  *courant->argTrois = '0';
-  courant->v->build = 1000;
   getVersion(courant->v);
   return courant;
 }

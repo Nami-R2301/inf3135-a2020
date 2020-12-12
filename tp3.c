@@ -8,7 +8,6 @@ int main(int argc, char *argv[]) {
 //  int (*ptcmd)(int, char**) = &cmd;
   temp_t* courant = initCourant();
   char *input =  malloc(sizeof(temp_t));
-  float dist = 0.0f;
   int prevTime = -1;
   printf("Version #: %hhu.%hhu.%u\n", courant->v->major, courant->v->minor, courant->v->build);
 
@@ -25,8 +24,8 @@ int main(int argc, char *argv[]) {
       else if(ligne == 4  && strcmp(courant->event, EVENT4) == 0) {
         sortieQuatorze(trs, courant);
         float (*distance)(int, int) = distanceMetres;
-        dist = (*distance)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
-        printf(" %0.1f\n", dist);
+        float dist = (*distance)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
+        if(dist != -1.0) printf(" %0.1f\n", dist);
 
       } else if(ligne >= 3 && strcmp(courant->event, EVENT5) == 0) sortieQuinze(trs, courant);
         else prevTime = -1;

@@ -15,6 +15,7 @@ transactions_t* initStructs() {
   *trs->ppm = (ppm_t) {0, 0, 0, 0};
   *trs->signal = (signal_t) {0,0};
   *trs->echange = (echange_t) {0};
+  trs->optionT = 0;
   return trs;
 }
 

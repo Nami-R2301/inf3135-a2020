@@ -5,9 +5,9 @@ int main(int argc, char *argv[]) {
 
   int ligne = 0;
   transactions_t *trs = initStructs();
-//  int (*ptcmd)(int, char**) = &cmd;
   temp_t* courant = initCourant();
   char *input =  malloc(sizeof(temp_t));
+  trs->optionT = cmd(argc, argv);
   int prevTime = -1;
   printf("Version #: %hhu.%hhu.%u\n", courant->v->major, courant->v->minor, courant->v->build);
 
@@ -33,6 +33,7 @@ int main(int argc, char *argv[]) {
   }
   sortiesFin(trs);
   free(input);
+  printOptions(trs->optionT, trs);
   vider(trs, courant);
   return 0;
 }

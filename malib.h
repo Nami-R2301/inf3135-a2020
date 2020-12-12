@@ -84,6 +84,7 @@ typedef struct transactions_s {
   ppm_t *ppm;
   signal_t *signal;
   echange_t *echange;
+  int optionT;
 
 } transactions_t;
 

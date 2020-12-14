@@ -22,6 +22,7 @@ typedef struct identification_s {
 
   size_t id;
   unsigned char puissanceEmetteur;
+  size_t compteurTrsZero;
 
 } user_t;
 
@@ -41,6 +42,7 @@ typedef struct tempHumaine_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurTrsUn;
 
 } tempH_t;
 
@@ -50,6 +52,7 @@ typedef struct tempAmbiante_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurTrsDeux;
 
 } tempA_t;
 
@@ -59,6 +62,7 @@ typedef struct ppm_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
+  size_t compteurTrsTrois;
 
 } ppm_t;
 
@@ -67,12 +71,15 @@ typedef struct signalRSSI_s {
   signed short power;
   size_t compteurId;
   size_t id[sizeof(size_t)];
+  size_t compteurTrsQuatre;
 
 } signal_t;
 
 typedef struct echangeDonnees_s {
 
   size_t idPn;
+  size_t compteurTrsCinq;
+  size_t compteurValide;
 
 } echange_t;
 
@@ -85,6 +92,8 @@ typedef struct transactions_s {
   signal_t *signal;
   echange_t *echange;
   int optionT;
+  size_t compteurTrs;
+  size_t compteurTrsValide;
 
 } transactions_t;
 
@@ -96,11 +105,11 @@ temp_t* initCourant();
 
 //**************************VALIDATION-ENTREES******************************************
 
-void tempHumaine(tempH_t*, temp_t*);
+void tempHumaine(transactions_t*, temp_t*);
 
-void tempAmbiante(tempA_t*, temp_t*);
+void tempAmbiante(transactions_t*, temp_t*);
 
-void pulsationMin(ppm_t*, temp_t*);
+void pulsationMin(transactions_t*, temp_t*);
 
 //**************************SORTIES*****************************************************
 

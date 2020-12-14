@@ -9,13 +9,16 @@ transactions_t* initStructs() {
   trs->ppm = (ppm_t*) malloc(sizeof(ppm_t));
   trs->signal = (signal_t*) malloc(sizeof(signal_t));
   trs->echange = (echange_t*) malloc(sizeof(echange_t));
-  *trs->mainId = (user_t) {9999, 2};
-  *trs->tempH = (tempH_t) {0, 0, 0, 0};
-  *trs->tempA = (tempA_t) {0, 0, 0, 0};
-  *trs->ppm = (ppm_t) {0, 0, 0, 0};
-  *trs->signal = (signal_t) {0,0};
-  *trs->echange = (echange_t) {0};
+  *trs->mainId = (user_t) {9999, 2, 0};
+  *trs->tempH = (tempH_t) {0, 0, 0, 0, 0};
+  *trs->tempA = (tempA_t) {0, 0, 0, 0, 0};
+  *trs->ppm = (ppm_t) {0, 0, 0, 0, 0};
+  *trs->signal = (signal_t) {0, 0};
+  trs->signal->compteurTrsQuatre = 0;
+  *trs->echange = (echange_t) {0, 0, 0};
   trs->optionT = 0;
+  trs->compteurTrs = 0;
+  trs->compteurTrsValide = 0;
   return trs;
 }
 
@@ -29,23 +32,26 @@ temp_t* initCourant() {
   return courant;
 }
 
-void tempHumaine(tempH_t* tempH, temp_t* courant) {
+void tempHumaine(transactions_t* trs, temp_t* courant) {
 
+  trs->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       if(courant->v->build <= 1008) {
 
         if(validerTH_1((int) (strtod(courant->argTrois, NULL) * 10))) {
-          tempH->compteur++;
-          tempH->degrees += (float) strtod(courant->argTrois, NULL);
+          trs->tempH->compteur++;
+          trs->compteurTrsValide++;
+          trs->tempH->degrees += (float) strtod(courant->argTrois, NULL);
 
-        } else tempH->compteurInvalide++;
+        } else trs->tempH->compteurInvalide++;
       }
-  } else tempH->cumul++;
+  } else trs->tempH->cumul++;
 }
 
-void tempAmbiante(tempA_t* tempA, temp_t* courant) {
+void tempAmbiante(transactions_t* trs, temp_t* courant) {
 
+  trs->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       bool valide = false;
@@ -53,15 +59,17 @@ void tempAmbiante(tempA_t* tempA, temp_t* courant) {
       else if(courant->v->build <= 1008) valide = validerTA_1((int) (strtod(courant->argTrois, NULL) * 10));
 
       if(valide) {
-        tempA->compteur++;
-        tempA->degrees += (float) strtod(courant->argTrois, NULL);
+        trs->tempA->compteur++;
+        trs->compteurTrsValide++;
+        trs->tempA->degrees += (float) strtod(courant->argTrois, NULL);
 
-      } else tempA->compteurInvalide++;
-  } else tempA->cumul++;
+      } else trs->tempA->compteurInvalide++;
+  } else trs->tempA->cumul++;
 }
 
-void pulsationMin(ppm_t* ppm, temp_t* courant) {
+void pulsationMin(transactions_t* trs , temp_t* courant) {
 
+  trs->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       bool valide = false;
@@ -69,15 +77,18 @@ void pulsationMin(ppm_t* ppm, temp_t* courant) {
       else if(courant->v->build <= 1008) valide = validerPulsation_1((int) strtol(courant->argTrois, NULL, 0));
 
       if(valide) {
-        ppm->ppm = (short) strtol(courant->argTrois, NULL, 0);
-        ppm->compteur++;
+        trs->ppm->ppm = (short) strtol(courant->argTrois, NULL, 0);
+        trs->ppm->compteur++;
+        trs->compteurTrsValide++;
 
-      } else ppm->compteurInvalide++;
-  } else ppm->cumul++;
+      } else trs->ppm->compteurInvalide++;
+  } else trs->ppm->cumul++;
 }
 
 void sortieDix(transactions_t* trs, temp_t* courant) {
 
+  trs->compteurTrs++;
+  trs->compteurTrsValide++;
   if((size_t) strtoul(courant->argTrois, NULL, 0) != 0) trs->mainId->id = (size_t) strtoul(courant->argTrois, NULL, 0);
 
   if(strtol(courant->argQuatre, NULL, 0) <= 4 && strtol(courant->argQuatre, NULL, 0) >= 2) {
@@ -90,6 +101,7 @@ void sortieDix(transactions_t* trs, temp_t* courant) {
 
 void sortieQuatorze(transactions_t *trs, temp_t* courant) {
 
+  trs->compteurTrs++;
   bool valide = false;
 
   if(trs->mainId->id != strtoul(courant->argQuatre, NULL, 0) && courant->v->build <= 1003) {
@@ -102,6 +114,7 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant) {
     trs->signal->power = (short) strtol(courant->argTrois, NULL, 0);
     trs->signal->id[trs->signal->compteurId] = (size_t) strtoul(courant->argQuatre, NULL, 0);
     trs->signal->compteurId++;
+    trs->compteurTrsValide++;
 
     if(trs->optionT > 0) {
       printf("%u %zu %zu", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId]);
@@ -111,6 +124,8 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant) {
 
 void sortieQuinze(transactions_t *trs, temp_t* courant) {
 
+  trs->compteurTrs++;
+  trs->compteurTrsValide++;
   if(trs->signal->compteurId != 0 && trs->optionT > 0) {
     printf("%u %zu %zu ", 15, courant->timestamp, trs->mainId->id);
 
@@ -137,7 +152,7 @@ void sortiesFin(transactions_t *trs) {
   if(trs->optionT > 0) {
     printf("%u %.1f %.1f %zu\n", 21, resultatH, resultatA, (size_t) resultatPpm);
     printf("%u %zu %zu %zu\n", 22, trs->tempH->compteurInvalide, trs->tempA->compteurInvalide, trs->ppm->compteurInvalide);
-    printf("%u %zu %zu %zu\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
+    printf("%u %zu %zu %zu\n\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
   }
 }
 

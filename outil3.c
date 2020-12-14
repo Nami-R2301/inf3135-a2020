@@ -35,7 +35,9 @@ void printOptions(int args, transactions_t* trs) {
 
       if(args == 15 || args == 10 || args == 6 ||  args == 1) printf("information invalide\n");
       if(args == 15 || args == 14 || args == 6 || args == 5) printf("information detaillee\n");
-      if(args == 15 || args == 14 || args == 10 || args == 9) printf("information sommaire\n");
+      if(args == 15 || args == 14 || args == 10 || args == 9) {
+         printf("information sommaire\n  nbr trx valides : %zu\n  nbr trx (total) : %zu\n", trs->compteurTrsValide, trs->compteurTrs);
+      }
   }
 }
 

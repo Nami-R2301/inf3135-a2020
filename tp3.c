@@ -18,9 +18,9 @@ int main(int argc, char *argv[]) {
     if(ligne != -1 && prevTime < (int) courant->timestamp) {
       prevTime = courant->timestamp;
       if(ligne == 4 && strcmp(courant->event, EVENT0) == 0) sortieDix(trs, courant);
-      else if(ligne == 3 && strcmp(courant->event, EVENT1) == 0) tempHumaine(trs->tempH, courant);
-      else if(ligne == 3 && strcmp(courant->event, EVENT2) == 0) tempAmbiante(trs->tempA, courant);
-      else if(ligne == 3 && strcmp(courant->event, EVENT3) == 0) pulsationMin(trs->ppm, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT1) == 0) tempHumaine(trs, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT2) == 0) tempAmbiante(trs, courant);
+      else if(ligne == 3 && strcmp(courant->event, EVENT3) == 0) pulsationMin(trs, courant);
       else if(ligne == 4  && strcmp(courant->event, EVENT4) == 0) {
         sortieQuatorze(trs, courant);
         float (*distance)(int, int) = distanceMetres;

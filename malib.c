@@ -83,7 +83,9 @@ void sortieDix(transactions_t* trs, temp_t* courant) {
   if(strtol(courant->argQuatre, NULL, 0) <= 4 && strtol(courant->argQuatre, NULL, 0) >= 2) {
     trs->mainId->puissanceEmetteur = (unsigned) strtol(courant->argQuatre, NULL, 0);
   }
-  printf("%d %zu %zu %hhu\n", 10, courant->timestamp, trs->mainId->id, trs->mainId->puissanceEmetteur);
+  if(trs->optionT > 0) {
+    printf("%d %zu %zu %hhu\n", 10, courant->timestamp, trs->mainId->id, trs->mainId->puissanceEmetteur);
+  }
 }
 
 void sortieQuatorze(transactions_t *trs, temp_t* courant) {
@@ -99,14 +101,17 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant) {
   if(valide) {
     trs->signal->power = (short) strtol(courant->argTrois, NULL, 0);
     trs->signal->id[trs->signal->compteurId] = (size_t) strtoul(courant->argQuatre, NULL, 0);
-    printf("%u %zu %zu", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId]);
     trs->signal->compteurId++;
+
+    if(trs->optionT > 0) {
+      printf("%u %zu %zu", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId]);
+    }
   }
 }
 
 void sortieQuinze(transactions_t *trs, temp_t* courant) {
 
-  if(trs->signal->compteurId != 0) {
+  if(trs->signal->compteurId != 0 && trs->optionT > 0) {
     printf("%u %zu %zu ", 15, courant->timestamp, trs->mainId->id);
 
     for(int i = 0; i < trs->signal->compteurId; i++) {
@@ -129,9 +134,11 @@ void sortiesFin(transactions_t *trs) {
   if(resultatA != 0.0f) resultatA = trs->tempA->degrees / trs->tempA->compteur;
   if(resultatPpm != 0.0f) resultatPpm = trs->ppm->ppm = trs->ppm->ppm / trs->ppm->compteur;
 
-  printf("%u %.1f %.1f %zu\n", 21, resultatH, resultatA, (size_t) resultatPpm);
-  printf("%u %zu %zu %zu\n", 22, trs->tempH->compteurInvalide, trs->tempA->compteurInvalide, trs->ppm->compteurInvalide);
-  printf("%u %zu %zu %zu\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
+  if(trs->optionT > 0) {
+    printf("%u %.1f %.1f %zu\n", 21, resultatH, resultatA, (size_t) resultatPpm);
+    printf("%u %zu %zu %zu\n", 22, trs->tempH->compteurInvalide, trs->tempA->compteurInvalide, trs->ppm->compteurInvalide);
+    printf("%u %zu %zu %zu\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
+  }
 }
 
 void vider(transactions_t *trs, temp_t* courant) {

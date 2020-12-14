@@ -25,7 +25,7 @@ int main(int argc, char *argv[]) {
         sortieQuatorze(trs, courant);
         float (*distance)(int, int) = distanceMetres;
         float dist = (*distance)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
-        if(dist != -1.0) printf(" %0.1f\n", dist);
+        if(dist != -1.0 && trs->optionT > 0) printf(" %0.1f\n", dist);
 
       } else if(ligne >= 3 && strcmp(courant->event, EVENT5) == 0) sortieQuinze(trs, courant);
         else prevTime = -1;

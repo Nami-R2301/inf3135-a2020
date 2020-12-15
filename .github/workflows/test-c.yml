@@ -31,7 +31,6 @@ jobs:
           echo $OSTYPE
           lsb_release -a 
           gcc -v >& gcc.txt
-          grep "gcc version 9.3.0" gcc.txt > version.txt
           
       - name: compilation
         run: |

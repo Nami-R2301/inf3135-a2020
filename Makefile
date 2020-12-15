@@ -27,6 +27,6 @@ tp3:
 
 clean:
 	chmod +rwx .
-	rm -f *.o; rm -f tcv.h; rm -f ./$(PROG); rm -fdr ./data;
+	rm -f malib.o; rm -f outil3.o; rm -f tcv.o; rm -f tcv.h; rm -f $(PROG); rm -fdr ./data;
 
 .PHONY: default tp1 lib test-tp1a test-tp1b test-tp2 clean

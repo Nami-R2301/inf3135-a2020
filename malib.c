@@ -14,8 +14,8 @@ transactions_t* initStructs() {
   *trs->tempA = (tempA_t) {0, 0, 0, 0, 0};
   *trs->ppm = (ppm_t) {0, 0, 0, 0, 0};
   *trs->signal = (signal_t) {0, 0};
-  trs->signal->compteurTrsQuatre = 0;
-  *trs->echange = (echange_t) {0, 0, 0};
+  trs->signal->compteurTrs = 0;
+  *trs->echange = (echange_t) {0, 0};
   trs->optionT = 0;
   trs->compteurTrs = 0;
   trs->compteurTrsValide = 0;
@@ -36,7 +36,7 @@ temp_t* initCourant() {
 
 void tempHumaine(transactions_t* trs, temp_t* courant) {
 
-  trs->compteurTrs++;
+  trs->tempH->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       if(courant->v->build <= 1008) {
@@ -53,7 +53,7 @@ void tempHumaine(transactions_t* trs, temp_t* courant) {
 
 void tempAmbiante(transactions_t* trs, temp_t* courant) {
 
-  trs->compteurTrs++;
+  trs->tempA->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       bool valide = false;
@@ -71,7 +71,7 @@ void tempAmbiante(transactions_t* trs, temp_t* courant) {
 
 void pulsationMin(transactions_t* trs , temp_t* courant) {
 
-  trs->compteurTrs++;
+  trs->ppm->compteurTrs++;
   if(strcmp(courant->argTrois, ERREUR) != 0) {
 
       bool valide = false;
@@ -89,7 +89,6 @@ void pulsationMin(transactions_t* trs , temp_t* courant) {
 
 void sortieDix(transactions_t* trs, temp_t* courant) {
 
-  trs->compteurTrs++;
   if((size_t) strtoul(courant->argTrois, NULL, 0) != 0) trs->mainId->id = (size_t) strtoul(courant->argTrois, NULL, 0);
 
   if(strtol(courant->argQuatre, NULL, 0) <= 4 && strtol(courant->argQuatre, NULL, 0) >= 2) {
@@ -98,11 +97,12 @@ void sortieDix(transactions_t* trs, temp_t* courant) {
   if(trs->optionT > 0) {
     printf("%d %zu %zu %hhu\n", 10, courant->timestamp, trs->mainId->id, trs->mainId->puissanceEmetteur);
   }
+  trs->mainId->compteurTrs++;
+  trs->compteurTrsValide++;
 }
 
 void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int)) {
 
-  trs->compteurTrs++;
   bool valide = false;
 
   if(trs->mainId->id != strtoul(courant->argQuatre, NULL, 0) && courant->v->build <= 1003) {
@@ -119,26 +119,28 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int
 
     if(trs->optionT > 0) {
       printf("%u %zu %zu %0.1f\n", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId], distance);
-      trs->signal->compteurId++;
     }
+    trs->signal->compteurId++;
   }
+  trs->signal->compteurTrs++;
 }
 
 void sortieQuinze(transactions_t *trs, temp_t* courant) {
 
-  trs->compteurTrs++;
-  trs->compteurTrsValide++;
   if(trs->signal->compteurId != 0 && trs->optionT > 0) {
     printf("%u %zu %zu ", 15, courant->timestamp, trs->mainId->id);
 
     for(int i = 0; i < trs->signal->compteurId; i++) {
+
       if(trs->signal->id[i] != trs->mainId->id) {
-        trs->echange->idPn = trs->signal->id[i];
-        printf("%zu ", trs->echange->idPn);
+         trs->echange->idPn = trs->signal->id[i];
+         printf("%zu ", trs->echange->idPn);
       }
     }
+    trs->compteurTrsValide++;
     printf("\n");
-  }
+  } else if(trs->signal->compteurId != 0) trs->compteurTrsValide++;
+  trs->echange->compteurTrs++;
 }
 
 void sortiesFin(transactions_t *trs) {
@@ -154,7 +156,7 @@ void sortiesFin(transactions_t *trs) {
   if(trs->optionT > 0) {
     printf("%u %.1f %.1f %zu\n", 21, resultatH, resultatA, (size_t) resultatPpm);
     printf("%u %zu %zu %zu\n", 22, trs->tempH->compteurInvalide, trs->tempA->compteurInvalide, trs->ppm->compteurInvalide);
-    printf("%u %zu %zu %zu\n\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
+    printf("%u %zu %zu %zu\n", 23, trs->tempH->cumul / 3, trs->tempA->cumul / 3, trs->ppm->cumul / 3);
   }
 }
 

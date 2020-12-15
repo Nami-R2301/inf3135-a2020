@@ -22,7 +22,7 @@ typedef struct identification_s {
 
   size_t id;
   unsigned char puissanceEmetteur;
-  size_t compteurTrsZero;
+  size_t compteurTrs;
 
 } user_t;
 
@@ -44,7 +44,7 @@ typedef struct tempHumaine_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurTrsUn;
+  size_t compteurTrs;
 
 } tempH_t;
 
@@ -54,7 +54,7 @@ typedef struct tempAmbiante_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurTrsDeux;
+  size_t compteurTrs;
 
 } tempA_t;
 
@@ -64,7 +64,7 @@ typedef struct ppm_s {
   size_t compteurInvalide;
   size_t compteur;
   size_t cumul;
-  size_t compteurTrsTrois;
+  size_t compteurTrs;
 
 } ppm_t;
 
@@ -73,15 +73,14 @@ typedef struct signalRSSI_s {
   signed short power;
   size_t compteurId;
   size_t id[sizeof(size_t)];
-  size_t compteurTrsQuatre;
+  size_t compteurTrs;
 
 } signal_t;
 
 typedef struct echangeDonnees_s {
 
   size_t idPn;
-  size_t compteurTrsCinq;
-  size_t compteurValide;
+  size_t compteurTrs;
 
 } echange_t;
 

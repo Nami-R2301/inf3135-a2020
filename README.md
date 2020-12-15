@@ -80,8 +80,8 @@
 
  ## Statut et auto-évaluation
 
-   - Fini README.md (20%). 
-   - Je croix que je mérite au moins 16 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
+   - Fini tp3.c, malib.c, outil3.c et les fichiers d'entetes. (95%). 
+   - Je croix que je mérite au moins 17 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
 
-### Crée et édité par Nami Reghbati à 12:35 EST 05/12/2020 
+### Crée et édité par Nami Reghbati à 12:35 EST 15/12/2020 
 

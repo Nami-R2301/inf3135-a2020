@@ -6,13 +6,12 @@ on:
     tags:
       - v6
     paths:
-      - 'inf3135-a2020/tp3.c'
-      - 'inf3135-a2020/outil3.c'
-      - 'inf3135-a2020/malib.c'
-      - 'inf3135-a2020/outil3.h'
-      - 'inf3135-a2020/malib.h'
-      - 'inf3135-a2020/gitaction.txt'
-      - 'inf3135-a2020/test-c.yml'
+      - 'tp3.c'
+      - 'outil3.c'
+      - 'malib.c'
+      - 'outil3.h'
+      - 'malib.h'
+      - 'test-c.yml'
 
 jobs:
   job_id:
@@ -23,9 +22,9 @@ jobs:
         run: |
           echo $OSTYPE
           gcc -v >& version.txt
-          grep "gcc version 9.3.0"
+          grep "gcc version 9.3.0" > version.txt
       - name: compilation
-        if: (success() && contains(version.txt, "9.3.0"))
+        if: (success() && contains(version.txt, "gcc version 9.3.0"))
         run: |
           cd inf3135-a2020
           pwd

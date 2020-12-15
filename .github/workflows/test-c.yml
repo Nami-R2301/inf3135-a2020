@@ -29,11 +29,7 @@ jobs:
         run: |
           cd inf3135-a2020
           pwd
-          make 2> erreurs.txt
-      - name: resultats
-        if: contains(erreurs.txt, "error") || contains(erreurs.txt, "warning")
-        run: |
-          make clean
+          make >& compilation.md
           
            
           

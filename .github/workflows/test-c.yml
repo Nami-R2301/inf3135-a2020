@@ -21,11 +21,18 @@ jobs:
     name: compilation et verification
     runs-on: ubuntu-latest
     steps:
+      - name: build
+        run: |
+          sudo apt update
+          sudo apt install build-essential
+                
       - name: verification
         run: |
           echo $OSTYPE
+          lsb_release -a 
           gcc -v >& gcc.txt
           grep "gcc version 9.3.0" gcc.txt > version.txt
+          
       - name: compilation
         run: |
           cd inf3135-a2020

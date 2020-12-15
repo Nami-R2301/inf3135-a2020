@@ -1,1 +1,35 @@
-#fughifhugbkifhbujgjfhb
+name: test-c
+on:
+  push:
+    branches: 
+      - tp3
+    tags:
+      - v6
+    paths:
+      - 'inf3135-a2020/tp3.c'
+      - 'inf3135-a2020/outil3.c'
+      - 'inf3135-a2020/malib.c'
+      - 'inf3135-a2020/outil3.h'
+      - 'inf3135-a2020/malib.h'
+      - 'inf3135-a2020/gitaction.txt'
+      - 'inf3135-a2020/test-c.yml'
+
+jobs:
+  job_id:
+    name: compilation et verification
+    runs-on: ubuntu-latest
+    steps:
+      - name: verification
+        run: |
+          echo $OSTYPE
+          gcc -v >& version.txt
+          grep "gcc version 9.3.0"
+      - name: compilation
+        if: (success() && contains(version.txt, "9.3.0"))
+        run: |
+          cd inf3135-a2020
+          pwd
+          make >& compilation.md
+          
+           
+          

@@ -38,6 +38,8 @@ jobs:
         run: |
           pwd
           ls -lash
+          cd ..
+          ls -lash
           make >& compilation.md
 
 

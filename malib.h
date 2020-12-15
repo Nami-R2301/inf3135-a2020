@@ -22,7 +22,6 @@ typedef struct identification_s {
 
   size_t id;
   unsigned char puissanceEmetteur;
-  size_t compteurTrsZero;
 
 } user_t;
 

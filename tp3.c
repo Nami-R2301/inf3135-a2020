@@ -25,8 +25,8 @@ int main(int argc, char *argv[]) {
       else if(ligne == 4 && strcmp(courant->event, EVENT4) == 0) sortieQuatorze(trs, courant, distance);
       else if(ligne >= 3 && strcmp(courant->event, EVENT5) == 0) sortieQuinze(trs, courant);
       else {
-       prevTime = -1;
-       courant->trsInconnu++;
+        prevTime = -1;
+        courant->trsInconnu++;
       }
     } else courant->timeInvalide++;
     trs->compteurTrs++;

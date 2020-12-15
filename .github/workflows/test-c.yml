@@ -25,7 +25,7 @@ jobs:
         run: |
           echo $OSTYPE
           gcc -v >& version.txt
-          grep "gcc version 9.3.0" > version.txt
+          grep gcc version 9.3.0 > version.txt
       - name: compilation
         run: |
           cd inf3135-a2020

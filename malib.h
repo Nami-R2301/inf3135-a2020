@@ -80,7 +80,6 @@ typedef struct echangeDonnees_s {
 
   size_t idPn;
   size_t compteurTrsCinq;
-  size_t compteurValide;
 
 } echange_t;
 

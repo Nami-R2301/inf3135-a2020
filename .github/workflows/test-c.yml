@@ -14,7 +14,8 @@ on:
       - 'malib.c'
       - 'outil3.h'
       - 'malib.h'
-      - 'test-c.yml'
+      - 'Makefile'
+      - '.github/workflows/test-c.yml'
 
 jobs:
   job_id:
@@ -36,7 +37,6 @@ jobs:
       - name: compilation
         run: |
           pwd
-          cd ..
           ls -lash
           make >& compilation.md
 

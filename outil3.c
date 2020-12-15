@@ -27,16 +27,20 @@ int cmd(int argc, char **argv) {
   return args;
 }
 
-void printOptions(int args, transactions_t* trs) {
+void printOptions(int args, transactions_t* trs, temp_t* courant) {
 
   if(args != 0 && args != 2) {
 
     if(args < 0) args = (args * -1);
 
-      if(args == 15 || args == 10 || args == 6 ||  args == 1) printf("information invalide\n");
-      if(args == 15 || args == 14 || args == 6 || args == 5) printf("information detaillee\n");
+      if(args == 15 || args == 10 || args == 6 ||  args == 1) {
+        printf("information invalide\n  trx non reconnue : %zu\n  trx avec ts non sequentiel : %zu\n", courant->trsInconnu, courant->timeInvalide);
+      }
+      if(args == 15 || args == 14 || args == 6 || args == 5) {
+        printf("information detaillee\n  le dernier ts lu : %zu\n", courant->timestamp);
+      }
       if(args == 15 || args == 14 || args == 10 || args == 9) {
-         printf("information sommaire\n  nbr trx valides : %zu\n  nbr trx (total) : %zu\n", trs->compteurTrsValide, trs->compteurTrs);
+        printf("information sommaire\n  nbr trx valides : %zu\n  nbr trx (total) : %zu\n", trs->compteurTrsValide, trs->compteurTrs);
       }
   }
 }

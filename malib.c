@@ -29,6 +29,8 @@ temp_t* initCourant() {
   courant->argQuatre = (char*) malloc(sizeof(size_t));
   courant->v = (version_t*) malloc(sizeof(version_t));
   getVersion(courant->v);
+  courant->trsInconnu = 0;
+  courant->timeInvalide = 0;
   return courant;
 }
 
@@ -88,7 +90,6 @@ void pulsationMin(transactions_t* trs , temp_t* courant) {
 void sortieDix(transactions_t* trs, temp_t* courant) {
 
   trs->compteurTrs++;
-  trs->compteurTrsValide++;
   if((size_t) strtoul(courant->argTrois, NULL, 0) != 0) trs->mainId->id = (size_t) strtoul(courant->argTrois, NULL, 0);
 
   if(strtol(courant->argQuatre, NULL, 0) <= 4 && strtol(courant->argQuatre, NULL, 0) >= 2) {
@@ -99,7 +100,7 @@ void sortieDix(transactions_t* trs, temp_t* courant) {
   }
 }
 
-void sortieQuatorze(transactions_t *trs, temp_t* courant) {
+void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int)) {
 
   trs->compteurTrs++;
   bool valide = false;
@@ -113,11 +114,12 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant) {
   if(valide) {
     trs->signal->power = (short) strtol(courant->argTrois, NULL, 0);
     trs->signal->id[trs->signal->compteurId] = (size_t) strtoul(courant->argQuatre, NULL, 0);
-    trs->signal->compteurId++;
     trs->compteurTrsValide++;
+    float distance = (*dist)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
 
     if(trs->optionT > 0) {
-      printf("%u %zu %zu", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId]);
+      printf("%u %zu %zu %0.1f\n", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId], distance);
+      trs->signal->compteurId++;
     }
   }
 }

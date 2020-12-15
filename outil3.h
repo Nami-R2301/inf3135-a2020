@@ -9,7 +9,7 @@
 
 int cmd(int, char**);
 
-void printOptions(int, transactions_t*);
+void printOptions(int, transactions_t*, temp_t*);
 
 float distanceMetres(int, int);
 

@@ -33,6 +33,8 @@ typedef struct temp_s {
   char *argTrois;
   char *argQuatre;
   version_t *v;
+  size_t trsInconnu;
+  size_t timeInvalide;
 
 } temp_t;
 
@@ -115,7 +117,7 @@ void pulsationMin(transactions_t*, temp_t*);
 
 void sortieDix(transactions_t*, temp_t*);
 
-void sortieQuatorze(transactions_t*, temp_t*);
+void sortieQuatorze(transactions_t*, temp_t*, float (*distance)(int, int));
 
 void sortieQuinze(transactions_t*, temp_t*);
 

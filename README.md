@@ -1,4 +1,4 @@
- ![.github/workflows/test-c.yml](https://github.com/Nami-R2301/inf3135-a2020/workflows/.github/workflows/test-c.yml/badge.svg?branch=tp3)
+ ![test-c](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-c/badge.svg?branch=tp3)
  
  # Travail pratique 3
 

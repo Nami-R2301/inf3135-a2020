@@ -31,10 +31,10 @@ jobs:
           echo $OSTYPE
           lsb_release -a 
           gcc -v >& gcc.txt
+          cat gcc.txt
           
       - name: compilation
         run: |
-          cd inf3135-a2020
           pwd
           make >& compilation.md
 

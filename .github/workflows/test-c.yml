@@ -42,12 +42,14 @@ jobs:
           pwd
           ls -lash
           make >& compilation.md
+          make clean
           
       - name: Commit files
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git commit -a -m "Resultats de compilation."
+          git add compilation.md
+          git commit -m "Resultats de compilation."
           
       - name: Update files in repository
         uses: ad-m/github-push-action@master

@@ -12,7 +12,7 @@ int main(int argc, char *argv[]) {
   long prevTime = -1;
   printf("Version #: %hhu.%hhu.%u\n", courant->v->major, courant->v->minor, courant->v->build);
 
-  while(fgets(input, sizeof(temp_t) * sizeof(size_t), stdin) != NULL && strcmp(input, "\n") != 0) {
+  while(fgets(input, sizeof(temp_t), stdin) != NULL && strcmp(input, "\n") != 0) {
 
     ligne = sscanf(input, "%zu %s %s %s", &courant->timestamp, courant->event, courant->argTrois, courant->argQuatre);
 

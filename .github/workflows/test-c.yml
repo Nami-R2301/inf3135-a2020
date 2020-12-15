@@ -36,6 +36,7 @@ jobs:
       - name: compilation
         run: |
           pwd
+          cd ..
           ls -lash
           make >& compilation.md
 

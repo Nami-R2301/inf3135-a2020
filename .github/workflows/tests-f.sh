@@ -1,5 +1,8 @@
 #!/bin/bash
 
+echo -e \!\[test-f\]\(https\:\/\/github.com\/Nami-R2301\/inf3135-a2020\/workflows\/test-f\/badge\.svg\?branch\=tp3\)\\n > fonctionnel
+echo -e \`\`\`\\n >> fonctionnel.md
+TZ=America/New_York date >> fonctionnel.md
 echo -e \\n\*\*\*\*\*\*Tests sans arguments\*\*\*\*\*\*\\n >> fonctionnel.md
 echo -e \$ Fichier-tests-f\.txt \| \.\/tp3\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 >> fonctionnel.md

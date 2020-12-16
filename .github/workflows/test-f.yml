@@ -49,8 +49,8 @@ jobs:
            
        - name: Config and commit
          run: |
-           git config --global user.email "you@example.com"
-           git config --global user.name "Your Name"
+           git config --local user.email "action@github.com"
+           git config --local user.name "GitHub Action"
            git add fonctionnel.md
            git commit -m "Tests fonctionnels à jour"
            

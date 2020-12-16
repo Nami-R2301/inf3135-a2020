@@ -1,6 +1,8 @@
+![test-c](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-c/badge.svg?branch=tp3)
+
 ```
 
-Wed Dec 16 15:27:40 EST 2020
+Wed Dec 16 15:37:40 EST 2020
 
 
 chmod +rwx .

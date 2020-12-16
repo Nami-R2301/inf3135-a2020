@@ -7,3 +7,4 @@ gcc -c -Wall -Werror=vla -pedantic -std=c11 outil3.c -lm
 gcc -Wall -Werror=vla -pedantic -std=c11 -o tp3 tp3.c malib.o outil3.o tcv.o -lm
 
 
+

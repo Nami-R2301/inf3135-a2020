@@ -9,6 +9,7 @@ on:
       - 'fonctionnel.md'
       - 'file.txt'
       - 'file2.txt'
+      - '.github/workflows/tests.sh'
       
 jobs:
   job_id:

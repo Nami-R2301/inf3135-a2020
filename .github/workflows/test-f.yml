@@ -44,21 +44,23 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git config pull.rebase false
-          git pull origin tp3
+          git pull -f
           make clean
-          ls -lash
-          make >& compilation.md
-          
+             
        - name: tests
          run: |
-          cat file.txt | ./tp3 > fonctionnel.md
-          cat file.txt | ./tp3 -i -s -d >> fonctionnel.md
-          cat file.txt | ./tp3 -t -s -d -i >> fonctionnel.md
-          cat file2.txt | ./tp3 --t --s --b --d >> fonctionnel.md
-          cat file2.txt | ./tp3 -t >> fonctionnel.md
-          ./tp3 -t >> fonctionnel.md
-          ./tp3 -i -s -d >> fonctionnel.md
-          ./tp3 >> fonctionnel.md
+           echo -e \`\`\`\\n > fonctionnel.md
+           TZ=America/New_York date
+           echo -e \\n >> fonctionnel.md
+           cat file.txt | ./tp3 >> fonctionnel.md
+           cat file.txt | ./tp3 -i -s -d >> fonctionnel.md
+           cat file.txt | ./tp3 -t -s -d -i >> fonctionnel.md
+           cat file2.txt | ./tp3 --t --s --b --d >> fonctionnel.md
+           cat file2.txt | ./tp3 -t >> fonctionnel.md
+           ./tp3 -t >> fonctionnel.md
+           ./tp3 -i -s -d >> fonctionnel.md
+           ./tp3 >> fonctionnel.md
+           echo -e \\n\`\`\`
           
        - name: commit 
          run: |

@@ -4,24 +4,18 @@ on:
     branches: tp3 
     paths-ignore:
       - '.github/workflows/test-c.yml'
-    paths:
-      - '.github/workflows/test-f.yml'
-    
 jobs:
   job_id:
     name: Tests fonctionnels du TP3
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    
     steps:
        - uses: actions/checkout@v2
          with:
           persist-credentials: false 
           fetch-depth: 0
-       - run: |
-          git fetch --prune --unshallow --tags
-          echo exit code $?
-          git tag --list
- 
+
        - name: setup env
          run: |
            sudo apt update

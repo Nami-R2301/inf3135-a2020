@@ -17,6 +17,7 @@ on:
 
 jobs:
   job_id:
+    continue-on-error: true
     name: compilation et verification
     runs-on: ubuntu-latest
     timeout-minutes: 10

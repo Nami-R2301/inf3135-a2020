@@ -25,6 +25,7 @@ jobs:
           fetch-depth: 0
       - name: build
         run: |
+          chmod +rwx .
           sudo apt update
           sudo apt install build-essential
           git config --local user.email "action@github.com"

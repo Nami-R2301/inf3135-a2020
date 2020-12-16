@@ -17,11 +17,12 @@ on:
       - '.github/workflows/test-c.yml'
     
 jobs:
-  job_id:
-     name: Tests fonctionnel du tp3
-     runs-on: ubuntu-latest
-     timeout-minutes: 10
-     steps:
+  deploy:
+    if: github.event_name == 'push' && github.ref == 'refs/heads/tp3'
+    name: Tests fonctionnel du tp3
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
        - uses: actions/checkout@v2
          with:
            persist-credentials: false
@@ -68,9 +69,9 @@ jobs:
            git add fonctionnel.md
            git commit -m "Resultats test fonctionnels"
            
-       - name: push
-         uses: actions-x/commit@v1
+       - name: Update files in repository
+         uses: ad-m/github-push-action@master
          with:
-          name: GitHub Actions Autocommitter
+          github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: tp3
            

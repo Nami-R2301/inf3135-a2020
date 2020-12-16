@@ -1,13 +1,12 @@
 ```
 
-Wed Dec 16 14:44:00 EST 2020
+Wed Dec 16 14:46:58 EST 2020
 
 ******Tests sans arguments******
 
-Version #: 0.1.1008
-21 0.0 0.0 0
-22 0 0 0
-23 0 0 0
+
+file.txt | ./tp3
+
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0

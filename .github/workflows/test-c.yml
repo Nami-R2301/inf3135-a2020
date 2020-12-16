@@ -12,6 +12,7 @@ on:
       - 'outil3.h'
       - 'malib.h'
       - '.github/workflows/test-c.yml'
+      - '.github/workflows/tests-c.sh'
 
 jobs:
   job_id:
@@ -43,12 +44,7 @@ jobs:
           pwd
           make clean
           ls -lash
-          echo -e \!\[test-c\]\(https\:\/\/github.com\/Nami-R2301\/inf3135-a2020\/workflows\/test-c\/badge\.svg\?branch\=tp3\)\\n > compilation.md
-          echo -e \`\`\`\\n >> compilation.md
-          TZ=America/New_York date >> compilation.md
-          echo -e \\n >> compilation.md
-          make >> compilation.md
-          echo -e \\n\`\`\` >> compilation.md
+          bash .github/workflows/tests-c.sh
           make clean
           
       - name: Commit files

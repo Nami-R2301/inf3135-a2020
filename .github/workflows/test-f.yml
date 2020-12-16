@@ -1,7 +1,8 @@
 name: test-f
 on:
   push:
-    branches: tp3
+    branches: 
+      - tp3
     tags:
       - v6
     paths:

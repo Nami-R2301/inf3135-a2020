@@ -21,9 +21,7 @@ int cmd(int argc, char **argv) {
     if(infoDetails) args += 5;
     if(infoSomme) args += 9;
     if(tranquille) args = (args * -1);
-    if(!tranquille && !infoDetails && !infoSomme && !infoSomme) {
-      return 3;
-    }
+    if(!tranquille && !infoDetails && !infoSomme && !infoSomme) return 3;
   } else {
       return 2;
     }

@@ -1,16 +1,11 @@
 name: test-f
 on: 
-  schedule:
-    - cron: '0 22 */7 * *'
+  push:
+    branches: tp3
     tags:
       - v6
     paths:
-      - 'tp3.c'
-      - 'outil3.c'
-      - 'malib.c'
-      - 'outil3.h'
-      - 'malib.h'
-      - '.github/workflows/test-c.yml'
+    - '.github/workflows/test-f.yml'
     
 jobs:
   job_id:
@@ -20,8 +15,8 @@ jobs:
     steps:
        - uses: actions/checkout@v2
          with:
-           repository: Nami-R2301/inf3135-a2020
-           fetch-depth: 0
+          persist-credentials: false 
+          fetch-depth: 0
        - run: |
           git fetch --prune --unshallow --tags
           echo exit code $?

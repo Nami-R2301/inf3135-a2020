@@ -1,6 +1,6 @@
 ```
 
-Wed Dec 16 15:05:56 EST 2020
+Wed Dec 16 15:20:49 EST 2020
 
 ******Tests sans arguments******
 
@@ -69,6 +69,13 @@ information sommaire
 $ file2.txt | ./tp3 --t --s --b --d
 
 Version #: 0.1.1008
+10 10 1000 3
+14 13111 19200 0.1
+15 14500 1000 19200 
+10 0 1000 3
+21 20.6 0.0 150
+22 0 0 0
+23 0 0 0
 
 $ file2.txt | ./tp3 -t
 

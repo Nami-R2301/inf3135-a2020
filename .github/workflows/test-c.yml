@@ -20,6 +20,7 @@ jobs:
   job_id:
     name: compilation et verification
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
         with:
@@ -40,6 +41,7 @@ jobs:
       - name: compilation
         run: |
           pwd
+          make clean
           ls -lash
           make >& compilation.md
           make clean

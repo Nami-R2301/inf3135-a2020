@@ -43,11 +43,11 @@ jobs:
           pwd
           make clean
           ls -lash
-          echo "```\n" > compilation.md
+          echo -e \`\`\`\\n > compilation.md
           date >> compilation.md
-          echo "\n" >> compilation.md
+          echo \\n >> compilation.md
           make >>& compilation.md
-          echo "\n```" >> compilation.md
+          echo \\n\`\`\` >> compilation.md
           make clean
           
       - name: Commit files

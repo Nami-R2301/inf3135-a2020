@@ -51,6 +51,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
+          git config advice.addIgnoredFile false
           git add compilation.md
           git add gcc.txt
           git commit -m "Resultats de compilation."

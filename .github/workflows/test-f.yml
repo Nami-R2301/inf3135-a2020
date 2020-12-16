@@ -1,9 +1,6 @@
 name: test-f
 on:
-  pull_request:
-    branches: tp3
-    types: 
-      - completed
+  workflow_dispatch:
     tags:
       - v6
     paths:

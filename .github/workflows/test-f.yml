@@ -44,6 +44,7 @@ jobs:
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
           git config pull.rebase false
+          git pull -f https://github.com/Nami-R2301/inf3135-a2020 tp3
           make clean
           make
              

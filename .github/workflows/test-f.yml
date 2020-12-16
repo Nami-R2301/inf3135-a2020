@@ -1,7 +1,13 @@
 name: test-f
 on: 
+  push:
+    branches: tp3
+    paths-ignore: 
+      - '.github/workflows/test-c.yml'
+      - 'compilation.md'
   schedule:
     - cron: '0 22 * * */7'
+      
 jobs:
   job_id:
     

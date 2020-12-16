@@ -1,12 +1,15 @@
 name: test-f
 on: 
   push:
-    branches: tp3 
-    paths-ignore:
+    branches: tp3
+    tags: 
+      - v5
+    paths-ignore: 
       - '.github/workflows/test-c.yml'
+      - 'compilation.md'
+      
 jobs:
   job_id:
-    
     name: Tests fonctionnels du TP3
     runs-on: ubuntu-latest
     timeout-minutes: 10
@@ -50,6 +53,14 @@ jobs:
            ./tp3 -i -s -d >> fonctionnel.md
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
+           
+       - name: Config and commit
+         run: |
+           git config --global user.email "you@example.com"
+           git config --global user.name "Your Name"
+           git add fonctionnel.md
+           git commit -m "Test periodique"
+           make clean
            
        - name: Update files in repository
          uses: ad-m/github-push-action@master

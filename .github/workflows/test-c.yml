@@ -3,8 +3,6 @@ on:
   push:
     branches: 
       - tp3 
-  pull_request:
-    branches: tp3
     tags:
       - v6
     paths:
@@ -58,12 +56,12 @@ jobs:
           git add compilation.md
           git commit -m "Resultats de compilation."
           
+          
       - name: Update files in repository
         uses: ad-m/github-push-action@master
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: tp3
-      
           
 
 

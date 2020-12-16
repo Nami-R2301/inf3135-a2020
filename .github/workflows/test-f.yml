@@ -18,7 +18,7 @@ on:
     
 jobs:
   job_id:
-     name: installation de gcc
+     name: Tests fonctionnel du tp3
      runs-on: ubuntu-latest
      timeout-minutes: 10
      steps:
@@ -41,12 +41,6 @@ jobs:
            git config --local user.name "GitHub Action"
            git config pull.rebase false
            
-       - name: pull
-         uses: ad-m/github-pull-action@master
-         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: tp3
-        
        - name: compilation
          run: |
           pwd
@@ -67,6 +61,11 @@ jobs:
            ./tp3 -i -s -d >> fonctionnel.md
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
+           
+       - uses: actions/checkout@v2
+         with:
+           persist-credentials: false
+           fetch-depth: 0
           
        - name: commit 
          run: |

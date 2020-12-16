@@ -1,8 +1,10 @@
 name: test-f
 on:
   workflow_run:
-    workflows:
-      - test-c
+    workflows: ["test-c"]
+    branches: [tp3]
+    types:
+    - requested
     tags:
       - v6
     paths:

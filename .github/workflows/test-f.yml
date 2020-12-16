@@ -1,6 +1,7 @@
 name: test-f
 on:
   workflow_dispatch:
+    branches: tp3
     tags:
       - v6
     paths:

@@ -49,6 +49,12 @@ jobs:
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
            
+       - name: Commit and cleanup
+         run: |
+           git add fonctionnel.md
+           git commit -m "Test periodique"
+           make clean
+           
        - name: Update files in repository
          uses: ad-m/github-push-action@master
          with:

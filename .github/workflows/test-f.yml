@@ -41,6 +41,7 @@ jobs:
        - name: compilation
          run: |
           pwd
+          git config pull.rebase false
           git pull origin tp3
           make clean
           ls -lash

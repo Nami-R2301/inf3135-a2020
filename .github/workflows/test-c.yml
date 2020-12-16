@@ -44,7 +44,7 @@ jobs:
           make clean
           ls -lash
           echo -e \`\`\`\\n > compilation.md
-          date >> compilation.md
+          TZ=America/New_York date >> compilation.md
           echo -e \\n >> compilation.md
           make >> compilation.md
           echo -e \\n\`\`\` >> compilation.md

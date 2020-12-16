@@ -48,7 +48,7 @@ jobs:
            echo -e \!\[test-f\]\(https\:\/\/github.com\/Nami-R2301\/inf3135-a2020\/workflows\/test-f\/badge\.svg\?branch\=tp3\)\\n > fonctionnel.md
            echo -e \`\`\`\\n >> fonctionnel.md
            TZ=America/New_York date >> fonctionnel.md
-           bash tests.sh >> fonctionnel.md 
+           bash .github/workflows/tests.sh >> fonctionnel.md 
            echo -e \\n\`\`\`
            
        - name: Config and commit

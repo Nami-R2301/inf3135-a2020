@@ -2,10 +2,6 @@ name: test-f
 on: 
   schedule:
     - cron: '0 22 */7 * *'
-  push:
-    branches: tp3
-  pull_request:
-    branches: tp3
     tags:
       - v6
     paths:

@@ -57,7 +57,13 @@ jobs:
           git config --local user.name "GitHub Action"
           git add compilation.md
           git commit -m "Resultats de compilation."
-          git push origin tp3
+          
+          
+      - name: Update files in repository
+        uses: ad-m/github-push-action@master
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: tp3
           
 
 

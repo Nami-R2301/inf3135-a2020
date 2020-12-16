@@ -1,8 +1,5 @@
 name: test-c
 on:
-  push:
-    branches: 
-      - tp3
   pull_request:
     branches: 
       - tp3 

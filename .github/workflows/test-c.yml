@@ -28,9 +28,7 @@ jobs:
         run: |
           chmod +rwx .
           sudo apt update
-          sudo apt install build-essential
-          git config --local user.email "action@github.com"
-          git config --local user.name "GitHub Action"          
+          sudo apt install build-essential         
                 
       - name: verification
         run: |
@@ -38,6 +36,7 @@ jobs:
           lsb_release -a 
           gcc -v >& gcc.txt
           cat gcc.txt
+          rm gcc.txt
           
       - name: compilation
         run: |
@@ -51,9 +50,7 @@ jobs:
         run: |
           git config --local user.email "action@github.com"
           git config --local user.name "GitHub Action"
-          git config advice.addIgnoredFile false
           git add compilation.md
-          git add gcc.txt
           git commit -m "Resultats de compilation."
           
           

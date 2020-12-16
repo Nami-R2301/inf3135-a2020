@@ -78,4 +78,10 @@ jobs:
          with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: tp3
+  
+       - name: push
+         uses: actions-x/commit@v1
+         with:
+          name: GitHub Actions Autocommitter
+          branch: tp3
            

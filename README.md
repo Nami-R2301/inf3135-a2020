@@ -1,3 +1,4 @@
+ ![test-f](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-f/badge.svg?branch=tp3)
  ![test-c](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-c/badge.svg?branch=tp3)
  
  # Travail pratique 3

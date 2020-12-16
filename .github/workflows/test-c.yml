@@ -17,19 +17,19 @@ on:
 
 jobs:
   job_id:
-    continue-on-error: true
     name: compilation et verification
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
       - uses: actions/checkout@v2
-        with:
-          persist-credentials: false 
-          fetch-depth: 0 
       - name: build
         run: |
           sudo apt update
           sudo apt install build-essential
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git pull origin tp3
+          
                 
       - name: verification
         run: |
@@ -62,6 +62,8 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           branch: tp3
+      
+          
 
 
           

@@ -1,1 +1,72 @@
-
+name: test-c
+on:
+  push:
+    branches: 
+      - tp3
+  pull_request:
+    branches: 
+      - tp3 
+    tags:
+      - v6
+    paths:
+      - 'tp3.c'
+      - 'outil3.c'
+      - 'malib.c'
+      - 'outil3.h'
+      - 'malib.h'
+      - '.github/workflows/test-c.yml'
+    
+jobs:
+  job_id:
+     name: installation de gcc
+     runs-on: ubuntu-latest
+     timeout-minutes: 10
+     steps:
+       - uses: actions/checkout@v3
+         with:
+           persist-credentials: false
+           fetch-depth: 0
+       - name: setup
+         run: |
+           sudo apt update
+           sudo apt install build-essential
+           
+       - name: verification
+         run: |
+           echo $OSTYPE
+           lsb_release -a 
+           gcc -v >& gcc.txt
+           cat gcc.txt
+           
+       - name: compilation
+         run: |
+          pwd
+          make clean
+          ls -lash
+          make >& compilation.md
+          
+       - name: tests
+         run: |
+          cat file.txt | ./tp3 > fonctionnel.md
+          cat file.txt | ./tp3 -i -s -d >> fonctionnel.md
+          cat file.txt | ./tp3 -t -s -d -i >> fonctionnel.md
+          cat file2.txt | ./tp3 --t --s --b --d >> fonctionnel.md
+          cat file2.txt | ./tp3 -t >> fonctionnel.md
+          ./tp3 -t >> fonctionnel.md
+          ./tp3 -i -s -d >> fonctionnel.md
+          ./tp3 >> fonctionnel.md
+          
+       - name: commit 
+         run: |
+           make clean
+           git config --local user.email "action@github.com"
+           git config --local user.name "GitHub Action"
+           git add fonctionnel.md
+           git commit -m "Resultats test fonctionnels"
+         
+       - name: Update files in repository
+         uses: ad-m/github-push-action@master
+         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: tp3
+           

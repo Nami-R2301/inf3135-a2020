@@ -1,11 +1,10 @@
 name: test-f
 on:
-  push:
-    branches: 
-      - tp3
-  pull_request:
-    branches: 
-      - tp3 
+  workflow_run:
+    workflows: ["test-c"]
+    branches: [tp3]
+    types: 
+      - completed
     tags:
       - v6
     paths:
@@ -17,9 +16,8 @@ on:
       - '.github/workflows/test-c.yml'
     
 jobs:
-  deploy:
-    if: github.event_name == 'push' && github.ref == 'refs/heads/tp3'
-    name: Tests fonctionnel du tp3
+  job_id:
+    name: Tests fonctionnels du TP3
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:

@@ -46,7 +46,7 @@ jobs:
           echo -e \`\`\`\\n > compilation.md
           date >> compilation.md
           echo \\n >> compilation.md
-          make >>& compilation.md
+          make >> compilation.md
           echo \\n\`\`\` >> compilation.md
           make clean
           

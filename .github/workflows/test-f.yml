@@ -1,4 +1,4 @@
-name: test-c
+name: test-f
 on:
   push:
     branches: 
@@ -41,6 +41,8 @@ jobs:
        - name: compilation
          run: |
           pwd
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
           git config pull.rebase false
           git pull origin tp3
           make clean
@@ -61,8 +63,6 @@ jobs:
        - name: commit 
          run: |
            make clean
-           git config --local user.email "action@github.com"
-           git config --local user.name "GitHub Action"
            git add fonctionnel.md
            git commit -m "Resultats test fonctionnels"
          

@@ -61,11 +61,6 @@ jobs:
            ./tp3 -i -s -d >> fonctionnel.md
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
-           
-       - uses: actions/checkout@v2
-         with:
-           persist-credentials: false
-           fetch-depth: 0
           
        - name: commit 
          run: |

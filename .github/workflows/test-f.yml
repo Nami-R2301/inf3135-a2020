@@ -1,6 +1,6 @@
 name: test-f
 on:
-  pull_request:
+  push:
     branches: 
       - tp3
     tags:

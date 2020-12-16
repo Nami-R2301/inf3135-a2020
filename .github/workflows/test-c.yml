@@ -3,6 +3,8 @@ on:
   push:
     branches: 
       - tp3 
+  pull_request:
+    branches: tp3
     tags:
       - v6
     paths:

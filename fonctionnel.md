@@ -1,7 +1,8 @@
 ```
 
-Wed Dec 16 14:27:30 EST 2020
+Wed Dec 16 14:35:28 EST 2020
 
+******Tests sans arguments******
 
 Version #: 0.1.1008
 10 10 9999 2
@@ -14,6 +15,9 @@ Version #: 0.1.1008
 21 28.8 0.0 157
 22 0 1 1
 23 1 0 1
+
+******Tests avec arguments******
+
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0

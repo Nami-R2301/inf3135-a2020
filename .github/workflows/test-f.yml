@@ -55,8 +55,10 @@ jobs:
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
            
-       - name: Commit and cleanup
+       - name: Config and commit
          run: |
+           git config --global user.email "you@example.com"
+           git config --global user.name "Your Name"
            git add fonctionnel.md
            git commit -m "Test periodique"
            make clean

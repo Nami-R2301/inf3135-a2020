@@ -1,6 +1,6 @@
 name: test-f
 on: 
-  pull_request:
+  push:
     branches: tp3
     tags: 
       - v5
@@ -10,7 +10,6 @@ on:
       
 jobs:
   job_id:
-    
     name: Tests fonctionnels du TP3
     runs-on: ubuntu-latest
     timeout-minutes: 10

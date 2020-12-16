@@ -44,6 +44,7 @@ jobs:
            echo -e \`\`\`\\n > fonctionnel.md
            TZ=America/New_York date >> fonctionnel.md
            echo -e \\n\*\*\*\*\*\*Tests sans arguments\*\*\*\*\*\*\\n >> fonctionnel.md
+           echo -e \\nfile\.txt | \.\/tp3\\n >> fonctionnel.md
            cat file.txt | ./tp3 >> fonctionnel.md
            echo -e \\n\*\*\*\*\*\*Tests avec arguments\*\*\*\*\*\*\\n >> fonctionnel.md
            cat file.txt | ./tp3 -i -s -d >> fonctionnel.md

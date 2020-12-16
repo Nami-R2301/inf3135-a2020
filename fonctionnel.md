@@ -1,11 +1,10 @@
 ```
 
-Wed Dec 16 14:46:58 EST 2020
+Wed Dec 16 14:58:12 EST 2020
 
 ******Tests sans arguments******
 
-
-file.txt | ./tp3
+$ file.txt | ./tp3
 
 Version #: 0.1.1008
 10 10 9999 2
@@ -21,6 +20,8 @@ Version #: 0.1.1008
 
 ******Tests avec arguments******
 
+$ file.txt | ./tp3 -i -s -d
+
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -46,6 +47,8 @@ information detaillee
 information sommaire
   nbr trx valides : 11
   nbr trx (total) : 31
+$ file.txt | ./tp3 -t -s -d -i
+
 Version #: 0.1.1008
 information invalide
   trx non reconnue : 2
@@ -61,9 +64,20 @@ information detaillee
 information sommaire
   nbr trx valides : 11
   nbr trx (total) : 31
+$ file2.txt | ./tp3 --t --s --b --d
+
 Version #: 0.1.1008
+$ file2.txt | ./tp3 -t
+
 Version #: 0.1.1008
+
+******Tests avec STDIN vide******
+
+$ ./tp3 -t
+
 Version #: 0.1.1008
+$ ./tp3 -i -s -d
+
 Version #: 0.1.1008
 21 0.0 0.0 0
 22 0 0 0
@@ -79,6 +93,8 @@ information detaillee
 information sommaire
   nbr trx valides : 0
   nbr trx (total) : 0
+$ ./tp3
+
 Version #: 0.1.1008
 21 0.0 0.0 0
 22 0 0 0

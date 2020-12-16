@@ -6,7 +6,6 @@ tp1
 tp2
 
 #Test files for testing
-*.txt
 *.dat
 
 #libs

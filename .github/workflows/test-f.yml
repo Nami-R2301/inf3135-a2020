@@ -16,36 +16,37 @@ on:
     
 jobs:
   job_id:
-    continue-on-error: true
     name: Tests fonctionnels du TP3
     runs-on: ubuntu-latest
     timeout-minutes: 10
     steps:
        - uses: actions/checkout@v2
          with:
-           persist-credentials: false
+           repository: Nami-R2301/inf3135-a2020
            fetch-depth: 0
-       - name: setup
+       - run: |
+          git fetch --prune --unshallow --tags
+          echo exit code $?
+          git tag --list
+ 
+       - name: setup env
          run: |
            sudo apt update
            sudo apt install build-essential
-           
-       - name: verification
+
+       - name: verification version
          run: |
            echo $OSTYPE
            lsb_release -a 
            gcc -v >& gcc.txt
            cat gcc.txt
-           git config --local user.email "action@github.com"
-           git config --local user.name "GitHub Action"
-           git config pull.rebase false
-           git pull -f 
            
        - name: compilation
          run: |
           pwd
           make clean
           make
+          ls -lash
              
        - name: tests
          run: |
@@ -61,16 +62,5 @@ jobs:
            ./tp3 -i -s -d >> fonctionnel.md
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
-          
-       - name: commit 
-         run: |
-           make clean
-           git add fonctionnel.md
-           git commit -m "Resultats test fonctionnels"
            
-       - name: Update files in repository
-         uses: ad-m/github-push-action@master
-         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          branch: tp3
            

@@ -1,6 +1,6 @@
 name: test-f
 on:
-  workflow_dispatch:
+  pull_request:
     branches: tp3
     tags:
       - v6

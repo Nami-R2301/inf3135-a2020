@@ -7,9 +7,8 @@ on:
     paths: 
       - '.github/workflows/test-f.yml'
       - 'fonctionnel.md'
-      - 'file.txt'
-      - 'file2.txt'
-      - '.github/workflows/tests.sh'
+      - '.github/workflows/Fichier-tests-f.txt'
+      - '.github/workflows/tests-f.sh'
       
 jobs:
   job_id:
@@ -45,19 +44,15 @@ jobs:
              
        - name: tests
          run: |
-           echo -e \!\[test-f\]\(https\:\/\/github.com\/Nami-R2301\/inf3135-a2020\/workflows\/test-f\/badge\.svg\?branch\=tp3\)\\n > fonctionnel.md
-           echo -e \`\`\`\\n >> fonctionnel.md
-           TZ=America/New_York date >> fonctionnel.md
-           bash .github/workflows/tests.sh >> fonctionnel.md 
-           echo -e \\n\`\`\`
+           bash .github/workflows/tests-f.sh 
+           make clean
            
        - name: Config and commit
          run: |
            git config --global user.email "you@example.com"
            git config --global user.name "Your Name"
            git add fonctionnel.md
-           git commit -m "Tests foncitonnels periodique"
-           make clean
+           git commit -m "Tests fonctionnels à jour"
            
        - name: Update files in repository
          uses: ad-m/github-push-action@master

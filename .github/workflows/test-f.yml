@@ -1,5 +1,7 @@
 name: test-f
-on:
+on: 
+  schedule:
+    - cron: '0 22 */7 * *'
   push:
     branches: tp3
   pull_request:
@@ -62,5 +64,11 @@ jobs:
            ./tp3 -i -s -d >> fonctionnel.md
            ./tp3 >> fonctionnel.md
            echo -e \\n\`\`\`
+           
+       - name: Update files in repository
+         uses: ad-m/github-push-action@master
+         with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: tp3
            
            

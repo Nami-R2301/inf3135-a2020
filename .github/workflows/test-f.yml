@@ -43,8 +43,9 @@ jobs:
          run: |
            echo -e \`\`\`\\n > fonctionnel.md
            TZ=America/New_York date >> fonctionnel.md
-           echo -e \\n >> fonctionnel.md
+           echo -e \\n\*\*\*\*\*\*Tests sans arguments\*\*\*\*\*\*\\n >> fonctionnel.md
            cat file.txt | ./tp3 >> fonctionnel.md
+           echo -e \\n\*\*\*\*\*\*Tests avec arguments\*\*\*\*\*\*\\n >> fonctionnel.md
            cat file.txt | ./tp3 -i -s -d >> fonctionnel.md
            cat file.txt | ./tp3 -t -s -d -i >> fonctionnel.md
            cat file2.txt | ./tp3 --t --s --b --d >> fonctionnel.md
@@ -59,7 +60,7 @@ jobs:
            git config --global user.email "you@example.com"
            git config --global user.name "Your Name"
            git add fonctionnel.md
-           git commit -m "Test periodique"
+           git commit -m "Tests foncitonnels periodique"
            make clean
            
        - name: Update files in repository

@@ -4,6 +4,7 @@ echo -e \!\[test-f\]\(https\:\/\/github.com\/Nami-R2301\/inf3135-a2020\/workflow
 echo -e \\n\#\# Tests fonctionnels pour le TP3 à jour \($(TZ=America/New_York date)\): \\n >> fonctionnel.md
 echo -e \\n\\n\#\#\# Contenu de\/des Fichier\(s\) testé\(s\) :\\n >> fonctionnel.md
 echo -e \`\`\`\\n >> fonctionnel.md
+echo -e \$ cat \.github\/workflows\/Fichier-tests-f\.txt\\n >> fonctionnel.md 
 cat .github/workflows/Fichier-tests-f.txt >> fonctionnel.md 
 echo -e \\n\`\`\`\\n >> fonctionnel.md
 echo -e \\n\#\#\# Tests sans arguments :\\n >> fonctionnel.md

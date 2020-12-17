@@ -4,11 +4,11 @@
 
 ```
 
-Thu Dec 17 00:30:12 EST 2020
+Thu Dec 17 00:37:45 EST 2020
 
 ******Tests sans arguments******
 
-$ Fichier-tests-f.txt | ./tp3
+$ cat .github/workflows/Fichier-tests-f.txt | ./tp3
 
 Version #: 0.1.1008
 10 10 9999 2
@@ -25,7 +25,7 @@ Version #: 0.1.1008
 
 ******Tests avec arguments******
 
-$ Fichier-tests-f.txt | ./tp3 -i -s -d
+$ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -i -s -d
 
 Version #: 0.1.1008
 10 10 9999 2
@@ -54,7 +54,7 @@ information sommaire
   nbr trx valides : 12
   nbr trx (total) : 34
 
-$ Fichier-tests-f.txt | ./tp3 -t -s -d -i
+$ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t -s -d -i
 
 Version #: 0.1.1008
 information invalide
@@ -72,7 +72,7 @@ information sommaire
   nbr trx valides : 12
   nbr trx (total) : 34
 
-$ Fichier-tests-f.txt | ./tp3 --t --s --b --d
+$ cat .github/workflows/Fichier-tests-f.txt | ./tp3 --t --s --b --d
 
 Version #: 0.1.1008
 10 10 9999 2
@@ -87,7 +87,7 @@ Version #: 0.1.1008
 22 0 1 1
 23 1 0 1
 
-$ Fichier-tests-f.txt | ./tp3 -t
+$ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t
 
 Version #: 0.1.1008
 
@@ -127,11 +127,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6001== Memcheck, a memory error detector
-==6001== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6001== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6001== Command: ./tp3 -i -s -d
-==6001== 
+==6028== Memcheck, a memory error detector
+==6028== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6028== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6028== Command: ./tp3 -i -s -d
+==6028== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -158,32 +158,32 @@ information detaillee
 information sommaire
   nbr trx valides : 12
   nbr trx (total) : 34
-==6001== 
-==6001== HEAP SUMMARY:
-==6001==     in use at exit: 0 bytes in 0 blocks
-==6001==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6001== 
-==6001== All heap blocks were freed -- no leaks are possible
-==6001== 
-==6001== For counts of detected and suppressed errors, rerun with: -v
-==6001== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6028== 
+==6028== HEAP SUMMARY:
+==6028==     in use at exit: 0 bytes in 0 blocks
+==6028==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6028== 
+==6028== All heap blocks were freed -- no leaks are possible
+==6028== 
+==6028== For counts of detected and suppressed errors, rerun with: -v
+==6028== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6002== Memcheck, a memory error detector
-==6002== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6002== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6002== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6002== 
+==6029== Memcheck, a memory error detector
+==6029== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6029== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6029== Command: ./tp3 -t -i -dd -sfg -sffgg
+==6029== 
 Version #: 0.1.1008
-==6002== 
-==6002== HEAP SUMMARY:
-==6002==     in use at exit: 0 bytes in 0 blocks
-==6002==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6002== 
-==6002== All heap blocks were freed -- no leaks are possible
-==6002== 
-==6002== For counts of detected and suppressed errors, rerun with: -v
-==6002== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6029== 
+==6029== HEAP SUMMARY:
+==6029==     in use at exit: 0 bytes in 0 blocks
+==6029==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6029== 
+==6029== All heap blocks were freed -- no leaks are possible
+==6029== 
+==6029== For counts of detected and suppressed errors, rerun with: -v
+==6029== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

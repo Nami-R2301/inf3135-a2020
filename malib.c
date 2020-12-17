@@ -112,7 +112,7 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int
       valide = validerSignal_3((signed short) strtol(courant->argTrois, NULL, 0));
   }
 
-  if(valide && (size_t) strtoul(courant->argQuatre, NULL, 0) != 0 && ((size_t) trs->signal->power + trs->signal->id[trs->signal->compteurId]) != ((size_t) strtol(courant->argTrois, NULL, 0) + strtoul(courant->argQuatre, NULL, 0))) {
+  if(valide && (size_t) strtoul(courant->argQuatre, NULL, 0) != 0) {
 
     if((size_t) strtoul(courant->argQuatre, NULL, 0) > trs->signal->id[trs->signal->compteurId]) trs->signal->maxId = (size_t) strtoul(courant->argQuatre, NULL, 0);
 
@@ -136,9 +136,9 @@ void sortieQuinze(transactions_t *trs, temp_t* courant) {
 
     for(int i = 0; i < trs->signal->compteurId; i++) {
 
-      if(trs->signal->id[i] <= trs->signal->maxId ) {
-         trs->echange->idPn = trs->signal->id[i];
-         printf("%zu ", trs->echange->idPn);
+      if(trs->signal->id[i] <= trs->signal->maxId) {
+        trs->echange->idPn = trs->signal->id[i];
+        printf("%zu ", trs->echange->idPn);
       }
     }
     trs->compteurTrsValide++;

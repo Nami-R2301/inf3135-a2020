@@ -1,164 +1,44 @@
-![test-f](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-f/badge.svg?branch=tp3)
-
-## Tests fonctionnels pour le TP3 à jour: 
-
-```
-
-Wed Dec 16 23:37:11 EST 2020
-
-******Tests sans arguments******
-
-$ Fichier-tests-f.txt | ./tp3
-
-Version #: 0.1.1008
-10 10 9999 2
-14 30 20000 0.0
-14 31 30000 0.1
-14 32 40000 0.0
-14 33 50000 0.4
-15 34 9999 20000 30000 40000 50000 
-15 35 9999 20000 30000 40000 50000 
-21 28.8 0.0 157
-22 0 1 1
-23 1 0 1
-
-******Tests avec arguments******
-
-$ Fichier-tests-f.txt | ./tp3 -i -s -d
-
-Version #: 0.1.1008
-10 10 9999 2
-14 30 20000 0.0
-14 31 30000 0.1
-14 32 40000 0.0
-14 33 50000 0.4
-15 34 9999 20000 30000 40000 50000 
-15 35 9999 20000 30000 40000 50000 
-21 28.8 0.0 157
-22 0 1 1
-23 1 0 1
-information invalide
-  trx non reconnue : 2
-  trx avec ts non sequentiel : 7
-information detaillee
-  trx 00 : 1
-  trx 01 : 5
-  trx 02 : 3
-  trx 03 : 7
-  trx 04 : 5
-  trx 05 : 3
-  le dernier ts lu : 38
-information sommaire
-  nbr trx valides : 11
-  nbr trx (total) : 33
-
-$ Fichier-tests-f.txt | ./tp3 -t -s -d -i
-
-Version #: 0.1.1008
-information invalide
-  trx non reconnue : 2
-  trx avec ts non sequentiel : 7
-information detaillee
-  trx 00 : 1
-  trx 01 : 5
-  trx 02 : 3
-  trx 03 : 7
-  trx 04 : 5
-  trx 05 : 3
-  le dernier ts lu : 38
-information sommaire
-  nbr trx valides : 11
-  nbr trx (total) : 33
-
-$ Fichier-tests-f.txt | ./tp3 --t --s --b --d
-
-Version #: 0.1.1008
-10 10 9999 2
-14 30 20000 0.0
-14 31 30000 0.1
-14 32 40000 0.0
-14 33 50000 0.4
-15 34 9999 20000 30000 40000 50000 
-15 35 9999 20000 30000 40000 50000 
-21 28.8 0.0 157
-22 0 1 1
-23 1 0 1
-
-$ Fichier-tests-f.txt | ./tp3 -t
-
-Version #: 0.1.1008
-
-******Tests avec STDIN vide******
-
-$ ./tp3 -t
-
-Version #: 0.1.1008
-
-$ ./tp3 -i -s -d
-
-Version #: 0.1.1008
-21 0.0 0.0 0
-22 0 0 0
-23 0 0 0
-information detaillee
-  trx 00 : 0
-  trx 01 : 0
-  trx 02 : 0
-  trx 03 : 0
-  trx 04 : 0
-  trx 05 : 0
-  le dernier ts lu : 0
-information sommaire
-  nbr trx valides : 0
-  nbr trx (total) : 0
-
-$ ./tp3
-
-Version #: 0.1.1008
-21 0.0 0.0 0
-22 0 0 0
-23 0 0 0
-
-******Tests avec valgrind******
-
-Version #: 0.1.1008
-10 10 9999 2
-14 30 20000 0.0
-14 31 30000 0.1
-14 32 40000 0.0
-14 33 50000 0.4
-15 34 9999 20000 30000 40000 50000 
-15 35 9999 20000 30000 40000 50000 
-21 28.8 0.0 157
-22 0 1 1
-23 1 0 1
-information invalide
-  trx non reconnue : 2
-  trx avec ts non sequentiel : 7
-information detaillee
-  trx 00 : 1
-  trx 01 : 5
-  trx 02 : 3
-  trx 03 : 7
-  trx 04 : 5
-  trx 05 : 3
-  le dernier ts lu : 38
-information sommaire
-  nbr trx valides : 11
-  nbr trx (total) : 33
-
-
-Version #: 0.1.1008
-information detaillee
-  trx 00 : 0
-  trx 01 : 0
-  trx 02 : 0
-  trx 03 : 0
-  trx 04 : 0
-  trx 05 : 0
-  le dernier ts lu : 0
-information sommaire
-  nbr trx valides : 0
-  nbr trx (total) : 0
+==6057== Memcheck, a memory error detector
+==6057== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6057== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6057== Command: ./tp3 -t -s -i -d
+==6057== Parent PID: 6040
+==6057== 
+==6057== Use of uninitialised value of size 8
+==6057==    at 0x523496B: _itoa_word (_itoa.c:179)
+==6057==    by 0x523800D: vfprintf (vfprintf.c:1642)
+==6057==    by 0x5241015: printf (printf.c:33)
+==6057==    by 0x109F10: printOptions (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057==    by 0x108D10: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057== 
+==6057== Conditional jump or move depends on uninitialised value(s)
+==6057==    at 0x5234975: _itoa_word (_itoa.c:179)
+==6057==    by 0x523800D: vfprintf (vfprintf.c:1642)
+==6057==    by 0x5241015: printf (printf.c:33)
+==6057==    by 0x109F10: printOptions (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057==    by 0x108D10: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057== 
+==6057== Conditional jump or move depends on uninitialised value(s)
+==6057==    at 0x5238114: vfprintf (vfprintf.c:1642)
+==6057==    by 0x5241015: printf (printf.c:33)
+==6057==    by 0x109F10: printOptions (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057==    by 0x108D10: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057== 
+==6057== Conditional jump or move depends on uninitialised value(s)
+==6057==    at 0x5238C4C: vfprintf (vfprintf.c:1642)
+==6057==    by 0x5241015: printf (printf.c:33)
+==6057==    by 0x109F10: printOptions (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057==    by 0x108D10: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==6057== 
+==6057== 
+==6057== HEAP SUMMARY:
+==6057==     in use at exit: 0 bytes in 0 blocks
+==6057==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6057== 
+==6057== All heap blocks were freed -- no leaks are possible
+==6057== 
+==6057== For counts of detected and suppressed errors, rerun with: -v
+==6057== Use --track-origins=yes to see where uninitialised values come from
+==6057== ERROR SUMMARY: 4 errors from 4 contexts (suppressed: 0 from 0)
 
 ```

@@ -29,6 +29,7 @@ temp_t* initCourant() {
   courant->argTrois = (char*) malloc(sizeof(size_t));
   courant->argQuatre = (char*) malloc(sizeof(temp_t));
   courant->v = (version_t*) malloc(sizeof(version_t));
+  courant->timestamp = 0;
   getVersion(courant->v);
   courant->trsInconnu = 0;
   courant->timeInvalide = 0;

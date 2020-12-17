@@ -4,6 +4,8 @@
  
  # Travail pratique 3
 
+ ## Rendu à 400 commits!
+ 
  ## Description
  
   - Vous devez dans ce travail apporter des modifications au code existant. Vous ajouterez une fonction de gestion des arguments (options) de la ligne de commande.  Vous 
@@ -57,7 +59,7 @@
 
    - tcv.h: Fichier d'entête qui sert à déclarer les prototypes des fonctions qui vont être utilisé dans 'tcv.o' et testé dans tp1.c. 
 
-   - data/: Contient la librairie qui sera utilisé dans tp3.c ('tcv.h et 'tcv.o' ) en format compressé zip (tp1.zip || tp2.zip || tp3.zip) qui sera ensuite extrait dans la racine du projet.
+   - data/: Contient la librairie qui sera utilisé dans tp3.c ('tcv.h et 'tcv.o' ) en format compressé zip (tp1.zip || tp2.zip || tp3.zip) qui sera ensuite extrait dans la        racine du projet.
 
    - tp3: Executable du tp3.
  
@@ -67,7 +69,9 @@
 
    - tp3.c: Programme principale qui traitera les transactions donné en STDIN.
 
-   - tp3.yml: Nouveau type de fichier qui sert à executer des commandes sur une machine virtuel sur github pour alleger le travail du/des programmeurs.
+   - test-c.yml: YAML qui s'occupe de la compilation pour les résultats de tests fonctionnels du TP3.
+   
+   - test-f.yml: YAML qui s'occuper à produire les résultats de/des fichier(s) qui testeront les limites du fonctionnement du programme tp3.
 
    - outil3.h: Prototypes et déclaration de la fonction 'cmd' et 'distance' utilisé pour le tp3.
 
@@ -84,8 +88,9 @@
 
  ## Statut et auto-évaluation
 
-   - Fini tp3.c, malib.c, outil3.c et les fichiers d'entetes. (95%). 
-   - Je croix que je mérite au moins 17 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
+   - Fini. (100%). 
+   - Je croix que je mérite au moins 18 points, car j'ai vraiment mis beaucoup de temps sur ce travail et j'ai vraiment réfléchi et essayé de le perfectionné.
+     De plus, j'ai mis beaucoup d'effort à produire un dépôt parfait ainsi que des workflows très descriptif, simple et sans ambuiguités!
 
-### Crée et édité par Nami Reghbati à 12:35 EST 15/12/2020 
+### Crée et édité par Nami Reghbati à 01:50 EST 17/12/2020 
 

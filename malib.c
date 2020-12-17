@@ -50,7 +50,10 @@ void tempHumaine(transactions_t* trs, temp_t* courant) {
 
         } else trs->tempH->compteurInvalide++;
       }
-  } else trs->tempH->cumul++;
+  } else {
+      trs->tempH->cumul++;
+      trs->compteurTrsValide++;
+    }
 }
 
 void tempAmbiante(transactions_t* trs, temp_t* courant) {
@@ -68,7 +71,10 @@ void tempAmbiante(transactions_t* trs, temp_t* courant) {
         trs->tempA->degrees += (float) strtod(courant->argTrois, NULL);
 
       } else trs->tempA->compteurInvalide++;
-  } else trs->tempA->cumul++;
+  } else {
+      trs->tempA->cumul++;
+      trs->compteurTrsValide++;
+    }
 }
 
 void pulsationMin(transactions_t* trs , temp_t* courant) {
@@ -86,7 +92,10 @@ void pulsationMin(transactions_t* trs , temp_t* courant) {
         trs->compteurTrsValide++;
 
       } else trs->ppm->compteurInvalide++;
-  } else trs->ppm->cumul++;
+  } else {
+       trs->ppm->cumul++;
+       trs->compteurTrsValide++;
+    }
 }
 
 void sortieDix(transactions_t* trs, temp_t* courant) {

@@ -1,7 +1,6 @@
 ![test-f](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-f/badge.svg?branch=tp3)
 
-#
-Thu Dec 17 01:29:58 EST 2020
+# Thu Dec 17 01:29:58 EST 2020
 
 ## Tests fonctionnels pour le TP3 à jour: 
 

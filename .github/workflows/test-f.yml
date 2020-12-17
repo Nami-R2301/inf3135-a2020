@@ -24,6 +24,7 @@ jobs:
          run: |
            chmod +rwx .
            sudo apt update
+           sudo apt-get install valgrind
            sudo apt install build-essential
 
        - name: verification version

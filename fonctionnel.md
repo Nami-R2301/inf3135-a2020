@@ -4,7 +4,7 @@
 
 ```
 
-Wed Dec 16 22:23:14 EST 2020
+Wed Dec 16 22:52:47 EST 2020
 
 ******Tests sans arguments******
 
@@ -38,37 +38,37 @@ Version #: 0.1.1008
 22 0 1 1
 23 1 0 1
 information invalide
-  trx non reconnue : 2
-  trx avec ts non sequentiel : 6
+  trx non reconnue : 1
+  trx avec ts non sequentiel : 7
 information detaillee
   trx 00 : 1
   trx 01 : 5
   trx 02 : 3
   trx 03 : 7
   trx 04 : 5
-  trx 05 : 2
+  trx 05 : 3
   le dernier ts lu : 37
 information sommaire
   nbr trx valides : 11
-  nbr trx (total) : 31
+  nbr trx (total) : 32
 
 $ Fichier-tests-f.txt | ./tp3 -t -s -d -i
 
 Version #: 0.1.1008
 information invalide
-  trx non reconnue : 2
-  trx avec ts non sequentiel : 6
+  trx non reconnue : 1
+  trx avec ts non sequentiel : 7
 information detaillee
   trx 00 : 1
   trx 01 : 5
   trx 02 : 3
   trx 03 : 7
   trx 04 : 5
-  trx 05 : 2
+  trx 05 : 3
   le dernier ts lu : 37
 information sommaire
   nbr trx valides : 11
-  nbr trx (total) : 31
+  nbr trx (total) : 32
 
 $ Fichier-tests-f.txt | ./tp3 --t --s --b --d
 

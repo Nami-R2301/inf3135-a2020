@@ -9,6 +9,9 @@ tp2
 *.dat
 gcc.txt
 
+#Fichiers du prof
+*.guy
+
 #libs
 *.a
 *.so

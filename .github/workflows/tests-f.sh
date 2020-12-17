@@ -23,4 +23,8 @@ echo -e \\n\$ \.\/tp3 -i -s -d\\n >> fonctionnel.md
 ./tp3 -i -s -d >> fonctionnel.md
 echo -e \\n\$ \.\/tp3\\n >> fonctionnel.md
 ./tp3 >> fonctionnel.md
+echo -e \\n >> fonctionnel.md
+valgrind ./tp3 -i -s -d >> fonctionnel.md
+echo -e \\n >> fonctionnel.md
+valgrind ./tp3 -t -s -i -d >> fonctionnel.md
 echo -e \\n\`\`\` >> fonctionnel.md

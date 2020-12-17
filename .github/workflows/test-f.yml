@@ -7,8 +7,6 @@ on:
       - 'fonctionnel.md'
       - '.github/workflows/Fichier-tests-f.txt'
       - '.github/workflows/tests-f.sh'
-      - 'compilation.md'
-      - '.github/workflow/test-c.yml'
       
 jobs:
   job_id:

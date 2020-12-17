@@ -5,5 +5,5 @@ echo -e \#\# Tests de compilation pour le TP3 à jour:\\n >> compilation.md
 echo -e \`\`\`\\n >> compilation.md
 TZ=America/New_York date >> compilation.md
 echo -e \\n >> compilation.md
-make >> compilation.md
+make &>> compilation.md
 echo -e \\n\`\`\` >> compilation.md

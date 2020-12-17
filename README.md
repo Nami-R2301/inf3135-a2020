@@ -8,10 +8,12 @@
  
  ## Description
  
-  - Vous devez dans ce travail apporter des modifications au code existant. Vous ajouterez une fonction de gestion des arguments (options) de la ligne de commande.  Vous 
-    devez créer un programme juste et robuste.  Des fichiers ## Auteur (modules) seront utilisés pour garder un code propre et lisible.  L'utilisation de toutes les 
-    notions vue cette année est souhaitable. Finalement, le langage dans les mains d'un programmeur tel que vous peut produire, doit - Réalisé par Nami Reghbati; 
-    REGN03079808. produire, un exécutable performant.  Votre exécutable sera soumis à un stress incroyable.
+  - Vous devez dans ce travail apporter des modifications au code existant. Vous ajouterez une fonction de gestion des arguments (options) de la ligne de commande. Vous 
+    devez créer un programme juste et robuste. Des fichiers (modules) seront utilisés pour garder un code propre et lisible. L'utilisation de toutes les notions vue cette année     est souhaitable. Finalement, le langage dans les mains d'un programmeur tel que vous peut produire, doit produire, un exécutable performant. Votre exécutable sera soumis à       un stress incroyable.
+    
+ ## Auteur: 
+ 
+   - Réalisé par Nami Reghbati; REGN03079808.   
 
  ## Fonctionnement
 

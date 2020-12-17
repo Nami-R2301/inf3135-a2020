@@ -4,7 +4,47 @@
 
 ```
 
-Thu Dec 17 00:54:53 EST 2020
+Thu Dec 17 01:07:44 EST 2020
+
+### Fichier(s) testé(s) :
+
+10 00 0 0
+10 10 9999 2
+12 01 20.6
+13 01 ERREUR
+13 01 ERREUR
+13 01 ERREUR
+14 01 ERREUR
+15 01 ERREUR
+16 01 36.9
+16 01 0.0
+17 02 ERREUR
+17 02 ERREUR
+17 02 ERREUR
+20 02 0.0
+21 02 -58.77
+22 03 157
+23 03 ERREUR
+24 03 ERREUR
+25 03 ERREUR
+26 03 ERREUR
+27 03 ERREUR
+28 03 49
+29 04 -40 9999
+30 04 -35 20000
+31 04 -45 10000
+32 04 0 40000
+33 04 -60.6 100000
+34 05 11111 1000 2000 3000 4000 5000 6000 7000 8000
+35 05 0 1111 1111 1111 1111
+36 05 60000 1111 11111 11111
+37 05 9999
+38 06 00
+39 07 11111 1111
+40 08 -1234
+41 05 111111
+
+
 
 ******Tests sans arguments******
 
@@ -127,11 +167,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6038== Memcheck, a memory error detector
-==6038== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6038== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6038== Command: ./tp3 -i -s -d
-==6038== 
+==5961== Memcheck, a memory error detector
+==5961== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==5961== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==5961== Command: ./tp3 -i -s -d
+==5961== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -158,32 +198,32 @@ information detaillee
 information sommaire
   nbr trx valides : 21
   nbr trx (total) : 35
-==6038== 
-==6038== HEAP SUMMARY:
-==6038==     in use at exit: 0 bytes in 0 blocks
-==6038==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6038== 
-==6038== All heap blocks were freed -- no leaks are possible
-==6038== 
-==6038== For counts of detected and suppressed errors, rerun with: -v
-==6038== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==5961== 
+==5961== HEAP SUMMARY:
+==5961==     in use at exit: 0 bytes in 0 blocks
+==5961==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==5961== 
+==5961== All heap blocks were freed -- no leaks are possible
+==5961== 
+==5961== For counts of detected and suppressed errors, rerun with: -v
+==5961== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6040== Memcheck, a memory error detector
-==6040== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6040== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6040== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6040== 
+==5962== Memcheck, a memory error detector
+==5962== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==5962== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==5962== Command: ./tp3 -t -i -dd -sfg -sffgg
+==5962== 
 Version #: 0.1.1008
-==6040== 
-==6040== HEAP SUMMARY:
-==6040==     in use at exit: 0 bytes in 0 blocks
-==6040==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6040== 
-==6040== All heap blocks were freed -- no leaks are possible
-==6040== 
-==6040== For counts of detected and suppressed errors, rerun with: -v
-==6040== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==5962== 
+==5962== HEAP SUMMARY:
+==5962==     in use at exit: 0 bytes in 0 blocks
+==5962==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==5962== 
+==5962== All heap blocks were freed -- no leaks are possible
+==5962== 
+==5962== For counts of detected and suppressed errors, rerun with: -v
+==5962== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

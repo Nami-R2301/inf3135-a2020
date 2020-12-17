@@ -1,7 +1,7 @@
 ![test-f](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-f/badge.svg?branch=tp3)
 
-#
-Thu Dec 17 01:31:21 EST 2020
+
+# Thu Dec 17 01:36:06 EST 2020
 
 ## Tests fonctionnels pour le TP3 à jour: 
 
@@ -193,11 +193,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6615== Memcheck, a memory error detector
-==6615== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6615== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6615== Command: ./tp3 -i -s -d
-==6615== 
+==6195== Memcheck, a memory error detector
+==6195== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6195== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6195== Command: ./tp3 -i -s -d
+==6195== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -224,32 +224,32 @@ information detaillee
 information sommaire
   nbr trx valides : 21
   nbr trx (total) : 35
-==6615== 
-==6615== HEAP SUMMARY:
-==6615==     in use at exit: 0 bytes in 0 blocks
-==6615==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6615== 
-==6615== All heap blocks were freed -- no leaks are possible
-==6615== 
-==6615== For counts of detected and suppressed errors, rerun with: -v
-==6615== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6195== 
+==6195== HEAP SUMMARY:
+==6195==     in use at exit: 0 bytes in 0 blocks
+==6195==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6195== 
+==6195== All heap blocks were freed -- no leaks are possible
+==6195== 
+==6195== For counts of detected and suppressed errors, rerun with: -v
+==6195== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6627== Memcheck, a memory error detector
-==6627== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6627== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6627== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6627== 
+==6197== Memcheck, a memory error detector
+==6197== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6197== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6197== Command: ./tp3 -t -i -dd -sfg -sffgg
+==6197== 
 Version #: 0.1.1008
-==6627== 
-==6627== HEAP SUMMARY:
-==6627==     in use at exit: 0 bytes in 0 blocks
-==6627==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6627== 
-==6627== All heap blocks were freed -- no leaks are possible
-==6627== 
-==6627== For counts of detected and suppressed errors, rerun with: -v
-==6627== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6197== 
+==6197== HEAP SUMMARY:
+==6197==     in use at exit: 0 bytes in 0 blocks
+==6197==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6197== 
+==6197== All heap blocks were freed -- no leaks are possible
+==6197== 
+==6197== For counts of detected and suppressed errors, rerun with: -v
+==6197== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

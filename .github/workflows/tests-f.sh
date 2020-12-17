@@ -5,16 +5,16 @@ echo -e \#\# Tests fonctionnels pour le TP3 à jour: \\n >> fonctionnel.md
 echo -e \`\`\`\\n >> fonctionnel.md
 TZ=America/New_York date >> fonctionnel.md
 echo -e \\n\*\*\*\*\*\*Tests sans arguments\*\*\*\*\*\*\\n >> fonctionnel.md
-echo -e \$ Fichier-tests-f\.txt \| \.\/tp3\\n >> fonctionnel.md
+echo -e \$ cat \.github\/workflows\/Fichier-tests-f\.txt \| \.\/tp3\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 >> fonctionnel.md
 echo -e \\n\*\*\*\*\*\*Tests avec arguments\*\*\*\*\*\*\\n >> fonctionnel.md
-echo -e \$ Fichier-tests-f\.txt \| \.\/tp3 -i -s -d\\n >> fonctionnel.md
+echo -e \$ cat \.github\/workflows\/Fichier-tests-f\.txt \| \.\/tp3 -i -s -d\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 -i -s -d >> fonctionnel.md
-echo -e \\n\$ Fichier-tests-f\.txt \| \.\/tp3 -t -s -d -i\\n >> fonctionnel.md
+echo -e \\n\$ cat \.github\/workflows\/Fichier-tests-f\.txt \| \.\/tp3 -t -s -d -i\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t -s -d -i >> fonctionnel.md
-echo -e \\n\$ Fichier-tests-f\.txt \| \.\/tp3 --t --s --b --d\\n >> fonctionnel.md
+echo -e \\n\$ cat \.github\/workflows\/Fichier-tests-f\.txt \| \.\/tp3 --t --s --b --d\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 --t --s --b --d >> fonctionnel.md
-echo -e \\n\$ Fichier-tests-f\.txt \| \.\/tp3 -t\\n >> fonctionnel.md
+echo -e \\n\$ cat \.github\/workflows\/Fichier-tests-f\.txt \| \.\/tp3 -t\\n >> fonctionnel.md
 cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t >> fonctionnel.md
 echo -e \\n\*\*\*\*\*\*Tests avec STDIN vide\*\*\*\*\*\*\\n >> fonctionnel.md
 echo -e \$ \.\/tp3 -t\\n >> fonctionnel.md

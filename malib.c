@@ -143,7 +143,7 @@ void sortieQuinze(transactions_t *trs, temp_t* courant) {
     }
     trs->compteurTrsValide++;
     printf("\n");
-  } else if(trs->signal->compteurId != 0) trs->compteurTrsValide++;
+  } else if(trs->signal->compteurId != 0 && (size_t) strtoul(courant->argTrois, NULL, 0) <= trs->signal->maxId) trs->compteurTrsValide++;
   trs->echange->compteurTrs++;
 }
 

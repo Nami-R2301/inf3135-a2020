@@ -1,9 +1,15 @@
 name: test-f
-on: 
+on:
   push:
     branches: tp3
-    tags: 
-      - v5
+    paths:
+      - '.github/workflows/test-f.yml'
+      - 'fonctionnel.md'
+      - '.github/workflows/Fichier-tests-f.txt'
+      - '.github/workflows/tests-f.sh'
+      - 'compilation.md'
+  pull_request:
+    branches: tp3
     paths: 
       - '.github/workflows/test-f.yml'
       - 'fonctionnel.md'

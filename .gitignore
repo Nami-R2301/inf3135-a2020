@@ -4,13 +4,10 @@
 # Executables
 tp1
 tp2
+tp3
 
 #Test files for testing
 *.dat
 
 #Fichiers du prof
 *.guy
-
-#libs
-*.a
-*.so

@@ -3,8 +3,6 @@ on:
   push:
     branches: 
       - tp3 
-    tags:
-      - v6
     paths:
       - 'tp3.c'
       - 'outil3.c'
@@ -24,7 +22,7 @@ jobs:
         with:
           persist-credentials: false 
           fetch-depth: 0
-      - name: build
+      - name: setup env
         run: |
           chmod +rwx .
           sudo apt update

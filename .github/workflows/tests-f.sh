@@ -24,9 +24,8 @@ echo -e \\n\$ \.\/tp3 -i -s -d\\n >> fonctionnel.md
 echo -e \\n\$ \.\/tp3\\n >> fonctionnel.md
 ./tp3 >> fonctionnel.md
 echo -e \\n\*\*\*\*\*\*Tests avec valgrind\*\*\*\*\*\*\\n >> fonctionnel.md
-cat .github/workflows/Fichier-tests-f.txt | valgrind --log-file="valgrind.txt" ./tp3 -i -s -d
-cat valgrind.txt >> fonctionnel.md
+cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d &>> fonctionnel.md
 echo -e \\n >> fonctionnel.md
-valgrind --log-file="valgrind.txt" ./tp3 -t -s -i -d
+valgrind ./tp3 -t -i -dd -sfg -sffgg &>> fonctionnel.md
 cat valgrind.txt >> fonctionnel.md
 echo -e \\n\`\`\` >> fonctionnel.md

@@ -178,3 +178,4 @@ void vider(transactions_t *trs, temp_t* courant) {
   free(trs->mainId);
   free(trs);
 }
+

@@ -35,4 +35,5 @@ int main(int argc, char *argv[]) {
   printOptions(trs->optionT, trs, courant);
   vider(trs, courant);
   return 0;
+
 }

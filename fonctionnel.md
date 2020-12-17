@@ -2,7 +2,7 @@
 
 
 
-## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 01:47:58 EST 2020): 
+## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 02:05:10 EST 2020): 
 
 
 
@@ -45,7 +45,7 @@
 39 07 11111 1111
 40 08 -1234
 41 05 111111
-
+42 05 -111111111
 
 
 ```
@@ -101,11 +101,11 @@ information detaillee
   trx 02 : 3
   trx 03 : 7
   trx 04 : 5
-  trx 05 : 5
-  le dernier ts lu : 41
+  trx 05 : 6
+  le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 35
+  nbr trx (total) : 36
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t -s -d -i
 
@@ -119,11 +119,11 @@ information detaillee
   trx 02 : 3
   trx 03 : 7
   trx 04 : 5
-  trx 05 : 5
-  le dernier ts lu : 41
+  trx 05 : 6
+  le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 35
+  nbr trx (total) : 36
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 --t --s --b --d
 
@@ -192,11 +192,49 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==5997== Memcheck, a memory error detector
-==5997== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5997== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5997== Command: ./tp3 -i -s -d
-==5997== 
+==7696== Memcheck, a memory error detector
+==7696== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7696== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==7696== Command: ./tp3 -i -s -d
+==7696== 
+==7696== Invalid write of size 1
+==7696==    at 0x52490BD: _IO_vfscanf (vfscanf.c:1103)
+==7696==    by 0x5258701: __isoc99_vsscanf (isoc99_vsscanf.c:43)
+==7696==    by 0x5258653: __isoc99_sscanf (isoc99_sscanf.c:31)
+==7696==    by 0x108AFA: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==  Address 0x55cd3f8 is 0 bytes after a block of size 8 alloc'd
+==7696==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7696==    by 0x108F19: initCourant (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108A4F: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696== 
+==7696== Invalid write of size 1
+==7696==    at 0x524AA22: _IO_vfscanf (vfscanf.c:1188)
+==7696==    by 0x5258701: __isoc99_vsscanf (isoc99_vsscanf.c:43)
+==7696==    by 0x5258653: __isoc99_sscanf (isoc99_sscanf.c:31)
+==7696==    by 0x108AFA: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==  Address 0x55cd3fa is 2 bytes after a block of size 8 alloc'd
+==7696==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7696==    by 0x108F19: initCourant (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108A4F: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696== 
+==7696== Invalid read of size 1
+==7696==    at 0x5221B77: ____strtoul_l_internal (strtol_l.c:432)
+==7696==    by 0x1097B5: sortieQuinze (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108C6B: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==  Address 0x55cd3f8 is 0 bytes after a block of size 8 alloc'd
+==7696==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7696==    by 0x108F19: initCourant (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108A4F: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696== 
+==7696== Invalid read of size 1
+==7696==    at 0x5221B77: ____strtoul_l_internal (strtol_l.c:432)
+==7696==    by 0x1098D4: sortieQuinze (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108C6B: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==  Address 0x55cd3f8 is 0 bytes after a block of size 8 alloc'd
+==7696==    at 0x4C31B0F: malloc (in /usr/lib/valgrind/vgpreload_memcheck-amd64-linux.so)
+==7696==    by 0x108F19: initCourant (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696==    by 0x108A4F: main (in /home/runner/work/inf3135-a2020/inf3135-a2020/tp3)
+==7696== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -218,37 +256,37 @@ information detaillee
   trx 02 : 3
   trx 03 : 7
   trx 04 : 5
-  trx 05 : 5
-  le dernier ts lu : 41
+  trx 05 : 6
+  le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 35
-==5997== 
-==5997== HEAP SUMMARY:
-==5997==     in use at exit: 0 bytes in 0 blocks
-==5997==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==5997== 
-==5997== All heap blocks were freed -- no leaks are possible
-==5997== 
-==5997== For counts of detected and suppressed errors, rerun with: -v
-==5997== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+  nbr trx (total) : 36
+==7696== 
+==7696== HEAP SUMMARY:
+==7696==     in use at exit: 0 bytes in 0 blocks
+==7696==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==7696== 
+==7696== All heap blocks were freed -- no leaks are possible
+==7696== 
+==7696== For counts of detected and suppressed errors, rerun with: -v
+==7696== ERROR SUMMARY: 9 errors from 4 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==5998== Memcheck, a memory error detector
-==5998== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==5998== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==5998== Command: ./tp3 -t -i -dd -sfg -sffgg
-==5998== 
+==7698== Memcheck, a memory error detector
+==7698== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==7698== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==7698== Command: ./tp3 -t -i -dd -sfg -sffgg
+==7698== 
 Version #: 0.1.1008
-==5998== 
-==5998== HEAP SUMMARY:
-==5998==     in use at exit: 0 bytes in 0 blocks
-==5998==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==5998== 
-==5998== All heap blocks were freed -- no leaks are possible
-==5998== 
-==5998== For counts of detected and suppressed errors, rerun with: -v
-==5998== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==7698== 
+==7698== HEAP SUMMARY:
+==7698==     in use at exit: 0 bytes in 0 blocks
+==7698==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==7698== 
+==7698== All heap blocks were freed -- no leaks are possible
+==7698== 
+==7698== For counts of detected and suppressed errors, rerun with: -v
+==7698== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

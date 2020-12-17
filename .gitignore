@@ -7,7 +7,6 @@ tp2
 
 #Test files for testing
 *.dat
-gcc.txt
 
 #Fichiers du prof
 *.guy

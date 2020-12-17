@@ -74,6 +74,7 @@ typedef struct signalRSSI_s {
   size_t compteurId;
   size_t id[sizeof(size_t)];
   size_t compteurTrs;
+  size_t maxId;
 
 } signal_t;
 

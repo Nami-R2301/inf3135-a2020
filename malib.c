@@ -15,6 +15,7 @@ transactions_t* initStructs() {
   *trs->ppm = (ppm_t) {0, 0, 0, 0, 0};
   *trs->signal = (signal_t) {0, 0};
   trs->signal->compteurTrs = 0;
+  trs->signal->maxId = 0;
   *trs->echange = (echange_t) {0, 0};
   trs->optionT = 0;
   trs->compteurTrs = 0;
@@ -111,13 +112,16 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int
       valide = validerSignal_3((signed short) strtol(courant->argTrois, NULL, 0));
   }
 
-  if(valide) {
+  if(valide && (size_t) strtoul(courant->argQuatre, NULL, 0) != 0 && ((size_t) trs->signal->power + trs->signal->id[trs->signal->compteurId]) != ((size_t) strtol(courant->argTrois, NULL, 0) + strtoul(courant->argQuatre, NULL, 0))) {
+
+    if((size_t) strtoul(courant->argQuatre, NULL, 0) > trs->signal->id[trs->signal->compteurId]) trs->signal->maxId = (size_t) strtoul(courant->argQuatre, NULL, 0);
+
     trs->signal->power = (short) strtol(courant->argTrois, NULL, 0);
     trs->signal->id[trs->signal->compteurId] = (size_t) strtoul(courant->argQuatre, NULL, 0);
     trs->compteurTrsValide++;
     float distance = (*dist)((int) trs->signal->power, (int) trs->mainId->puissanceEmetteur);
 
-    if(trs->optionT > 0) {
+    if(trs->optionT > 0 && distance != -1.0f) {
       printf("%u %zu %zu %0.1f\n", 14, courant->timestamp, trs->signal->id[trs->signal->compteurId], distance);
     }
     trs->signal->compteurId++;
@@ -127,12 +131,12 @@ void sortieQuatorze(transactions_t *trs, temp_t* courant, float (*dist)(int, int
 
 void sortieQuinze(transactions_t *trs, temp_t* courant) {
 
-  if(trs->signal->compteurId != 0 && trs->optionT > 0) {
+  if(trs->signal->compteurId != 0 && trs->optionT > 0 && (size_t) strtoul(courant->argTrois, NULL, 0) <= trs->signal->maxId) {
     printf("%u %zu %zu ", 15, courant->timestamp, trs->mainId->id);
 
     for(int i = 0; i < trs->signal->compteurId; i++) {
 
-      if(trs->signal->id[i] != trs->mainId->id) {
+      if(trs->signal->id[i] <= trs->signal->maxId ) {
          trs->echange->idPn = trs->signal->id[i];
          printf("%zu ", trs->echange->idPn);
       }

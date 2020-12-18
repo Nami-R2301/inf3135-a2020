@@ -2,7 +2,7 @@
 
 
 
-## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 02:21:27 EST 2020): 
+## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 22:26:04 EST 2020): 
 
 
 
@@ -194,11 +194,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6082== Memcheck, a memory error detector
-==6082== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6082== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6082== Command: ./tp3 -i -s -d
-==6082== 
+==6046== Memcheck, a memory error detector
+==6046== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6046== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6046== Command: ./tp3 -i -s -d
+==6046== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -225,32 +225,32 @@ information detaillee
 information sommaire
   nbr trx valides : 21
   nbr trx (total) : 36
-==6082== 
-==6082== HEAP SUMMARY:
-==6082==     in use at exit: 0 bytes in 0 blocks
-==6082==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6082== 
-==6082== All heap blocks were freed -- no leaks are possible
-==6082== 
-==6082== For counts of detected and suppressed errors, rerun with: -v
-==6082== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6046== 
+==6046== HEAP SUMMARY:
+==6046==     in use at exit: 0 bytes in 0 blocks
+==6046==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6046== 
+==6046== All heap blocks were freed -- no leaks are possible
+==6046== 
+==6046== For counts of detected and suppressed errors, rerun with: -v
+==6046== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6083== Memcheck, a memory error detector
-==6083== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6083== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6083== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6083== 
+==6047== Memcheck, a memory error detector
+==6047== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6047== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6047== Command: ./tp3 -t -i -dd -sfg -sffgg
+==6047== 
 Version #: 0.1.1008
-==6083== 
-==6083== HEAP SUMMARY:
-==6083==     in use at exit: 0 bytes in 0 blocks
-==6083==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6083== 
-==6083== All heap blocks were freed -- no leaks are possible
-==6083== 
-==6083== For counts of detected and suppressed errors, rerun with: -v
-==6083== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6047== 
+==6047== HEAP SUMMARY:
+==6047==     in use at exit: 0 bytes in 0 blocks
+==6047==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6047== 
+==6047== All heap blocks were freed -- no leaks are possible
+==6047== 
+==6047== For counts of detected and suppressed errors, rerun with: -v
+==6047== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

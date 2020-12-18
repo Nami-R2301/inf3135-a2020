@@ -1,6 +1,9 @@
 ![test-f](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-f/badge.svg?branch=tp3)
 
-## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 22:26:04 EST 2020): 
+
+
+## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 22:30:58 EST 2020): 
+
 
 
 ### Contenu de/des Fichier(s) testé(s) :
@@ -93,7 +96,7 @@ Version #: 0.1.1008
 23 1 0 1
 information invalide
   trx non reconnue : 3
-  trx avec ts non sequentiel : 6
+  trx avec ts non sequentiel : 7
 information detaillee
   trx 00 : 1
   trx 01 : 5
@@ -104,14 +107,14 @@ information detaillee
   le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 36
+  nbr trx (total) : 37
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t -s -d -i
 
 Version #: 0.1.1008
 information invalide
   trx non reconnue : 3
-  trx avec ts non sequentiel : 6
+  trx avec ts non sequentiel : 7
 information detaillee
   trx 00 : 1
   trx 01 : 5
@@ -122,7 +125,7 @@ information detaillee
   le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 36
+  nbr trx (total) : 37
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 --t --s --b --d
 
@@ -191,11 +194,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6046== Memcheck, a memory error detector
-==6046== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6046== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6046== Command: ./tp3 -i -s -d
-==6046== 
+==6017== Memcheck, a memory error detector
+==6017== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6017== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6017== Command: ./tp3 -i -s -d
+==6017== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -210,7 +213,7 @@ Version #: 0.1.1008
 23 1 0 1
 information invalide
   trx non reconnue : 3
-  trx avec ts non sequentiel : 6
+  trx avec ts non sequentiel : 7
 information detaillee
   trx 00 : 1
   trx 01 : 5
@@ -221,33 +224,33 @@ information detaillee
   le dernier ts lu : 42
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 36
-==6046== 
-==6046== HEAP SUMMARY:
-==6046==     in use at exit: 0 bytes in 0 blocks
-==6046==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6046== 
-==6046== All heap blocks were freed -- no leaks are possible
-==6046== 
-==6046== For counts of detected and suppressed errors, rerun with: -v
-==6046== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+  nbr trx (total) : 37
+==6017== 
+==6017== HEAP SUMMARY:
+==6017==     in use at exit: 0 bytes in 0 blocks
+==6017==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6017== 
+==6017== All heap blocks were freed -- no leaks are possible
+==6017== 
+==6017== For counts of detected and suppressed errors, rerun with: -v
+==6017== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6047== Memcheck, a memory error detector
-==6047== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6047== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6047== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6047== 
+==6020== Memcheck, a memory error detector
+==6020== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6020== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6020== Command: ./tp3 -t -i -dd -sfg -sffgg
+==6020== 
 Version #: 0.1.1008
-==6047== 
-==6047== HEAP SUMMARY:
-==6047==     in use at exit: 0 bytes in 0 blocks
-==6047==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6047== 
-==6047== All heap blocks were freed -- no leaks are possible
-==6047== 
-==6047== For counts of detected and suppressed errors, rerun with: -v
-==6047== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6020== 
+==6020== HEAP SUMMARY:
+==6020==     in use at exit: 0 bytes in 0 blocks
+==6020==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6020== 
+==6020== All heap blocks were freed -- no leaks are possible
+==6020== 
+==6020== For counts of detected and suppressed errors, rerun with: -v
+==6020== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

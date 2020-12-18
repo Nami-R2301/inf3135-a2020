@@ -1,10 +1,10 @@
 ![test-c](https://github.com/Nami-R2301/inf3135-a2020/workflows/test-c/badge.svg?branch=tp3)
 
-## Tests de compilation pour le TP3 à jour (Thu Dec 17 02:02:40 EST 2020) :
+## Tests de compilation pour le TP3 à jour (Thu Dec 17 22:21:32 EST 2020) :
 
 ```
 
-Thu Dec 17 02:02:40 EST 2020
+Thu Dec 17 22:21:32 EST 2020
 
 
 chmod +rwx .

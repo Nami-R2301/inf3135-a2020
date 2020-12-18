@@ -9,7 +9,7 @@ on:
       - 'malib.c'
       - 'outil3.h'
       - 'malib.h'
-      - '.github/workflows/test-c.yml'
+      - 'test-c.yml'
       - '.github/workflows/tests-c.sh'
 
 jobs:

@@ -39,7 +39,6 @@ jobs:
           pwd
           make clean
           make
-          ls -lash
              
        - name: tests
          run: |

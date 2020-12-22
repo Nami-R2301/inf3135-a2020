@@ -2,7 +2,7 @@
 
 
 
-## Tests fonctionnels pour le TP3 à jour (Thu Dec 17 22:35:44 EST 2020): 
+## Tests fonctionnels pour le TP3 à jour (Mon Dec 21 20:11:55 EST 2020): 
 
 
 
@@ -53,6 +53,8 @@ $ cat .github/workflows/Fichier-tests-f.txt
 44 00 110000
 
 
+
+
 ```
 
 
@@ -98,7 +100,7 @@ Version #: 0.1.1008
 22 0 1 1
 23 1 0 1
 information invalide
-  trx non reconnue : 7
+  trx non reconnue : 9
   trx avec ts non sequentiel : 6
 information detaillee
   trx 00 : 1
@@ -110,13 +112,13 @@ information detaillee
   le dernier ts lu : 44
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 40
+  nbr trx (total) : 42
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 -t -s -d -i
 
 Version #: 0.1.1008
 information invalide
-  trx non reconnue : 7
+  trx non reconnue : 9
   trx avec ts non sequentiel : 6
 information detaillee
   trx 00 : 1
@@ -128,7 +130,7 @@ information detaillee
   le dernier ts lu : 44
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 40
+  nbr trx (total) : 42
 
 $ cat .github/workflows/Fichier-tests-f.txt | ./tp3 --t --s --b --d
 
@@ -197,11 +199,11 @@ Version #: 0.1.1008
 
 $ cat .github/workflows/Fichier-tests-f.txt | valgrind ./tp3 -i -s -d
 
-==6443== Memcheck, a memory error detector
-==6443== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6443== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6443== Command: ./tp3 -i -s -d
-==6443== 
+==6525== Memcheck, a memory error detector
+==6525== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6525== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6525== Command: ./tp3 -i -s -d
+==6525== 
 Version #: 0.1.1008
 10 10 9999 2
 14 30 20000 0.0
@@ -215,7 +217,7 @@ Version #: 0.1.1008
 22 0 1 1
 23 1 0 1
 information invalide
-  trx non reconnue : 7
+  trx non reconnue : 9
   trx avec ts non sequentiel : 6
 information detaillee
   trx 00 : 1
@@ -227,33 +229,33 @@ information detaillee
   le dernier ts lu : 44
 information sommaire
   nbr trx valides : 21
-  nbr trx (total) : 40
-==6443== 
-==6443== HEAP SUMMARY:
-==6443==     in use at exit: 0 bytes in 0 blocks
-==6443==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6443== 
-==6443== All heap blocks were freed -- no leaks are possible
-==6443== 
-==6443== For counts of detected and suppressed errors, rerun with: -v
-==6443== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+  nbr trx (total) : 42
+==6525== 
+==6525== HEAP SUMMARY:
+==6525==     in use at exit: 0 bytes in 0 blocks
+==6525==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6525== 
+==6525== All heap blocks were freed -- no leaks are possible
+==6525== 
+==6525== For counts of detected and suppressed errors, rerun with: -v
+==6525== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 $ ./tp3 -t -i -dd -sfg -sffgg
 
-==6444== Memcheck, a memory error detector
-==6444== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
-==6444== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
-==6444== Command: ./tp3 -t -i -dd -sfg -sffgg
-==6444== 
+==6526== Memcheck, a memory error detector
+==6526== Copyright (C) 2002-2017, and GNU GPL'd, by Julian Seward et al.
+==6526== Using Valgrind-3.13.0 and LibVEX; rerun with -h for copyright info
+==6526== Command: ./tp3 -t -i -dd -sfg -sffgg
+==6526== 
 Version #: 0.1.1008
-==6444== 
-==6444== HEAP SUMMARY:
-==6444==     in use at exit: 0 bytes in 0 blocks
-==6444==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
-==6444== 
-==6444== All heap blocks were freed -- no leaks are possible
-==6444== 
-==6444== For counts of detected and suppressed errors, rerun with: -v
-==6444== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
+==6526== 
+==6526== HEAP SUMMARY:
+==6526==     in use at exit: 0 bytes in 0 blocks
+==6526==   total heap usage: 13 allocs, 13 frees, 8,648 bytes allocated
+==6526== 
+==6526== All heap blocks were freed -- no leaks are possible
+==6526== 
+==6526== For counts of detected and suppressed errors, rerun with: -v
+==6526== ERROR SUMMARY: 0 errors from 0 contexts (suppressed: 0 from 0)
 
 ```

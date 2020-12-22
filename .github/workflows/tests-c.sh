@@ -7,3 +7,4 @@ TZ=America/New_York date >> compilation.md
 echo -e \\n >> compilation.md
 make &>> compilation.md
 echo -e \\n\`\`\` >> compilation.md
+

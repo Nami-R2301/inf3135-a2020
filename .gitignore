@@ -1,13 +1,11 @@
-# Object files
-*.o
 
+*.dat
 # Executables
+#Fichiers du prof
+*.guy
+*.o
+# Object files
+#Test files for testing
 tp1
 tp2
 tp3
-
-#Test files for testing
-*.dat
-
-#Fichiers du prof
-*.guy

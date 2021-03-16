@@ -98,10 +98,9 @@ Détaillez et justifiez votre réponse.
 
 **Processus :**
 > Sur cette ligne, il y a trois processus mis en oeuvre si le `fork` de `metsys` passe : `./metsys` X2 et `/bin/echo`.
-> Le programme `./metsys` qui est exécuté par bash, va faire un `fork` ce qui créera un processus enfant ('metsys[1]'). Le processus 
-> parent de metsys ('metsys') va exécuté le processus en argument `/bin/echo` (echo) avec son argument dans l'entrée standard "bonjour le 
-> monde" ce qui remplacera `metsys[1]`, alors que le processus enfant de metsys exécutera le reste du processus courant ('metsys') et 
-> affichera le status sur le terminal.
+> Le programme `./metsys` qui est exécuté par bash, va faire un `fork` ce qui créera un processus enfant ('metsys[1]'). 
+> Le processus parent de metsys ('metsys') va exécuté le processus en argument `/bin/echo` (echo) avec son argument 
+> "bonjour le monde" ce qui remplacera `metsys[1]`.
 
 **Relations de parenté :**
 > `/bin/echo` est un enfant de `/bin/bash`.
@@ -110,9 +109,10 @@ Détaillez et justifiez votre réponse.
 > Donc, `/bin/echo` et `./metsys` ont le même parent et metsys est le parent de `metsys[1]`.
 
 **Appel(s) réalisé(s) :**
-> metsys contient : un appel `clone` (fork), un appel `execv(argv[0], argv)`, aucun appel `wait(&status)`(car c'est le parent qui exécute 
-> `/bin/echo`) et un appel `exit(0)` (fin du parent).
-> `/bin/echo` contient : aucun appel `clone` (fork), aucun appel `exec`, aucun appel `wait` et un appel `exit(0)` (fin du `write`).
+> metsys contient : un appel `clone` (fork), un appel `execv(argv[0], argv)`, aucun appel `wait(&status)`et un appel 
+> `exit(0)` (fin du parent).
+> `/bin/echo` contient : aucun appel `clone` (fork), aucun appel `exec`, aucun appel `wait` et un appel `exit(0)` 
+> (fin du `write`).
 
 **Affichage :**
 > '/bin/echo affiche `bonjour le monde` dans la sortie standard.
@@ -129,20 +129,17 @@ Détaillez et justifiez votre réponse.
 (150 mots maximum)
 
 **Raisonement de l'affichage :** 
-> Le main de `metsys` s'exécute et nous réservons un espace mémoire de type `int` qui stockera la valeur de retour de la fonction 
-> `metsys()` en lui passant 'argv[1]' comme argument. Ensuite, metsys stocke un pid d'un enfant qu'il crée dans une variable `pid`. Nous 
-> rentrons dans le `if` principal seulement si ont est le processus parent, car `pid == 0 -> enfant(s)`. Ce qui veut dire, que nous le 
-> parent rentre dans le `if` et essai d'exécuter l'exec correspondant. Pendant ce temps, l'enfant ignore le `if` et intialise `status` à 
-> zéro. Ensuite, l'enfant passe par dessus la ligne contenant : `wait(&status)`, car il n'est pas un processus parent qui  attend après 
-> son enfant. Enfin, l'enfant retourne `status`, le met dans `code` et affiche celui-ci dans un `printf` sur la ligne suivante.
+> Le main de `metsys` s'exécute en lui passant 'argv[1]' comme argument. Ensuite, nous rentrons dans le `if` principal 
+> seulement si ont est le processus parent. Pendant ce temps, l'enfant ignore le `if` et intialise `status` à zéro et 
+> passe par dessus la ligne contenant : `wait(&status)`, car il n'est pas un processus parent. Enfin, l'enfant termine
+> le programme en affichant le status.
 
 **Résultat systématique ou non?** :
-> Cas généraux : `#status` s'affiche en premier à l'écran suivi de `bonjour le monde`. Le processus enfant a fini avant l'exécution de
-> `echo` par le parent. Les deux processus concurrentie et le processus enfant termine son exécution en premier.
-> Cas d'erreurs : `#status` s'affiche deux fois à l'écran, `bonjour le monde` ne s'affiche pas. Échec de tous les `exec` pour le
-> processus parent, ce qui amène le parent à exécuter le reste du code après les `exec` et par conséquent, répéter l'exécution du processus 
-> enfant.
-> Cas spéciaux : `bonjour le monde` s'affiche à l'écran et `#status` ne s'affiche pas.
+> Les résultats ne sont pas systématique, car vu que les processus travaillent parralèlement, il peuvent se terminer à
+> des temps variables. Par exemple : Le processus enfant peut finir avant l'exécution de `echo` par le parent. le
+> processus parent peut échouer de tous les `exec`, ce qui amène le parent à exécuter le reste du code
+> après les `exec` et par conséquent, répéter l'exécution du processus enfant. Si l'enfant prend plus de temps que le
+> parent à exécuter ses tâches, ce qui termine le processus enfant avant qu'il se rend au `printf` (très rare).
 
 ### Q3
 

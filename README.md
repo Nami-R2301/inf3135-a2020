@@ -296,7 +296,7 @@ Proposez une courte question **originale** de quiz sur les systèmes de fichiers
 La question doit être à choix de réponses, avec 4 réponses possibles, mais dont exactement une seule est correcte.
 Les 3 autres réponses doivent être suffisamment vraisemblables par rapport à la bonne réponse pour que la question soit intéressante et pertinente à l'évaluation des connaissances sur les principes des systèmes d'exploitation.
 
-> * Question: Vers quoi, d'après vous, l'inode du répertoire parent (`..`) de root (`/`) pointerai?
+> * Question: À quoi correspond l'inode du répertoire parent (`..`) de root (`/`)?
 > * Mauvaise réponse 1: Un inode inférieur au répertoire de root.
 > * Mauvaise réponse 2: Un inode supérieur au répertoire de root.
 > * Mauvaise réponse 3: Rien. Root ne contient pas de répertoire parent.
